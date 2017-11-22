@@ -66,7 +66,9 @@ namespace WordLab6
         {
             if (CurrentItemId < db.Items.Count() - 1)
             {
-                tempSaveItem(db.Items.Find(CurrentItemId));
+                //tempSaveItem(db.Items.Find(CurrentItemId));
+
+                firstPictureBox.Image = null;
 
                 CurrentItemId++;
             }
@@ -103,12 +105,18 @@ namespace WordLab6
             {
                 //tempSaveItem(db.Items.Find(CurrentItemId));
 
+                firstPictureBox.Image = null;
+
                 CurrentItemId--;
             }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            pictureBox.Image = new Bitmap(firstPictureBox.Image);
+
+            firstPictureBox.Image = null;
+
             tempSaveItem(db.Items.Find(CurrentItemId));
 
             db.SaveChanges();
@@ -122,7 +130,7 @@ namespace WordLab6
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                pictureBox.Image = Image.FromFile(fileDialog.FileName);
+                firstPictureBox.Image = Image.FromFile(fileDialog.FileName);
             }           
         }
 
@@ -142,7 +150,7 @@ namespace WordLab6
         {
             if (Clipboard.ContainsImage())
             {
-                pictureBox.Image = Clipboard.GetImage();
+                firstPictureBox.Image = Clipboard.GetImage();
             }
             else
             {

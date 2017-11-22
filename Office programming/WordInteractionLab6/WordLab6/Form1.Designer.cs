@@ -41,7 +41,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.firstPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.firstPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // nextButton
@@ -132,7 +134,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 24);
+            this.label1.Location = new System.Drawing.Point(413, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 9;
@@ -141,7 +143,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 192);
+            this.label2.Location = new System.Drawing.Point(413, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 10;
@@ -158,17 +160,26 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(42, 44);
+            this.pictureBox.Location = new System.Drawing.Point(416, 38);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(276, 178);
             this.pictureBox.TabIndex = 12;
             this.pictureBox.TabStop = false;
+            // 
+            // firstPictureBox
+            // 
+            this.firstPictureBox.Location = new System.Drawing.Point(42, 38);
+            this.firstPictureBox.Name = "firstPictureBox";
+            this.firstPictureBox.Size = new System.Drawing.Size(276, 178);
+            this.firstPictureBox.TabIndex = 13;
+            this.firstPictureBox.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 545);
+            this.Controls.Add(this.firstPictureBox);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -185,6 +196,7 @@
             this.Name = "Form1";
             this.Text = "Word inter lab 6";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.firstPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,6 +217,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.PictureBox firstPictureBox;
     }
 }
 
