@@ -1,0 +1,146 @@
+<package>    
+    <job id='run'>
+        <script language='VBScript'>
+            result = InputBox("Enter task number")
+            If result = "1" Then
+                createComponent "task1"
+            ElseIf result = "2" then
+                createComponent "task2"
+            ElseIf result = "3" then
+                createComponent "task3"
+            else
+                createComponent "task4"
+            End If	
+        </script> 
+    </job>
+
+    <job id="task1">
+        <script language="JScript">
+            var Archive = 32;
+
+            var args = WScript.Arguments;
+
+            if (args.length > 0) {
+                var fileArg = args.Item(0);
+                
+                //var fileArg = 'test.txt';
+                
+                var fileSystemObject = WScript.CreateObject("Scripting.FileSystemObject"); 
+                
+                WshShell = WScript.CreateObject("WScript.Shell");
+                
+                
+                if (!fileSystemObject.FileExists(fileArg)) {
+                    WScript.Echo("Error! ", fileArg, " not found"); 
+                    WScript.Quit(1); 
+                }   
+                
+                var file = fileSystemObject.GetFile(fileArg);
+                
+                if (file.Attributes && Archive) {
+                    file.Attributes = file.Attributes - Archive;
+                
+                    WScript.Echo("Remove Archive attr"); 
+                } else {
+                    file.Attributes = file.Attributes + Archive;
+                    WScript.Echo("Set Archive attr"); 
+                }
+            } else {
+                WScript.Echo("no file"); 
+            }
+        </script>
+    </job>
+    <job id="task2">
+        <script language="JScript">
+            var fileSystemObject = WScript.CreateObject("Scripting.FileSystemObject");
+
+            fileSystemObject.CreateTextFile("testfile.txt", true);
+
+            var file = fileSystemObject.GetFile("testfile.txt");
+
+            var stream = file.OpenAsTextStream(2, -2);
+
+            stream.write("Date created: " + file.DateCreated + "\n");
+
+
+            var drives=new Enumerator(fileSystemObject.Drives);
+
+            for (; !drives.atEnd(); drives.moveNext()) {
+                stream.write("____________________________________________________________\n");
+                stream.write("DriveLetter: " + drives.item().DriveLetter + '\n');
+                if (drives.item().IsReady) {
+                    stream.write("VolumeName: " + drives.item().VolumeName + '\n');
+                    stream.write("TotalSize: " + drives.item().TotalSize + '\n');
+                    stream.write("FreeSpace: " + drives.item().FreeSpace + '\n');
+                    stream.write("FilledSpace: " + (drives.item().TotalSize - drives.item().FreeSpace) + '\n');
+                } else {
+                    stream.write("The Drive not ready\n");
+                }
+                
+                stream.write("____________________________________________________________\n");
+            }
+        </script>
+    </job>
+    <job id="task3">
+        <script language="JScript">
+            var wordApplication = WScript.CreateObject("Word.Application");
+
+            var document = wordApplication.Documents.Add();
+
+            wordApplication.Visible = true;
+
+            var selection = wordApplication.Selection;
+
+            var fileSystemObject = WScript.CreateObject("Scripting.FileSystemObject");
+
+            var currentDate = new Date();
+
+            selection.TypeText("Date created: " + currentDate + "\n");
+
+            var drives = new Enumerator(fileSystemObject.Drives);
+
+            for (; !drives.atEnd(); drives.moveNext()) {
+                selection.TypeText("____________________________________________________________\n");
+                selection.TypeText("DriveLetter: " + drives.item().DriveLetter + '\n');
+                if (drives.item().IsReady) {
+                    selection.TypeText("VolumeName: " + drives.item().VolumeName + '\n');
+                    selection.TypeText("TotalSize: " + drives.item().TotalSize + '\n');
+                    selection.TypeText("FreeSpace: " + drives.item().FreeSpace + '\n');
+                    selection.TypeText("FilledSpace: " + (drives.item().TotalSize - drives.item().FreeSpace) + '\n');
+                } else {
+                    selection.TypeText("The Drive not ready\n");
+                }
+                
+                selection.TypeText("____________________________________________________________\n");
+            }
+
+            document.SaveAs("test.doc");
+        </script>
+    </job>
+    <job id="task4">
+        <script language="JScript">
+            var WshShell = WScript.CreateObject("WScript.Shell");
+            var desctopPath = WshShell.SpecialFolders.Item("Desktop");
+
+            var fileSystemObject = WScript.CreateObject("Scripting.FileSystemObject"); 
+
+            var desctopFolder = fileSystemObject.GetFolder(desctopPath);
+
+            var desctopFiles = new Enumerator(desctopFolder.Files);
+
+            var resultString = "";
+
+            for (; !desctopFiles.atEnd(); desctopFiles.moveNext()) {
+                resultString += desctopFiles.item().Name + '\n';
+            }
+
+            fileSystemObject.CreateTextFile("testfile.txt", true);
+
+            var file = fileSystemObject.GetFile("testfile.txt");
+
+            var stream = file.OpenAsTextStream(2, -2);
+
+            stream.write(resultString);
+        </script>
+    </job>
+</package>    

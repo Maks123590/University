@@ -64,10 +64,8 @@ namespace WordLab6
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            if (CurrentItemId < db.Items.Count() - 1)
+            if (CurrentItemId < db.Items.Count())
             {
-                //tempSaveItem(db.Items.Find(CurrentItemId));
-
                 firstPictureBox.Image = null;
 
                 CurrentItemId++;
