@@ -1,0 +1,57 @@
+.viewer {
+    height: 360px;
+    width: 830px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.wrapper {
+    width: calc(830px * 9);
+    height: 360px;  
+}
+
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.slide {
+    width: 830px;
+    height: 360px;
+    float: left;
+}
+
+#slide1, #slide1dubl {
+    background: url(../images/airplane.jpg);
+}
+
+#slide2 {
+    background: url(../images/bridge.jpg);
+}
+
+#slide3 {
+    background: url(../images/cityscape.jpg);
+}
+
+#slide4 {
+    background: url(../images/fireworks.jpg);
+}
+
+#slide5 {
+    background: url(../images/lasershow.jpg);
+}
+
+#slide6 {
+    background: url(../images/quay.jpg);
+}
+
+#slide7, #slide7dubl {
+    background: url(../images/sunrise.jpg);
+}
+
+.control {
+    display: flex;
+    justify-content: space-around;
+    margin: 10%;
+}

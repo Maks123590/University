@@ -1,0 +1,40 @@
+html, body {
+    margin: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.first-template {
+    width: 70%;
+    height: 30%;
+
+    margin: 0 auto;
+
+    background: linear-gradient(45deg, rgb(167, 180, 142) 25%, rgba(255, 255, 255, 0) 25%),
+                linear-gradient(-45deg, rgb(209, 192, 144) 25%, rgba(255, 255, 255, 0) 25%),
+                linear-gradient(135deg, rgb(230, 94, 60) 25%, rgba(255, 255, 255, 0) 25%),
+                linear-gradient(-135deg, rgb(219, 206, 54) 25%, rgba(255, 255, 255, 0) 25%),
+                linear-gradient(45deg, rgb(167, 180, 142) 25%, rgba(255, 255, 255, 0) 25%) 22px -22px,
+                linear-gradient(-45deg, rgb(209, 192, 144) 25%, rgba(255, 255, 255, 0) 25%) 22px -22px,    
+                linear-gradient(135deg, rgb(230, 94, 60) 25%, rgba(255, 255, 255, 0) 25%) 22px -22px,               
+                linear-gradient(-135deg, rgb(219, 206, 54) 25%, rgba(255, 255, 255, 0) 25%) 22px -22px;
+    
+    background-size: 44px 44px;
+	background-color: rgb(212, 201, 74);
+}
+
+.second-template {
+    width: 70%;
+    height: 30%;
+
+    margin: 10% auto 0 auto;
+
+    background: radial-gradient(circle, #90b476 10px, rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0) 24px, rgba(204, 195, 148, 0.7) 24px, rgba(204, 195, 148, 0.7) 28px, rgba(255, 255, 255, 0) 28px), 
+                radial-gradient(circle, #90b476 10px, rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0) 24px, rgba(179, 204, 162, 0.7) 24px, rgba(179, 204, 162, 0.7) 28px, rgba(255, 255, 255, 0) 28px) 48px 48px, 
+                radial-gradient(circle, rgba(70, 102, 48, 0.7) 6px, rgba(255, 255, 255, 0) 6px) 48px 0,
+                radial-gradient(circle, rgba(204, 195, 148, 0.7) 4px, rgba(255, 255, 255, 0) 4px) 0 48px;
+    background-size: 6em 6em;
+    background-color: rgb(237, 243, 203);
+    background-repeat: repeat;
+}

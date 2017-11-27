@@ -1,0 +1,59 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #eee;
+}
+
+.wrapper {
+    height: 100%;
+    width: 80%;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    height: 15%;
+
+    background-color: #666;
+}
+
+.subheader {
+    width: 100%;
+    height: 5%;
+    background-color: #ccc;
+}
+
+.main {
+    height: 60%;
+    width: 100%;
+
+    display: flex;
+}
+
+.main > .left {
+    width: 20%;
+    height: 100%;
+
+    background-color: #333;
+}
+
+.main > .right {
+    width: 80%;
+    height: 100%;
+
+    background-color: #ddd;
+}
+
+.footer {
+    width: 100%;
+    height: 20%;
+    
+    background-color: #666;
+}

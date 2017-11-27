@@ -1,0 +1,107 @@
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#ddd));
+    background-image: -webkit-linear-gradient(top, #666, #ddd);
+    background-image: -moz-linear-gradient(top, #666, #ddd);
+    background-image: linear-gradient(to bottom, #666, #ddd);
+}
+
+h1, h2 {
+    color: red;
+}
+
+header {
+    width: 90%;
+    height: 20%;
+
+    margin: 0 auto;
+}
+
+header .subheader {
+    color: white;
+    text-align: right;
+}
+
+main {
+    display: flex;
+    background-color: #ddd;
+    
+    width: 90%;
+    height: 70%;
+    
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.article-block {
+    width: 80%;
+    padding-right: 1%;
+}
+
+article aside {
+    text-align: center;
+    font-weight: bold;
+}
+
+.menu-block {
+    width: 20%;
+}
+
+.menu-block nav {
+    border-left: 1px solid;
+    padding-left: 10%;
+}
+
+.menu-block nav ul {
+    padding-left: 15%;
+}
+
+.menu-block nav ul a {
+    color: black;
+}
+
+footer {
+    height: 10%;
+    width: 100%;
+}
+
+footer > address {
+    width: 400px;
+    margin: 0 auto;
+
+    font-style: normal;
+}
+
+footer > address > ul {
+    width: 400px;
+    list-style-type: none;
+}
+
+footer > address > ul > li {
+    float: left;
+    padding: 0 4%;
+
+    border-left: 1px solid brown;
+}
+
+footer > address > ul > li:first-child {
+    border: 0;
+}
+
+footer > address > ul > li:nth-child(2) {
+    color: red;
+}
+
+footer > address > ul span {
+    color: red;
+}
+
+footer > address > ul::after {
+    content: '';
+    display: table;
+    clear: both;
+}

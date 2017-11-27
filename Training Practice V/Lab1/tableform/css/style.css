@@ -1,0 +1,59 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.center-table th {
+    width: 350px;
+}
+
+.center-table td {
+     width: 200px; 
+     height: 50px;
+}
+
+.V { 
+    text-align: center;
+}
+        
+#header {
+    height: 170px;
+    background-image: url(../images/header.jpg);
+}
+#menu {
+    background-color: blueviolet;
+    margin : 100px 50px;
+    width: 300px;
+}
+#content {
+    height: 100%;
+}
+#left-column {
+    background-color: blueviolet;
+    margin : 100px 50px;
+    width: 300px;
+    font-size: 15px;
+    color: white;
+}
+#footer {
+    background-color: aqua;
+    text-align: center;
+}
+
+#menu > ul > li {
+    list-style-type: none;
+    margin: 10px auto;
+}
+
+#menu > ul > li > a {
+
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+}
