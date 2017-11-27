@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.3%;
+    box-sizing: border-box;
+}
+
+.builder {
+    width: 20%;
+    height: 100%;
+    background: #fee;
+    padding: 0.3%;
+}
+
+.settings-window {
+    box-sizing: border-box; 
+    width: 90%;
+    height: 90%;
+    border: red 2px solid;
+    margin: 4%;
+    padding: 4%; 
+}
+
+.settings-window > div {
+    border: red 1px solid;
+
+    padding: 2%; 
+    margin: 2% auto;
+}
+
+.settings-window > div > div {
+    margin: 2% auto;
+}
+
+.input-number {
+    width: 60px;
+}
+
+.control-button-panel {
+    width: 80%;
+    padding: 4%;
+}
+
+.preview-window {
+    width: 78%;
+    background: red;
+    height: 100%;
+}
