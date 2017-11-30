@@ -16,5 +16,10 @@ namespace WordInteractionLab8
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var bankInfos = XmlParser.GetBankInfos("Data/base.xml");
+        }
     }
 }
