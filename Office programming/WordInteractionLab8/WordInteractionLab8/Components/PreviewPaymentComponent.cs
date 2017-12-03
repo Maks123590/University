@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WordInteractionLab8
+namespace WordInteractionLab8.Components
 {
-    public partial class Form1 : Form
+    public partial class PreviewPaymentComponent : UserControl
     {
-        public Form1()
+        public PreviewPaymentComponent()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var bankInfos = XmlParser.GetBankInfos("Data/base.xml");
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace WordInteractionLab8
 {
+    using WordInteractionLab8.Forms;
+
     static class Program
     {
         /// <summary>
@@ -16,7 +18,7 @@ namespace WordInteractionLab8
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

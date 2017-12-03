@@ -1,4 +1,4 @@
-﻿namespace WordInteractionLab8
+﻿namespace WordInteractionLab8.Models
 {
     public class BankInfo
     {
