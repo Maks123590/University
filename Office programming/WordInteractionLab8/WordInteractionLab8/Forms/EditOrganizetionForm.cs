@@ -11,15 +11,11 @@ using WordInteractionLab8.Models;
 
 namespace WordInteractionLab8
 {
-    public partial class AddOrganizetionForm : Form
+    public partial class EditOrganizetionForm : Form
     {
-        public AddOrganizetionForm()
+        public EditOrganizetionForm()
         {
             InitializeComponent();
-
-            var preview = new PreviewPayment(10, 10);
-
-            this.Controls.Add(preview);
         }
     }
 }

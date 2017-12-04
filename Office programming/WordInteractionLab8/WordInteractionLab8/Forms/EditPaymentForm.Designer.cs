@@ -1,6 +1,6 @@
-﻿namespace WordInteractionLab8
+﻿namespace WordInteractionLab8.Forms
 {
-    partial class AddOrganizetionForm
+    partial class EditPaymentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // AddOrganizetionForm
+            // EditPaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 407);
-            this.Name = "AddOrganizetionForm";
-            this.Text = "AddOrganizetionForm";
+            this.ClientSize = new System.Drawing.Size(486, 424);
+            this.Name = "EditPaymentForm";
+            this.Text = "EditPaymentForm";
             this.ResumeLayout(false);
 
         }

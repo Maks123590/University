@@ -13,12 +13,24 @@
 
     public enum PaymentBasis
     {
-
-    }
-
-    public enum PayerStatus
-    {
-
+        TP,
+        ZD,
+        BF,
+        TR,
+        RS,
+        OT,
+        RT,
+        PB,
+        PR,
+        AP,
+        AR,
+        IN,
+        TL,
+        ZT,
+        DE,
+        PO,
+        KT,
+        ID
     }
 
     public class Payment
@@ -26,6 +38,8 @@
         public int Id { get; set; }
 
         public uint Number { get; set; }
+
+        public DateTime Date { get; set; }
 
         public PaymentType Type { get; set; }
 
@@ -41,7 +55,7 @@
 
         public PaymentBasis Basis { get; set; }
 
-        public PayerStatus Status { get; set; }
+        public int Status { get; set; }
 
         public string Address { get; set; }
 

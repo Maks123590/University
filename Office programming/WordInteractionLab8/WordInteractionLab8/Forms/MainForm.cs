@@ -17,12 +17,17 @@
 
         private void AddOrganizationButton_Click(object sender, EventArgs e)
         {
-            var addOrganizetionFormForm = new AddOrganizetionForm();
+            var addOrganizetionFormForm = new EditOrganizetionForm();
 
             addOrganizetionFormForm.Show();
         }
 
         private void IntoDocumentButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
