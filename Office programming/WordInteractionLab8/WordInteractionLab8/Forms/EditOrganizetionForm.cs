@@ -11,11 +11,20 @@ using WordInteractionLab8.Models;
 
 namespace WordInteractionLab8
 {
+    using WordInteractionLab8.Forms;
+
     public partial class EditOrganizetionForm : Form
     {
         public EditOrganizetionForm()
         {
             InitializeComponent();
+        }
+
+        private void AddBAccountButton_Click(object sender, EventArgs e)
+        {
+            var addBankAccountForm = new EditBankAccountForm();
+
+            addBankAccountForm.Show();
         }
     }
 }

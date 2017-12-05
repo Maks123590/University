@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PayStatusComboBox.Items" xml:space="preserve">
-    <value>26 - учредители должника, собственники имущества должника – унитарного предприятия или третьи лица, составившие распоряжение о переводе денежных средств на погашение требований по уплате обязательных платежей</value>
-  </data>
 </root>

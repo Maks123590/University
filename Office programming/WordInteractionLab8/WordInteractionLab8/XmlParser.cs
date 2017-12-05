@@ -7,11 +7,11 @@ namespace WordInteractionLab8
 {
     public static class XmlParser
     {
-        public static IEnumerable<BankInfo> GetBankInfos(string xmlDocName)
+        public static IEnumerable<BankInfoApiDBModel> GetBankInfos(string xmlDocName)
         {
             var xdoc = XDocument.Load(xmlDocName);
 
-            return (xdoc.Element("biks")?.Elements("bik")).Select(binkElement => new BankInfo
+            return (xdoc.Element("biks")?.Elements("bik")).Select(binkElement => new BankInfoApiDBModel
             {
                 Bik = binkElement.Attribute("bik")?.Value,
                 CorrespondentAccount = binkElement.Attribute("ks")?.Value,

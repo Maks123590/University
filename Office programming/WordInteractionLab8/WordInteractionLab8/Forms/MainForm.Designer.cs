@@ -31,96 +31,81 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.IntoDocumentButton = new System.Windows.Forms.Button();
-            this.UploadDbButton = new System.Windows.Forms.Button();
-            this.AddOrganizationButton = new System.Windows.Forms.Button();
-            this.AddAccountButton = new System.Windows.Forms.Button();
+            this.uploadDbButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.PaymentsPage = new System.Windows.Forms.TabPage();
-            this.previewPaymentComponent1 = new WordInteractionLab8.Components.PreviewPaymentComponent();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.PrintOneButton = new System.Windows.Forms.Button();
+            this.PrintAllButton = new System.Windows.Forms.Button();
+            this.PaymentsListBox = new System.Windows.Forms.ListBox();
             this.deletePaymentButton = new System.Windows.Forms.Button();
             this.editPaymentButton = new System.Windows.Forms.Button();
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.OrganizationsPage = new System.Windows.Forms.TabPage();
+            this.deleteOrganizationButton = new System.Windows.Forms.Button();
+            this.editOrganizationButton = new System.Windows.Forms.Button();
+            this.addOrganizationButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.currentAccountlLabel = new System.Windows.Forms.Label();
+            this.bikLabel = new System.Windows.Forms.Label();
+            this.bankLocationLabel = new System.Windows.Forms.Label();
+            this.bankNameLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.organizationInfoPanel = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.bankAccountsListBox = new System.Windows.Forms.ListBox();
+            this.cppOrganizationLabel = new System.Windows.Forms.Label();
+            this.innorganizationLabel = new System.Windows.Forms.Label();
+            this.organizationNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.organizationMainListBox = new System.Windows.Forms.ListBox();
             this.BanksPage = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.bankInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bankInfoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.banksDataGridView = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dBVersionLabel = new System.Windows.Forms.Label();
+            this.previewPaymentComponent = new WordInteractionLab8.Components.PreviewPaymentComponent();
             this.bikDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correspondentAccountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shortNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.localityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.registrationNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
             this.OrganizationsPage.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.organizationInfoPanel.SuspendLayout();
             this.BanksPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.banksDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bankInfoApiDBModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // IntoDocumentButton
             // 
             this.IntoDocumentButton.Location = new System.Drawing.Point(17, 643);
             this.IntoDocumentButton.Name = "IntoDocumentButton";
-            this.IntoDocumentButton.Size = new System.Drawing.Size(121, 28);
+            this.IntoDocumentButton.Size = new System.Drawing.Size(106, 31);
             this.IntoDocumentButton.TabIndex = 1;
-            this.IntoDocumentButton.Text = "Into Document";
+            this.IntoDocumentButton.Text = "В документ";
             this.IntoDocumentButton.UseVisualStyleBackColor = true;
             this.IntoDocumentButton.Click += new System.EventHandler(this.IntoDocumentButtonClick);
             // 
-            // UploadDbButton
+            // uploadDbButton
             // 
-            this.UploadDbButton.Location = new System.Drawing.Point(989, 130);
-            this.UploadDbButton.Name = "UploadDbButton";
-            this.UploadDbButton.Size = new System.Drawing.Size(145, 28);
-            this.UploadDbButton.TabIndex = 2;
-            this.UploadDbButton.Text = "Upload DB";
-            this.UploadDbButton.UseVisualStyleBackColor = true;
-            // 
-            // AddOrganizationButton
-            // 
-            this.AddOrganizationButton.Location = new System.Drawing.Point(20, 634);
-            this.AddOrganizationButton.Name = "AddOrganizationButton";
-            this.AddOrganizationButton.Size = new System.Drawing.Size(145, 28);
-            this.AddOrganizationButton.TabIndex = 3;
-            this.AddOrganizationButton.Text = "Add Organization";
-            this.AddOrganizationButton.UseVisualStyleBackColor = true;
-            this.AddOrganizationButton.Click += new System.EventHandler(this.AddOrganizationButton_Click);
-            // 
-            // AddAccountButton
-            // 
-            this.AddAccountButton.Location = new System.Drawing.Point(172, 634);
-            this.AddAccountButton.Name = "AddAccountButton";
-            this.AddAccountButton.Size = new System.Drawing.Size(145, 28);
-            this.AddAccountButton.TabIndex = 4;
-            this.AddAccountButton.Text = "Add Account";
-            this.AddAccountButton.UseVisualStyleBackColor = true;
+            this.uploadDbButton.Location = new System.Drawing.Point(1010, 130);
+            this.uploadDbButton.Name = "uploadDbButton";
+            this.uploadDbButton.Size = new System.Drawing.Size(145, 28);
+            this.uploadDbButton.TabIndex = 2;
+            this.uploadDbButton.Text = "Обновить базу";
+            this.uploadDbButton.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -135,8 +120,10 @@
             // 
             // PaymentsPage
             // 
-            this.PaymentsPage.Controls.Add(this.previewPaymentComponent1);
-            this.PaymentsPage.Controls.Add(this.listBox2);
+            this.PaymentsPage.Controls.Add(this.PrintOneButton);
+            this.PaymentsPage.Controls.Add(this.PrintAllButton);
+            this.PaymentsPage.Controls.Add(this.previewPaymentComponent);
+            this.PaymentsPage.Controls.Add(this.PaymentsListBox);
             this.PaymentsPage.Controls.Add(this.deletePaymentButton);
             this.PaymentsPage.Controls.Add(this.editPaymentButton);
             this.PaymentsPage.Controls.Add(this.addPaymentButton);
@@ -146,43 +133,54 @@
             this.PaymentsPage.Padding = new System.Windows.Forms.Padding(3);
             this.PaymentsPage.Size = new System.Drawing.Size(1166, 699);
             this.PaymentsPage.TabIndex = 0;
-            this.PaymentsPage.Text = "Payments";
+            this.PaymentsPage.Text = "Платежные поручения";
             this.PaymentsPage.UseVisualStyleBackColor = true;
             // 
-            // previewPaymentComponent1
+            // PrintOneButton
             // 
-            this.previewPaymentComponent1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentComponent1.BackgroundImage")));
-            this.previewPaymentComponent1.Location = new System.Drawing.Point(354, 15);
-            this.previewPaymentComponent1.Name = "previewPaymentComponent1";
-            this.previewPaymentComponent1.Size = new System.Drawing.Size(623, 656);
-            this.previewPaymentComponent1.TabIndex = 7;
+            this.PrintOneButton.Location = new System.Drawing.Point(129, 643);
+            this.PrintOneButton.Name = "PrintOneButton";
+            this.PrintOneButton.Size = new System.Drawing.Size(117, 28);
+            this.PrintOneButton.TabIndex = 9;
+            this.PrintOneButton.Text = "Печать";
+            this.PrintOneButton.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // PrintAllButton
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(15, 15);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(300, 548);
-            this.listBox2.TabIndex = 6;
+            this.PrintAllButton.Location = new System.Drawing.Point(252, 643);
+            this.PrintAllButton.Name = "PrintAllButton";
+            this.PrintAllButton.Size = new System.Drawing.Size(105, 28);
+            this.PrintAllButton.TabIndex = 8;
+            this.PrintAllButton.Text = "Печатать все";
+            this.PrintAllButton.UseVisualStyleBackColor = true;
+            // 
+            // PaymentsListBox
+            // 
+            this.PaymentsListBox.FormattingEnabled = true;
+            this.PaymentsListBox.ItemHeight = 16;
+            this.PaymentsListBox.Location = new System.Drawing.Point(15, 15);
+            this.PaymentsListBox.Name = "PaymentsListBox";
+            this.PaymentsListBox.Size = new System.Drawing.Size(342, 548);
+            this.PaymentsListBox.TabIndex = 6;
             // 
             // deletePaymentButton
             // 
-            this.deletePaymentButton.Location = new System.Drawing.Point(218, 609);
+            this.deletePaymentButton.Location = new System.Drawing.Point(252, 609);
             this.deletePaymentButton.Name = "deletePaymentButton";
             this.deletePaymentButton.Size = new System.Drawing.Size(105, 28);
             this.deletePaymentButton.TabIndex = 5;
-            this.deletePaymentButton.Text = "Delete";
+            this.deletePaymentButton.Text = "Удалить";
             this.deletePaymentButton.UseVisualStyleBackColor = true;
             // 
             // editPaymentButton
             // 
             this.editPaymentButton.Location = new System.Drawing.Point(129, 609);
             this.editPaymentButton.Name = "editPaymentButton";
-            this.editPaymentButton.Size = new System.Drawing.Size(83, 28);
+            this.editPaymentButton.Size = new System.Drawing.Size(117, 28);
             this.editPaymentButton.TabIndex = 4;
-            this.editPaymentButton.Text = "Edit";
+            this.editPaymentButton.Text = "Редактировать";
             this.editPaymentButton.UseVisualStyleBackColor = true;
+            this.editPaymentButton.Click += new System.EventHandler(this.editPaymentButton_Click);
             // 
             // addPaymentButton
             // 
@@ -190,301 +188,370 @@
             this.addPaymentButton.Name = "addPaymentButton";
             this.addPaymentButton.Size = new System.Drawing.Size(106, 28);
             this.addPaymentButton.TabIndex = 3;
-            this.addPaymentButton.Text = "Add new";
+            this.addPaymentButton.Text = "Добавить новое";
             this.addPaymentButton.UseVisualStyleBackColor = true;
+            this.addPaymentButton.Click += new System.EventHandler(this.addPaymentButton_Click);
             // 
             // OrganizationsPage
             // 
+            this.OrganizationsPage.Controls.Add(this.deleteOrganizationButton);
+            this.OrganizationsPage.Controls.Add(this.editOrganizationButton);
+            this.OrganizationsPage.Controls.Add(this.addOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.panel2);
-            this.OrganizationsPage.Controls.Add(this.panel1);
-            this.OrganizationsPage.Controls.Add(this.listBox1);
-            this.OrganizationsPage.Controls.Add(this.AddOrganizationButton);
-            this.OrganizationsPage.Controls.Add(this.AddAccountButton);
+            this.OrganizationsPage.Controls.Add(this.organizationInfoPanel);
+            this.OrganizationsPage.Controls.Add(this.organizationMainListBox);
             this.OrganizationsPage.Location = new System.Drawing.Point(4, 25);
             this.OrganizationsPage.Name = "OrganizationsPage";
             this.OrganizationsPage.Padding = new System.Windows.Forms.Padding(3);
             this.OrganizationsPage.Size = new System.Drawing.Size(1166, 699);
             this.OrganizationsPage.TabIndex = 1;
-            this.OrganizationsPage.Text = "Organizations";
+            this.OrganizationsPage.Text = "Организации";
             this.OrganizationsPage.UseVisualStyleBackColor = true;
+            // 
+            // deleteOrganizationButton
+            // 
+            this.deleteOrganizationButton.Location = new System.Drawing.Point(252, 591);
+            this.deleteOrganizationButton.Name = "deleteOrganizationButton";
+            this.deleteOrganizationButton.Size = new System.Drawing.Size(105, 28);
+            this.deleteOrganizationButton.TabIndex = 10;
+            this.deleteOrganizationButton.Text = "Удалить";
+            this.deleteOrganizationButton.UseVisualStyleBackColor = true;
+            // 
+            // editOrganizationButton
+            // 
+            this.editOrganizationButton.Location = new System.Drawing.Point(129, 591);
+            this.editOrganizationButton.Name = "editOrganizationButton";
+            this.editOrganizationButton.Size = new System.Drawing.Size(117, 28);
+            this.editOrganizationButton.TabIndex = 9;
+            this.editOrganizationButton.Text = "Редактировать";
+            this.editOrganizationButton.UseVisualStyleBackColor = true;
+            // 
+            // addOrganizationButton
+            // 
+            this.addOrganizationButton.Location = new System.Drawing.Point(15, 591);
+            this.addOrganizationButton.Name = "addOrganizationButton";
+            this.addOrganizationButton.Size = new System.Drawing.Size(108, 28);
+            this.addOrganizationButton.TabIndex = 8;
+            this.addOrganizationButton.Text = "Добавить новое";
+            this.addOrganizationButton.UseVisualStyleBackColor = true;
+            this.addOrganizationButton.Click += new System.EventHandler(this.addOrganizationButton_Click);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label12);
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.currentAccountlLabel);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Location = new System.Drawing.Point(791, 15);
+            this.panel2.Location = new System.Drawing.Point(818, 15);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 548);
+            this.panel2.Size = new System.Drawing.Size(322, 548);
             this.panel2.TabIndex = 7;
             // 
-            // label15
+            // currentAccountlLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(186, 240);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 17);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "label15";
+            this.currentAccountlLabel.AutoSize = true;
+            this.currentAccountlLabel.Location = new System.Drawing.Point(180, 226);
+            this.currentAccountlLabel.Name = "currentAccountlLabel";
+            this.currentAccountlLabel.Size = new System.Drawing.Size(54, 17);
+            this.currentAccountlLabel.TabIndex = 15;
+            this.currentAccountlLabel.Text = "label15";
             // 
-            // label14
+            // bikLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(186, 163);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 17);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "label14";
+            this.bikLabel.AutoSize = true;
+            this.bikLabel.Location = new System.Drawing.Point(148, 116);
+            this.bikLabel.Name = "bikLabel";
+            this.bikLabel.Size = new System.Drawing.Size(54, 17);
+            this.bikLabel.TabIndex = 14;
+            this.bikLabel.Text = "label14";
             // 
-            // label13
+            // bankLocationLabel
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(186, 113);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 17);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "label13";
+            this.bankLocationLabel.AutoSize = true;
+            this.bankLocationLabel.Location = new System.Drawing.Point(148, 69);
+            this.bankLocationLabel.Name = "bankLocationLabel";
+            this.bankLocationLabel.Size = new System.Drawing.Size(54, 17);
+            this.bankLocationLabel.TabIndex = 13;
+            this.bankLocationLabel.Text = "label13";
             // 
-            // label12
+            // bankNameLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(186, 57);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 17);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "label12";
+            this.bankNameLabel.AutoSize = true;
+            this.bankNameLabel.Location = new System.Drawing.Point(148, 20);
+            this.bankNameLabel.Name = "bankNameLabel";
+            this.bankNameLabel.Size = new System.Drawing.Size(54, 17);
+            this.bankNameLabel.TabIndex = 12;
+            this.bankNameLabel.Text = "label12";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(45, 240);
+            this.label11.Location = new System.Drawing.Point(39, 226);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 17);
+            this.label11.Size = new System.Drawing.Size(100, 17);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Current Account";
+            this.label11.Text = "Текущий счет";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(45, 163);
+            this.label10.Location = new System.Drawing.Point(7, 116);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 17);
+            this.label10.Size = new System.Drawing.Size(32, 17);
             this.label10.TabIndex = 10;
-            this.label10.Text = "BIK";
+            this.label10.Text = "Бик";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(45, 113);
+            this.label9.Location = new System.Drawing.Point(7, 69);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 17);
+            this.label9.Size = new System.Drawing.Size(105, 17);
             this.label9.TabIndex = 9;
-            this.label9.Text = "Bank Location";
+            this.label9.Text = "Расположение";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(45, 57);
+            this.label8.Location = new System.Drawing.Point(7, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 17);
+            this.label8.Size = new System.Drawing.Size(35, 17);
             this.label8.TabIndex = 8;
-            this.label8.Text = "Bank Name";
+            this.label8.Text = "Имя";
             // 
-            // panel1
+            // organizationInfoPanel
             // 
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.listBox3);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(335, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(433, 548);
-            this.panel1.TabIndex = 6;
+            this.organizationInfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.organizationInfoPanel.Controls.Add(this.label7);
+            this.organizationInfoPanel.Controls.Add(this.bankAccountsListBox);
+            this.organizationInfoPanel.Controls.Add(this.cppOrganizationLabel);
+            this.organizationInfoPanel.Controls.Add(this.innorganizationLabel);
+            this.organizationInfoPanel.Controls.Add(this.organizationNameLabel);
+            this.organizationInfoPanel.Controls.Add(this.label3);
+            this.organizationInfoPanel.Controls.Add(this.label2);
+            this.organizationInfoPanel.Controls.Add(this.label1);
+            this.organizationInfoPanel.Location = new System.Drawing.Point(372, 15);
+            this.organizationInfoPanel.Name = "organizationInfoPanel";
+            this.organizationInfoPanel.Size = new System.Drawing.Size(419, 548);
+            this.organizationInfoPanel.TabIndex = 6;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 199);
+            this.label7.Location = new System.Drawing.Point(22, 197);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 17);
+            this.label7.Size = new System.Drawing.Size(127, 17);
             this.label7.TabIndex = 7;
-            this.label7.Text = "Bank Accounts";
+            this.label7.Text = "Банковские счета";
             // 
-            // listBox3
+            // bankAccountsListBox
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 16;
-            this.listBox3.Location = new System.Drawing.Point(34, 228);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(366, 292);
-            this.listBox3.TabIndex = 6;
+            this.bankAccountsListBox.FormattingEnabled = true;
+            this.bankAccountsListBox.ItemHeight = 16;
+            this.bankAccountsListBox.Location = new System.Drawing.Point(25, 226);
+            this.bankAccountsListBox.Name = "bankAccountsListBox";
+            this.bankAccountsListBox.Size = new System.Drawing.Size(366, 292);
+            this.bankAccountsListBox.TabIndex = 6;
             // 
-            // label6
+            // cppOrganizationLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(100, 134);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.cppOrganizationLabel.AutoSize = true;
+            this.cppOrganizationLabel.Location = new System.Drawing.Point(91, 132);
+            this.cppOrganizationLabel.Name = "cppOrganizationLabel";
+            this.cppOrganizationLabel.Size = new System.Drawing.Size(46, 17);
+            this.cppOrganizationLabel.TabIndex = 5;
+            this.cppOrganizationLabel.Text = "label6";
             // 
-            // label5
+            // innorganizationLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(100, 96);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.innorganizationLabel.AutoSize = true;
+            this.innorganizationLabel.Location = new System.Drawing.Point(91, 94);
+            this.innorganizationLabel.Name = "innorganizationLabel";
+            this.innorganizationLabel.Size = new System.Drawing.Size(46, 17);
+            this.innorganizationLabel.TabIndex = 4;
+            this.innorganizationLabel.Text = "label5";
             // 
-            // label4
+            // organizationNameLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(100, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.organizationNameLabel.AutoSize = true;
+            this.organizationNameLabel.Location = new System.Drawing.Point(91, 45);
+            this.organizationNameLabel.Name = "organizationNameLabel";
+            this.organizationNameLabel.Size = new System.Drawing.Size(46, 17);
+            this.organizationNameLabel.TabIndex = 3;
+            this.organizationNameLabel.Text = "label4";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 134);
+            this.label3.Location = new System.Drawing.Point(22, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 17);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "CPP";
+            this.label3.Text = "КПП";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 96);
+            this.label2.Location = new System.Drawing.Point(22, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 17);
+            this.label2.Size = new System.Drawing.Size(38, 17);
             this.label2.TabIndex = 1;
-            this.label2.Text = "INN";
+            this.label2.Text = "ИНН";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 47);
+            this.label1.Location = new System.Drawing.Point(22, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.label1.Text = "Имя";
             // 
-            // listBox1
+            // organizationMainListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(15, 15);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(300, 548);
-            this.listBox1.TabIndex = 5;
+            this.organizationMainListBox.FormattingEnabled = true;
+            this.organizationMainListBox.ItemHeight = 16;
+            this.organizationMainListBox.Location = new System.Drawing.Point(15, 15);
+            this.organizationMainListBox.Name = "organizationMainListBox";
+            this.organizationMainListBox.Size = new System.Drawing.Size(342, 548);
+            this.organizationMainListBox.TabIndex = 5;
             // 
             // BanksPage
             // 
-            this.BanksPage.Controls.Add(this.dataGridView2);
-            this.BanksPage.Controls.Add(this.UploadDbButton);
+            this.BanksPage.Controls.Add(this.dBVersionLabel);
+            this.BanksPage.Controls.Add(this.label5);
+            this.BanksPage.Controls.Add(this.banksDataGridView);
+            this.BanksPage.Controls.Add(this.uploadDbButton);
             this.BanksPage.Location = new System.Drawing.Point(4, 25);
             this.BanksPage.Name = "BanksPage";
             this.BanksPage.Padding = new System.Windows.Forms.Padding(3);
             this.BanksPage.Size = new System.Drawing.Size(1166, 699);
             this.BanksPage.TabIndex = 2;
-            this.BanksPage.Text = "Banks";
+            this.BanksPage.Text = "Список банков";
             this.BanksPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // banksDataGridView
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.banksDataGridView.AllowUserToAddRows = false;
+            this.banksDataGridView.AllowUserToDeleteRows = false;
+            this.banksDataGridView.AutoGenerateColumns = false;
+            this.banksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.banksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bikDataGridViewTextBoxColumn,
             this.correspondentAccountDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
-            this.shortNameDataGridViewTextBoxColumn,
             this.localityDataGridViewTextBoxColumn,
             this.addressDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn,
-            this.registrationNumberDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.bankInfoBindingSource1;
-            this.dataGridView2.Location = new System.Drawing.Point(8, 8);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(943, 150);
-            this.dataGridView2.TabIndex = 3;
+            this.phoneDataGridViewTextBoxColumn});
+            this.banksDataGridView.DataSource = this.bankInfoApiDBModelBindingSource;
+            this.banksDataGridView.Location = new System.Drawing.Point(8, 8);
+            this.banksDataGridView.Name = "banksDataGridView";
+            this.banksDataGridView.ReadOnly = true;
+            this.banksDataGridView.RowTemplate.Height = 24;
+            this.banksDataGridView.Size = new System.Drawing.Size(996, 150);
+            this.banksDataGridView.TabIndex = 3;
             // 
-            // bankInfoBindingSource1
+            // label4
             // 
-            this.bankInfoBindingSource1.DataSource = typeof(WordInteractionLab8.Models.BankInfo);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(127, 17);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Сведения о банке";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.bankNameLabel);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.bikLabel);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.bankLocationLabel);
+            this.panel1.Location = new System.Drawing.Point(30, 45);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(239, 151);
+            this.panel1.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1010, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Версия базы";
+            // 
+            // dBVersionLabel
+            // 
+            this.dBVersionLabel.AutoSize = true;
+            this.dBVersionLabel.Location = new System.Drawing.Point(1109, 35);
+            this.dBVersionLabel.Name = "dBVersionLabel";
+            this.dBVersionLabel.Size = new System.Drawing.Size(46, 17);
+            this.dBVersionLabel.TabIndex = 5;
+            this.dBVersionLabel.Text = "label6";
+            // 
+            // previewPaymentComponent
+            // 
+            this.previewPaymentComponent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentComponent.BackgroundImage")));
+            this.previewPaymentComponent.Location = new System.Drawing.Point(450, 15);
+            this.previewPaymentComponent.Name = "previewPaymentComponent";
+            this.previewPaymentComponent.Size = new System.Drawing.Size(623, 656);
+            this.previewPaymentComponent.TabIndex = 7;
             // 
             // bikDataGridViewTextBoxColumn
             // 
             this.bikDataGridViewTextBoxColumn.DataPropertyName = "Bik";
-            this.bikDataGridViewTextBoxColumn.HeaderText = "Bik";
+            this.bikDataGridViewTextBoxColumn.HeaderText = "БИК";
             this.bikDataGridViewTextBoxColumn.Name = "bikDataGridViewTextBoxColumn";
             this.bikDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bikDataGridViewTextBoxColumn.Width = 140;
             // 
             // correspondentAccountDataGridViewTextBoxColumn
             // 
             this.correspondentAccountDataGridViewTextBoxColumn.DataPropertyName = "CorrespondentAccount";
-            this.correspondentAccountDataGridViewTextBoxColumn.HeaderText = "CorrespondentAccount";
+            this.correspondentAccountDataGridViewTextBoxColumn.HeaderText = "Корреспондентский счет";
             this.correspondentAccountDataGridViewTextBoxColumn.Name = "correspondentAccountDataGridViewTextBoxColumn";
             this.correspondentAccountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.correspondentAccountDataGridViewTextBoxColumn.Width = 200;
             // 
             // fullNameDataGridViewTextBoxColumn
             // 
             this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Полное имя";
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // shortNameDataGridViewTextBoxColumn
-            // 
-            this.shortNameDataGridViewTextBoxColumn.DataPropertyName = "ShortName";
-            this.shortNameDataGridViewTextBoxColumn.HeaderText = "ShortName";
-            this.shortNameDataGridViewTextBoxColumn.Name = "shortNameDataGridViewTextBoxColumn";
-            this.shortNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 150;
             // 
             // localityDataGridViewTextBoxColumn
             // 
             this.localityDataGridViewTextBoxColumn.DataPropertyName = "Locality";
-            this.localityDataGridViewTextBoxColumn.HeaderText = "Locality";
+            this.localityDataGridViewTextBoxColumn.HeaderText = "Расположение";
             this.localityDataGridViewTextBoxColumn.Name = "localityDataGridViewTextBoxColumn";
             this.localityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.localityDataGridViewTextBoxColumn.Width = 110;
             // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Width = 200;
             // 
             // phoneDataGridViewTextBoxColumn
             // 
             this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "Телефон";
             this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
             this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.phoneDataGridViewTextBoxColumn.Width = 150;
             // 
-            // registrationNumberDataGridViewTextBoxColumn
+            // bankInfoApiDBModelBindingSource
             // 
-            this.registrationNumberDataGridViewTextBoxColumn.DataPropertyName = "RegistrationNumber";
-            this.registrationNumberDataGridViewTextBoxColumn.HeaderText = "RegistrationNumber";
-            this.registrationNumberDataGridViewTextBoxColumn.Name = "registrationNumberDataGridViewTextBoxColumn";
-            this.registrationNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bankInfoApiDBModelBindingSource.DataSource = typeof(WordInteractionLab8.Models.BankInfoApiDBModel);
             // 
             // MainForm
             // 
@@ -493,28 +560,30 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1171, 726);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Payment creator";
             this.tabControl1.ResumeLayout(false);
             this.PaymentsPage.ResumeLayout(false);
             this.OrganizationsPage.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.organizationInfoPanel.ResumeLayout(false);
+            this.organizationInfoPanel.PerformLayout();
+            this.BanksPage.ResumeLayout(false);
+            this.BanksPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.banksDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.BanksPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankInfoApiDBModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Button IntoDocumentButton;
-        private System.Windows.Forms.Button UploadDbButton;
-        private System.Windows.Forms.Button AddOrganizationButton;
-        private System.Windows.Forms.Button AddAccountButton;
+        private System.Windows.Forms.Button uploadDbButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage PaymentsPage;
         private System.Windows.Forms.TabPage OrganizationsPage;
@@ -522,38 +591,44 @@
         private System.Windows.Forms.Button deletePaymentButton;
         private System.Windows.Forms.Button editPaymentButton;
         private System.Windows.Forms.Button addPaymentButton;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.BindingSource bankInfoBindingSource;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox listBox1;
-        private Components.PreviewPaymentComponent previewPaymentComponent1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.DataGridView banksDataGridView;
+        private System.Windows.Forms.Panel organizationInfoPanel;
+        private System.Windows.Forms.ListBox organizationMainListBox;
+        private Components.PreviewPaymentComponent previewPaymentComponent;
+        private System.Windows.Forms.ListBox PaymentsListBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox bankAccountsListBox;
+        private System.Windows.Forms.Label cppOrganizationLabel;
+        private System.Windows.Forms.Label innorganizationLabel;
+        private System.Windows.Forms.Label organizationNameLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label currentAccountlLabel;
+        private System.Windows.Forms.Label bikLabel;
+        private System.Windows.Forms.Label bankLocationLabel;
+        private System.Windows.Forms.Label bankNameLabel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.BindingSource bankInfoApiDBModelBindingSource;
+        private System.Windows.Forms.Button PrintOneButton;
+        private System.Windows.Forms.Button PrintAllButton;
+        private System.Windows.Forms.Button deleteOrganizationButton;
+        private System.Windows.Forms.Button editOrganizationButton;
+        private System.Windows.Forms.Button addOrganizationButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label dBVersionLabel;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn bikDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn correspondentAccountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn shortNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn localityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn registrationNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource bankInfoBindingSource1;
     }
 }
 
