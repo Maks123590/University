@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string BankInfo { get; set; }
+        public BankInfo BankInfo { get; set; }
 
         public string CurrentAccount { get; set; }
     }

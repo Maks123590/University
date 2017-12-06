@@ -1,6 +1,6 @@
 ﻿namespace WordInteractionLab8.Forms
 {
-    partial class EditBankAccountForm
+    partial class BankAccountForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,17 +32,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.bankInfoPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.locationMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.nameMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.correspAccMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.fillByBikButton = new System.Windows.Forms.Button();
             this.bikMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.currAccMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.bankInfoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,10 +67,10 @@
             // bankInfoPanel
             // 
             this.bankInfoPanel.Controls.Add(this.label4);
-            this.bankInfoPanel.Controls.Add(this.maskedTextBox3);
-            this.bankInfoPanel.Controls.Add(this.maskedTextBox2);
-            this.bankInfoPanel.Controls.Add(this.maskedTextBox1);
-            this.bankInfoPanel.Controls.Add(this.button1);
+            this.bankInfoPanel.Controls.Add(this.locationMaskedTextBox);
+            this.bankInfoPanel.Controls.Add(this.nameMaskedTextBox);
+            this.bankInfoPanel.Controls.Add(this.correspAccMaskedTextBox);
+            this.bankInfoPanel.Controls.Add(this.fillByBikButton);
             this.bankInfoPanel.Controls.Add(this.bikMaskedTextBox);
             this.bankInfoPanel.Controls.Add(this.label1);
             this.bankInfoPanel.Controls.Add(this.label7);
@@ -89,35 +89,36 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Корреспондентский счет";
             // 
-            // maskedTextBox3
+            // locationMaskedTextBox
             // 
-            this.maskedTextBox3.Location = new System.Drawing.Point(122, 84);
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(147, 22);
-            this.maskedTextBox3.TabIndex = 12;
+            this.locationMaskedTextBox.Location = new System.Drawing.Point(122, 84);
+            this.locationMaskedTextBox.Name = "locationMaskedTextBox";
+            this.locationMaskedTextBox.Size = new System.Drawing.Size(333, 22);
+            this.locationMaskedTextBox.TabIndex = 12;
             // 
-            // maskedTextBox2
+            // nameMaskedTextBox
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(122, 49);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(147, 22);
-            this.maskedTextBox2.TabIndex = 11;
+            this.nameMaskedTextBox.Location = new System.Drawing.Point(122, 49);
+            this.nameMaskedTextBox.Name = "nameMaskedTextBox";
+            this.nameMaskedTextBox.Size = new System.Drawing.Size(333, 22);
+            this.nameMaskedTextBox.TabIndex = 11;
             // 
-            // maskedTextBox1
+            // correspAccMaskedTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(186, 135);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(259, 22);
-            this.maskedTextBox1.TabIndex = 10;
+            this.correspAccMaskedTextBox.Location = new System.Drawing.Point(186, 135);
+            this.correspAccMaskedTextBox.Name = "correspAccMaskedTextBox";
+            this.correspAccMaskedTextBox.Size = new System.Drawing.Size(269, 22);
+            this.correspAccMaskedTextBox.TabIndex = 10;
             // 
-            // button1
+            // fillByBikButton
             // 
-            this.button1.Location = new System.Drawing.Point(354, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 28);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Заполнить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.fillByBikButton.Location = new System.Drawing.Point(354, 8);
+            this.fillByBikButton.Name = "fillByBikButton";
+            this.fillByBikButton.Size = new System.Drawing.Size(101, 28);
+            this.fillByBikButton.TabIndex = 9;
+            this.fillByBikButton.Text = "Заполнить";
+            this.fillByBikButton.UseVisualStyleBackColor = true;
+            this.fillByBikButton.Click += new System.EventHandler(this.FillByBikButtonClick);
             // 
             // bikMaskedTextBox
             // 
@@ -125,7 +126,6 @@
             this.bikMaskedTextBox.Name = "bikMaskedTextBox";
             this.bikMaskedTextBox.Size = new System.Drawing.Size(226, 22);
             this.bikMaskedTextBox.TabIndex = 0;
-            this.bikMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // label7
             // 
@@ -161,38 +161,40 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Информация о Банке";
             // 
-            // button2
+            // okButton
             // 
-            this.button2.Location = new System.Drawing.Point(15, 337);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 28);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Принять";
-            this.button2.UseVisualStyleBackColor = true;
+            this.okButton.Location = new System.Drawing.Point(15, 337);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(162, 28);
+            this.okButton.TabIndex = 4;
+            this.okButton.Text = "Принять";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
-            // button3
+            // cancelButton
             // 
-            this.button3.Location = new System.Drawing.Point(318, 337);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 28);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Отмена";
-            this.button3.UseVisualStyleBackColor = true;
+            this.cancelButton.Location = new System.Drawing.Point(318, 337);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(162, 28);
+            this.cancelButton.TabIndex = 5;
+            this.cancelButton.Text = "Отмена";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // EditBankAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 385);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.currAccMaskedTextBox);
             this.Controls.Add(this.bankInfoPanel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "EditBankAccountForm";
+            this.Name = "BankAccountForm";
             this.Text = "EditBankAccountForm";
             this.bankInfoPanel.ResumeLayout(false);
             this.bankInfoPanel.PerformLayout();
@@ -211,12 +213,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Button fillByBikButton;
+        private System.Windows.Forms.MaskedTextBox locationMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox nameMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox correspAccMaskedTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

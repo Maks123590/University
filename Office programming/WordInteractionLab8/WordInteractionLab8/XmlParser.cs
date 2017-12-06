@@ -7,7 +7,9 @@ namespace WordInteractionLab8
 {
     public static class XmlParser
     {
-        public static IEnumerable<BankInfoApiDBModel> GetBankInfos(string xmlDocName)
+        private const string DbPath = @"Data/base.xml";
+
+        public static IEnumerable<BankInfoApiDBModel> GetBankInfos(string xmlDocName = DbPath)
         {
             var xdoc = XDocument.Load(xmlDocName);
 
@@ -28,6 +30,21 @@ namespace WordInteractionLab8
                 AddingDate = binkElement.Attribute("dateadd")?.Value,
                 LastChangeDate = binkElement.Attribute("datechange")?.Value
             }).ToList();
+        }
+
+        public static BankInfo GetBankInfoByBik(string bik, string xmlDocName = DbPath)
+        {
+            var xdoc = XDocument.Load(xmlDocName);
+
+            var xmlBankInfo = xdoc.Elements("biks")?.Elements("bik").FirstOrDefault(bikElem => bikElem.Attribute("bik")?.Value == bik);
+
+            return new BankInfo
+                       {
+                           Bik = xmlBankInfo?.Attribute("bik")?.Value,
+                           CorrespondentAccount = xmlBankInfo?.Attribute("ks")?.Value,
+                           FullName = xmlBankInfo?.Attribute("name")?.Value,
+                           Locality = xmlBankInfo?.Attribute("city")?.Value,
+                       };
         }
     }
 }

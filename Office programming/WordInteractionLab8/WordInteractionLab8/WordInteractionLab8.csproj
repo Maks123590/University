@@ -32,7 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,17 +64,17 @@
     <Compile Include="Components\PreviewPaymentComponent.Designer.cs">
       <DependentUpon>PreviewPaymentComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditBankAccountForm.cs">
+    <Compile Include="Forms\BankAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditBankAccountForm.Designer.cs">
-      <DependentUpon>EditBankAccountForm.cs</DependentUpon>
+    <Compile Include="Forms\BankAccountForm.Designer.cs">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditOrganizetionForm.cs">
+    <Compile Include="Forms\OrganizetionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditOrganizetionForm.Designer.cs">
-      <DependentUpon>EditOrganizetionForm.cs</DependentUpon>
+    <Compile Include="Forms\OrganizetionForm.Designer.cs">
+      <DependentUpon>OrganizetionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditPaymentForm.cs">
       <SubType>Form</SubType>
@@ -86,9 +93,15 @@
     </Compile>
     <Compile Include="Models\Entities\OrganizetionInfo.cs" />
     <Compile Include="Models\Entities\Payment.cs" />
+    <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\View\PaymentView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AppResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="XmlParser.cs" />
     <EmbeddedResource Include="Components\OrganizationSelectorComponent.resx">
       <DependentUpon>OrganizationSelectorComponent.cs</DependentUpon>
@@ -96,11 +109,11 @@
     <EmbeddedResource Include="Components\PreviewPaymentComponent.resx">
       <DependentUpon>PreviewPaymentComponent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditBankAccountForm.resx">
-      <DependentUpon>EditBankAccountForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BankAccountForm.resx">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditOrganizetionForm.resx">
-      <DependentUpon>EditOrganizetionForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OrganizetionForm.resx">
+      <DependentUpon>OrganizetionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditPaymentForm.resx">
       <DependentUpon>EditPaymentForm.cs</DependentUpon>
@@ -113,6 +126,11 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\WordInteractionLab8.Models.BankAccount.datasource" />
     <None Include="Properties\DataSources\WordInteractionLab8.Models.BankInfo.datasource" />
     <None Include="Properties\DataSources\WordInteractionLab8.Models.BankInfoApiDBModel.datasource" />
@@ -139,9 +157,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

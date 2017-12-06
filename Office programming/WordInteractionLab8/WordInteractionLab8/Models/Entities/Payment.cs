@@ -47,9 +47,9 @@
 
         public string Details { get; set; }
 
-        public OrganizetionInfo Payer { get; set; }
+        public OrganizationInfo Payer { get; set; }
 
-        public OrganizetionInfo Payee { get; set; }
+        public OrganizationInfo Payee { get; set; }
 
         public byte Queue { get; set; }
 

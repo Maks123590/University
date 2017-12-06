@@ -7,7 +7,7 @@
     }
 
 
-    public class OrganizetionInfo
+    public class OrganizationInfo
     {
         public int Id { get; set; }
 

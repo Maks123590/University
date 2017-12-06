@@ -1,6 +1,6 @@
-﻿namespace WordInteractionLab8
+﻿namespace WordInteractionLab8.Forms
 {
-    partial class EditOrganizetionForm
+    partial class OrganizationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -13,9 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -32,10 +32,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.baknInfoListBox = new System.Windows.Forms.ListBox();
+            this.NameMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.innMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.kppMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.AddBAccountButton = new System.Windows.Forms.Button();
             this.EditBAccountButton = new System.Windows.Forms.Button();
             this.DeleteBAccountButton = new System.Windows.Forms.Button();
@@ -79,35 +79,35 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Банковские счета";
             // 
-            // listBox1
+            // baknInfoListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(28, 238);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(341, 276);
-            this.listBox1.TabIndex = 7;
+            this.baknInfoListBox.FormattingEnabled = true;
+            this.baknInfoListBox.ItemHeight = 16;
+            this.baknInfoListBox.Location = new System.Drawing.Point(28, 238);
+            this.baknInfoListBox.Name = "baknInfoListBox";
+            this.baknInfoListBox.Size = new System.Drawing.Size(341, 276);
+            this.baknInfoListBox.TabIndex = 7;
             // 
-            // maskedTextBox1
+            // NameMaskedTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(114, 38);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextBox1.TabIndex = 8;
+            this.NameMaskedTextBox.Location = new System.Drawing.Point(114, 38);
+            this.NameMaskedTextBox.Name = "NameMaskedTextBox";
+            this.NameMaskedTextBox.Size = new System.Drawing.Size(255, 22);
+            this.NameMaskedTextBox.TabIndex = 8;
             // 
-            // maskedTextBox2
+            // innMaskedTextBox
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(114, 98);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextBox2.TabIndex = 9;
+            this.innMaskedTextBox.Location = new System.Drawing.Point(114, 98);
+            this.innMaskedTextBox.Name = "innMaskedTextBox";
+            this.innMaskedTextBox.Size = new System.Drawing.Size(255, 22);
+            this.innMaskedTextBox.TabIndex = 9;
             // 
-            // maskedTextBox3
+            // kppMaskedTextBox
             // 
-            this.maskedTextBox3.Location = new System.Drawing.Point(114, 153);
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextBox3.TabIndex = 10;
+            this.kppMaskedTextBox.Location = new System.Drawing.Point(114, 153);
+            this.kppMaskedTextBox.Name = "kppMaskedTextBox";
+            this.kppMaskedTextBox.Size = new System.Drawing.Size(255, 22);
+            this.kppMaskedTextBox.TabIndex = 10;
             // 
             // AddBAccountButton
             // 
@@ -117,7 +117,7 @@
             this.AddBAccountButton.TabIndex = 11;
             this.AddBAccountButton.Text = "Добавить";
             this.AddBAccountButton.UseVisualStyleBackColor = true;
-            this.AddBAccountButton.Click += new System.EventHandler(this.AddBAccountButton_Click);
+            this.AddBAccountButton.Click += new System.EventHandler(this.AddBAccountButtonClick);
             // 
             // EditBAccountButton
             // 
@@ -127,6 +127,7 @@
             this.EditBAccountButton.TabIndex = 12;
             this.EditBAccountButton.Text = "Редактировать";
             this.EditBAccountButton.UseVisualStyleBackColor = true;
+            this.EditBAccountButton.Click += new System.EventHandler(this.EditBAccountButtonClick);
             // 
             // DeleteBAccountButton
             // 
@@ -136,6 +137,7 @@
             this.DeleteBAccountButton.TabIndex = 13;
             this.DeleteBAccountButton.Text = "Удалить";
             this.DeleteBAccountButton.UseVisualStyleBackColor = true;
+            this.DeleteBAccountButton.Click += new System.EventHandler(this.DeleteBAccountButtonClick);
             // 
             // okButton
             // 
@@ -145,6 +147,7 @@
             this.okButton.TabIndex = 14;
             this.okButton.Text = "Применить";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // cancelButton
             // 
@@ -154,8 +157,9 @@
             this.cancelButton.TabIndex = 15;
             this.cancelButton.Text = "Отменить";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
-            // EditOrganizetionForm
+            // OrganizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,17 +169,17 @@
             this.Controls.Add(this.DeleteBAccountButton);
             this.Controls.Add(this.EditBAccountButton);
             this.Controls.Add(this.AddBAccountButton);
-            this.Controls.Add(this.maskedTextBox3);
-            this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.kppMaskedTextBox);
+            this.Controls.Add(this.innMaskedTextBox);
+            this.Controls.Add(this.NameMaskedTextBox);
+            this.Controls.Add(this.baknInfoListBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "EditOrganizetionForm";
+            this.Name = "OrganizationForm";
             this.Text = "AddOrganizetionForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -188,10 +192,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
+        private System.Windows.Forms.ListBox baknInfoListBox;
+        private System.Windows.Forms.MaskedTextBox NameMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox innMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox kppMaskedTextBox;
         private System.Windows.Forms.Button AddBAccountButton;
         private System.Windows.Forms.Button EditBAccountButton;
         private System.Windows.Forms.Button DeleteBAccountButton;
