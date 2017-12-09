@@ -3,43 +3,47 @@
     using System;
     using System.Windows.Forms;
 
+    using WordInteractionLab8.IoC;
     using WordInteractionLab8.Models;
+    using WordInteractionLab8.Models.Interfaces;
     using WordInteractionLab8.Resources;
 
     public partial class BankAccountForm : Form
     {
         private readonly BankAccount bankAccount;
 
-        private readonly Action<BankAccount, int?> refreshInfo;
+        private readonly IBankInfoFinder bankInfoFinder;
 
-        public BankAccountForm(Action<BankAccount, int?> refreshInfo)
+        public BankAccountForm()
         {
             this.InitializeComponent();
 
-            this.bankAccount = new BankAccount { BankInfo = new BankInfo() };
+            this.bankAccount = new BankAccount();
 
-            this.refreshInfo = refreshInfo;  
+            this.bankInfoFinder = ServiceLocator.GetService<IBankInfoFinder>();
         }
 
-        public BankAccountForm(Action<BankAccount, int?> refreshInfo, int selectedIndex, BankAccount bankAccount) : this(refreshInfo)
+        public BankAccountForm(int selectedIndex, BankAccount bankAccount) : this()
         {
             this.bankAccount = bankAccount;
 
-            if (bankAccount.BankInfo != null)
-            {
-                this.FillBankInfo(bankAccount.BankInfo);
-            }
-            else
-            {
-                this.bankAccount.BankInfo = new BankInfo();
-            }
+            this.FillBankInfo(this.bankInfoFinder.GetBankInfoByBic(this.bankAccount.BankBic));
 
             this.SelectedIndex = selectedIndex;
 
             this.currAccMaskedTextBox.Text = this.bankAccount.CurrentAccount ?? string.Empty;
         }
 
+        public event EventHandler<BankInfoEventsArgs> BankAccountFinded;
+
         public int? SelectedIndex { get; }
+
+        protected virtual void OnBankAccountFinded(BankInfoEventsArgs e)
+        {
+            EventHandler<BankInfoEventsArgs> handler = this.BankAccountFinded;
+
+            handler?.Invoke(this, e);
+        }
 
         private void OkButtonClick(object sender, EventArgs e)
         {
@@ -47,13 +51,13 @@
                 && this.locationMaskedTextBox.Text != string.Empty && this.correspAccMaskedTextBox.Text != string.Empty
                 && this.currAccMaskedTextBox.Text != string.Empty)
             {
-                this.bankAccount.BankInfo.FullName = this.nameMaskedTextBox.Text;
-                this.bankAccount.BankInfo.Bic = this.bikMaskedTextBox.Text;
-                this.bankAccount.BankInfo.Locality = this.locationMaskedTextBox.Text;
-                this.bankAccount.BankInfo.CorrespondentAccount = this.correspAccMaskedTextBox.Text;
-                this.bankAccount.CurrentAccount = this.currAccMaskedTextBox.Text;
+                this.bankAccount.BankBic = this.bikMaskedTextBox.Text;
 
-                this.refreshInfo(this.bankAccount, this.SelectedIndex);
+                this.OnBankAccountFinded(new BankInfoEventsArgs
+                                             {
+                                                 BankAccount = this.bankAccount,
+                                                 SelectedIndex = this.SelectedIndex
+                                             });
 
                 this.Close();
             }
@@ -75,9 +79,7 @@
 
         private void FillByBikButtonClick(object sender, EventArgs e)
         {
-            var xmlDbBankInfo = XmlParser.GetBankInfoByBik(this.bikMaskedTextBox.Text);
-
-            this.FillBankInfo(xmlDbBankInfo);
+            this.FillBankInfo(this.bankInfoFinder.GetBankInfoByBic(this.bikMaskedTextBox.Text));
         }
 
         private void FillBankInfo(BankInfo bankInfo)
@@ -87,5 +89,12 @@
             this.locationMaskedTextBox.Text = bankInfo.Locality;
             this.correspAccMaskedTextBox.Text = bankInfo.CorrespondentAccount;
         }
+    }
+
+    public class BankInfoEventsArgs : EventArgs
+    {
+        public BankAccount BankAccount { get; set; }
+
+        public int? SelectedIndex { get; set; }
     }
 }

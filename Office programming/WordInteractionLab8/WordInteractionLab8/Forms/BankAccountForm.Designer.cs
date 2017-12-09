@@ -91,6 +91,7 @@
             // 
             // locationMaskedTextBox
             // 
+            this.locationMaskedTextBox.Enabled = false;
             this.locationMaskedTextBox.Location = new System.Drawing.Point(122, 84);
             this.locationMaskedTextBox.Name = "locationMaskedTextBox";
             this.locationMaskedTextBox.Size = new System.Drawing.Size(333, 22);
@@ -98,6 +99,7 @@
             // 
             // nameMaskedTextBox
             // 
+            this.nameMaskedTextBox.Enabled = false;
             this.nameMaskedTextBox.Location = new System.Drawing.Point(122, 49);
             this.nameMaskedTextBox.Name = "nameMaskedTextBox";
             this.nameMaskedTextBox.Size = new System.Drawing.Size(333, 22);
@@ -105,6 +107,7 @@
             // 
             // correspAccMaskedTextBox
             // 
+            this.correspAccMaskedTextBox.Enabled = false;
             this.correspAccMaskedTextBox.Location = new System.Drawing.Point(186, 135);
             this.correspAccMaskedTextBox.Name = "correspAccMaskedTextBox";
             this.correspAccMaskedTextBox.Size = new System.Drawing.Size(269, 22);
@@ -181,7 +184,7 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
-            // EditBankAccountForm
+            // BankAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

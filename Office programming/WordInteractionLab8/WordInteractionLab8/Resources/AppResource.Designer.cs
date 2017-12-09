@@ -61,6 +61,15 @@ namespace WordInteractionLab8.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Data\.
+        /// </summary>
+        internal static string App_Data_Path {
+            get {
+                return ResourceManager.GetString("App_Data_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Внимание.
         /// </summary>
         internal static string InfoMessageBox_Внимание {

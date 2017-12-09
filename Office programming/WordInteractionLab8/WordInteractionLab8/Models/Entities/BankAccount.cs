@@ -6,9 +6,7 @@
 
         public int OrganizationId { get; set; }
 
-        //public string BIC { get; set; }
-
-        public BankInfo BankInfo { get; set; }
+        public string BankBic { get; set; }
 
         public string CurrentAccount { get; set; }
     }

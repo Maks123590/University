@@ -5,7 +5,10 @@
     using System.Windows.Forms;
 
     using WordInteractionLab8.Components;
+    using WordInteractionLab8.IoC;
     using WordInteractionLab8.Models;
+    using WordInteractionLab8.Models.Interfaces;
+    using WordInteractionLab8.Resources;
 
     using ApplicationContext = WordInteractionLab8.Models.ApplicationContext;
 
@@ -15,12 +18,6 @@
 
         public MainForm()
         {
-            var test = new CrbDbWorker();
-
-            test.UploadDb();
-
-            var test2 = test.GetBankInfoByBIC("048952615");
-
             this.InitializeComponent();
 
             this.FillAllOrganizations();
@@ -39,7 +36,10 @@
 
         private void AddOrganizationButtonClick(object sender, EventArgs e)
         {
-            var addOrganizationForm = new OrganizationForm(this.AddBankAccount);
+            var addOrganizationForm = new OrganizationForm();
+
+            addOrganizationForm.OrganizationFinded += this.AddBankAccount;
+
             addOrganizationForm.Show();
         }
 
@@ -50,14 +50,17 @@
 
             var organization = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
 
-            var editOrganizationForm = new OrganizationForm(this.AddBankAccount, this.organizationMainListBox.SelectedIndex, organization);
+            var editOrganizationForm = new OrganizationForm(this.organizationMainListBox.SelectedIndex, organization);
+
+            editOrganizationForm.OrganizationFinded += this.AddBankAccount;
+
             editOrganizationForm.Show();
         }
 
-        private void AddBankAccount(OrganizationInfo organizationInfo, int? editingIndex = null)
+        private void AddBankAccount(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
         {
-            this.RefreshListBox(organizationInfo, editingIndex);
-            this.AddBankAccountToOrganization(organizationInfo);
+            this.RefreshListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.SelectedIndex);
+            this.AddBankAccountToOrganization(organizationInfoEventsArgs.OrganizationInfo);
         }
 
         private void RefreshListBox(OrganizationInfo organizationInfo, int? editingIndex = null)
@@ -107,9 +110,11 @@
 
         private void FillBankAccountInfo(BankAccount bankAccount)
         {
-            this.bankNameLabel.Text = bankAccount.BankInfo.FullName;
-            this.bankLocationLabel.Text = bankAccount.BankInfo.Locality;
-            this.bikLabel.Text = bankAccount.BankInfo.Bic;
+            var bankInfo = ServiceLocator.GetService<IBankInfoFinder>().GetBankInfoByBic(bankAccount.BankBic);
+
+            this.bankNameLabel.Text = bankInfo.FullName;
+            this.bankLocationLabel.Text = bankInfo.Locality;
+            this.bikLabel.Text = bankInfo.Bic;
 
             this.currentAccountlLabel.Text = bankAccount.CurrentAccount;
 

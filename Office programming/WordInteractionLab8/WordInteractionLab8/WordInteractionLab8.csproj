@@ -84,8 +84,10 @@
     <Compile Include="Forms\EditPaymentForm.Designer.cs">
       <DependentUpon>EditPaymentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IoC\ServiceLocator.cs" />
     <Compile Include="Models\BankInfoApiDBModel.cs" />
-    <Compile Include="Models\CrbDbBankInfoFinder.cs" />
+    <Compile Include="Models\DAL\BankInfoFinder.cs" />
+    <Compile Include="Models\DAL\CrbDbDownloader.cs" />
     <Compile Include="Models\Entities\BankAccount.cs" />
     <Compile Include="Models\Entities\BankInfo.cs" />
     <Compile Include="Forms\MainForm.cs">

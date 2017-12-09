@@ -1,7 +1,9 @@
 ﻿namespace WordInteractionLab8.Forms
 {
     using System;
+    using System.Data;
     using System.Linq;
+    using System.Runtime.Remoting.Channels;
     using System.Windows.Forms;
 
     using WordInteractionLab8.Models;
@@ -13,18 +15,14 @@
     {
         private readonly OrganizationInfo organizationInfo;
 
-        private readonly Action<OrganizationInfo, int?> refreshInfo;
-
-        public OrganizationForm(Action<OrganizationInfo, int?> refreshInfo)
+        public OrganizationForm()
         {
             this.InitializeComponent();
-
-            this.refreshInfo = refreshInfo;
 
              this.organizationInfo = new OrganizationInfo();
         }
 
-        public OrganizationForm(Action<OrganizationInfo, int?> refreshInfo, int selectedIndex, OrganizationInfo organizationInfo) : this(refreshInfo)
+        public OrganizationForm(int selectedIndex, OrganizationInfo organizationInfo) : this()
         {
             this.SelectedIndex = selectedIndex;
             this.organizationInfo = organizationInfo;
@@ -42,11 +40,22 @@
             }
         }
 
+        public event EventHandler<OrganizationInfoEventsArgs> OrganizationFinded;
+
         public int? SelectedIndex { get; }
+
+        protected virtual void OnOrganizationFinded(OrganizationInfoEventsArgs e)
+        {
+            EventHandler<OrganizationInfoEventsArgs> handler = this.OrganizationFinded;
+
+            handler?.Invoke(this, e);
+        }
 
         private void AddBAccountButtonClick(object sender, EventArgs e)
         {
-            var addBankAccountForm = new BankAccountForm(this.AddBankAccount);
+            var addBankAccountForm = new BankAccountForm();
+
+            addBankAccountForm.BankAccountFinded += this.AddBankAccount;
 
             addBankAccountForm.Show();
         }
@@ -60,7 +69,7 @@
         {
             var bankAccount = this.organizationInfo.BankAccounts.FirstOrDefault(acc => acc.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
 
-            var addBankAccountForm = new BankAccountForm(this.AddBankAccount, this.baknInfoListBox.SelectedIndex, bankAccount);
+            var addBankAccountForm = new BankAccountForm(this.baknInfoListBox.SelectedIndex, bankAccount);
 
             addBankAccountForm.Show();
         }
@@ -73,7 +82,11 @@
                 this.organizationInfo.CPP = this.kppMaskedTextBox.Text;
                 this.organizationInfo.INN = this.innMaskedTextBox.Text;
 
-                this.refreshInfo(this.organizationInfo, this.SelectedIndex);
+                this.OnOrganizationFinded(new OrganizationInfoEventsArgs
+                                             {
+                                                 OrganizationInfo = this.organizationInfo,
+                                                 SelectedIndex = this.SelectedIndex
+                                             });
 
                 this.Close();
             }
@@ -96,11 +109,11 @@
             this.baknInfoListBox.Items.Remove(this.baknInfoListBox.SelectedItem);
         }
 
-        private void AddBankAccount(BankAccount bankAccount, int? editingIndex = null)
+        private void AddBankAccount(object sender, BankInfoEventsArgs bankInfoEventsArgs)
         {
-            this.RefreshListBox(bankAccount, editingIndex);
+            this.RefreshListBox(bankInfoEventsArgs.BankAccount, bankInfoEventsArgs.SelectedIndex);
 
-            this.AddBankAccountToOrganization(bankAccount);
+            this.AddBankAccountToOrganization(bankInfoEventsArgs.BankAccount);
         }
 
         private void RefreshListBox(BankAccount bankAccount, int? editingIndex = null)
@@ -130,5 +143,12 @@
                 this.organizationInfo.BankAccounts = bankAccounts.ToArray();
             }
         }
+    }
+
+    public class OrganizationInfoEventsArgs : EventArgs
+    {
+        public OrganizationInfo OrganizationInfo { get; set; }
+
+        public int? SelectedIndex { get; set; }
     }
 }

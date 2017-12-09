@@ -4,6 +4,6 @@
 
     public interface IDbDownoader
     {
-        DataSet GetDataSet();
+        DataTable GetBankInfoTable();
     }
 }

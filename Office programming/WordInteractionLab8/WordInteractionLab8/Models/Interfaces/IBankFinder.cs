@@ -1,7 +1,7 @@
 ﻿namespace WordInteractionLab8.Models.Interfaces
 {
-    public interface IBankFinder
+    public interface IBankInfoFinder
     {
-        BankInfo GetBankInfoByBIC(string bic);
+        BankInfo GetBankInfoByBic(string bic);
     }
 }
