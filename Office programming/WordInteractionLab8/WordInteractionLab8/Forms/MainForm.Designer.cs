@@ -70,12 +70,6 @@
             this.dBVersionLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.banksDataGridView = new System.Windows.Forms.DataGridView();
-            this.bikDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.correspondentAccountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
@@ -488,70 +482,13 @@
             // 
             this.banksDataGridView.AllowUserToAddRows = false;
             this.banksDataGridView.AllowUserToDeleteRows = false;
-            this.banksDataGridView.AutoGenerateColumns = false;
             this.banksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.banksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bikDataGridViewTextBoxColumn,
-            this.correspondentAccountDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.localityDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn});
-            this.banksDataGridView.DataSource = this.bankInfoApiDBModelBindingSource;
             this.banksDataGridView.Location = new System.Drawing.Point(8, 8);
             this.banksDataGridView.Name = "banksDataGridView";
             this.banksDataGridView.ReadOnly = true;
             this.banksDataGridView.RowTemplate.Height = 24;
             this.banksDataGridView.Size = new System.Drawing.Size(996, 150);
             this.banksDataGridView.TabIndex = 3;
-            // 
-            // bikDataGridViewTextBoxColumn
-            // 
-            this.bikDataGridViewTextBoxColumn.DataPropertyName = "Bik";
-            this.bikDataGridViewTextBoxColumn.HeaderText = "БИК";
-            this.bikDataGridViewTextBoxColumn.Name = "bikDataGridViewTextBoxColumn";
-            this.bikDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bikDataGridViewTextBoxColumn.Width = 140;
-            // 
-            // correspondentAccountDataGridViewTextBoxColumn
-            // 
-            this.correspondentAccountDataGridViewTextBoxColumn.DataPropertyName = "CorrespondentAccount";
-            this.correspondentAccountDataGridViewTextBoxColumn.HeaderText = "Корреспондентский счет";
-            this.correspondentAccountDataGridViewTextBoxColumn.Name = "correspondentAccountDataGridViewTextBoxColumn";
-            this.correspondentAccountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.correspondentAccountDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Полное имя";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // localityDataGridViewTextBoxColumn
-            // 
-            this.localityDataGridViewTextBoxColumn.DataPropertyName = "Locality";
-            this.localityDataGridViewTextBoxColumn.HeaderText = "Расположение";
-            this.localityDataGridViewTextBoxColumn.Name = "localityDataGridViewTextBoxColumn";
-            this.localityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.localityDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Телефон";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.phoneDataGridViewTextBoxColumn.Width = 150;
             // 
             // bankInfoApiDBModelBindingSource
             // 
@@ -627,12 +564,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label dBVersionLabel;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bikDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn correspondentAccountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn localityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
     }
 }
 

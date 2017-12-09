@@ -4,7 +4,6 @@
     using System.Windows.Forms;
 
     using WordInteractionLab8.Models;
-    using WordInteractionLab8.Models.Interfaces;
     using WordInteractionLab8.Resources;
 
     public partial class BankAccountForm : Form
@@ -49,7 +48,7 @@
                 && this.currAccMaskedTextBox.Text != string.Empty)
             {
                 this.bankAccount.BankInfo.FullName = this.nameMaskedTextBox.Text;
-                this.bankAccount.BankInfo.Bik = this.bikMaskedTextBox.Text;
+                this.bankAccount.BankInfo.Bic = this.bikMaskedTextBox.Text;
                 this.bankAccount.BankInfo.Locality = this.locationMaskedTextBox.Text;
                 this.bankAccount.BankInfo.CorrespondentAccount = this.correspAccMaskedTextBox.Text;
                 this.bankAccount.CurrentAccount = this.currAccMaskedTextBox.Text;
@@ -84,7 +83,7 @@
         private void FillBankInfo(BankInfo bankInfo)
         {
             this.nameMaskedTextBox.Text = bankInfo.FullName;
-            this.bikMaskedTextBox.Text = bankInfo.Bik;
+            this.bikMaskedTextBox.Text = bankInfo.Bic;
             this.locationMaskedTextBox.Text = bankInfo.Locality;
             this.correspAccMaskedTextBox.Text = bankInfo.CorrespondentAccount;
         }

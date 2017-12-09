@@ -15,6 +15,12 @@
 
         public MainForm()
         {
+            var test = new CrbDbWorker();
+
+            test.UploadDb();
+
+            var test2 = test.GetBankInfoByBIC("048952615");
+
             this.InitializeComponent();
 
             this.FillAllOrganizations();
@@ -39,7 +45,10 @@
 
         private void EditOrganizationButtonClick(object sender, EventArgs e)
         {
-            var organization = this.db.Organizations.Find(this.organizationMainListBox.SelectedItem.ToString());
+            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
+                .ToString();
+
+            var organization = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
 
             var editOrganizationForm = new OrganizationForm(this.AddBankAccount, this.organizationMainListBox.SelectedIndex, organization);
             editOrganizationForm.Show();
@@ -71,7 +80,6 @@
 
         private void OrganizationMainListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-
             var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
                 .ToString();
 
@@ -101,7 +109,7 @@
         {
             this.bankNameLabel.Text = bankAccount.BankInfo.FullName;
             this.bankLocationLabel.Text = bankAccount.BankInfo.Locality;
-            this.bikLabel.Text = bankAccount.BankInfo.Bik;
+            this.bikLabel.Text = bankAccount.BankInfo.Bic;
 
             this.currentAccountlLabel.Text = bankAccount.CurrentAccount;
 
@@ -128,10 +136,10 @@
         {
             var organizations = this.db.Organizations;
 
-            foreach (var organization in organizations)
-            {
-                this.organizationMainListBox.Items.Add(organization.Name);
-            }
+            //foreach (var organization in organizations)
+            //{
+            //    this.organizationMainListBox.Items.Add(organization.Name);
+            //}
         }
     }
 }

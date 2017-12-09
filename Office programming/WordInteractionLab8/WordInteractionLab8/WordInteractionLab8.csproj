@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +85,7 @@
       <DependentUpon>EditPaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BankInfoApiDBModel.cs" />
+    <Compile Include="Models\CrbDbBankInfoFinder.cs" />
     <Compile Include="Models\Entities\BankAccount.cs" />
     <Compile Include="Models\Entities\BankInfo.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -94,6 +97,8 @@
     <Compile Include="Models\Entities\OrganizetionInfo.cs" />
     <Compile Include="Models\Entities\Payment.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
+    <Compile Include="Models\Interfaces\IBankFinder.cs" />
+    <Compile Include="Models\Interfaces\IDbDownoader.cs" />
     <Compile Include="Models\View\PaymentView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

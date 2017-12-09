@@ -11,5 +11,7 @@
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<OrganizationInfo> Organizations { get; set; }
+
+        public DbSet<BankAccount> BankAccounts { get; set; }
     }
 }

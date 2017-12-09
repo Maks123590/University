@@ -2,7 +2,7 @@
 {
     public class BankInfo
     {
-        public string Bik { get; set; }
+        public string Bic { get; set; }
 
         public string CorrespondentAccount { get; set; }
 

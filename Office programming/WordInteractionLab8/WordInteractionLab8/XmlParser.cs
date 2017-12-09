@@ -40,7 +40,7 @@ namespace WordInteractionLab8
 
             return new BankInfo
                        {
-                           Bik = xmlBankInfo?.Attribute("bik")?.Value,
+                           Bic = xmlBankInfo?.Attribute("bik")?.Value,
                            CorrespondentAccount = xmlBankInfo?.Attribute("ks")?.Value,
                            FullName = xmlBankInfo?.Attribute("name")?.Value,
                            Locality = xmlBankInfo?.Attribute("city")?.Value,

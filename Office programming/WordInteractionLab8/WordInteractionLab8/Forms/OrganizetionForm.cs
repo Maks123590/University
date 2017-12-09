@@ -26,17 +26,20 @@
 
         public OrganizationForm(Action<OrganizationInfo, int?> refreshInfo, int selectedIndex, OrganizationInfo organizationInfo) : this(refreshInfo)
         {
+            this.SelectedIndex = selectedIndex;
+            this.organizationInfo = organizationInfo;
+
             this.NameMaskedTextBox.Text = this.organizationInfo.Name;
             this.innMaskedTextBox.Text = this.organizationInfo.INN;
             this.kppMaskedTextBox.Text = this.organizationInfo.CPP;
 
-            foreach (var bankAccount in this.organizationInfo.BankAccounts)
+            if (this.organizationInfo.BankAccounts != null)
             {
-                this.baknInfoListBox.Items.Add(bankAccount.CurrentAccount);
+                foreach (var bankAccount in this.organizationInfo.BankAccounts)
+                {
+                    this.baknInfoListBox.Items.Add(bankAccount.CurrentAccount);
+                }
             }
-
-            this.SelectedIndex = selectedIndex;
-            this.organizationInfo = organizationInfo;
         }
 
         public int? SelectedIndex { get; }
@@ -66,7 +69,6 @@
         {
             if(this.NameMaskedTextBox.Text != string.Empty && this.kppMaskedTextBox.Text != string.Empty && this.innMaskedTextBox.Text != string.Empty)
             { 
-
                 this.organizationInfo.Name = this.NameMaskedTextBox.Text;
                 this.organizationInfo.CPP = this.kppMaskedTextBox.Text;
                 this.organizationInfo.INN = this.innMaskedTextBox.Text;
