@@ -36,7 +36,6 @@
             this.PaymentsPage = new System.Windows.Forms.TabPage();
             this.PrintOneButton = new System.Windows.Forms.Button();
             this.PrintAllButton = new System.Windows.Forms.Button();
-            this.previewPaymentComponent = new WordInteractionLab8.Components.PreviewPaymentComponent();
             this.PaymentsListBox = new System.Windows.Forms.ListBox();
             this.deletePaymentButton = new System.Windows.Forms.Button();
             this.editPaymentButton = new System.Windows.Forms.Button();
@@ -48,7 +47,6 @@
             this.bankAccInfoPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bankNameLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.bikLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -70,6 +68,7 @@
             this.dBVersionLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.banksDataGridView = new System.Windows.Forms.DataGridView();
+            this.previewPaymentComponent = new WordInteractionLab8.Components.PreviewPaymentComponent();
             this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
@@ -147,14 +146,6 @@
             this.PrintAllButton.TabIndex = 8;
             this.PrintAllButton.Text = "Печатать все";
             this.PrintAllButton.UseVisualStyleBackColor = true;
-            // 
-            // previewPaymentComponent
-            // 
-            this.previewPaymentComponent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentComponent.BackgroundImage")));
-            this.previewPaymentComponent.Location = new System.Drawing.Point(450, 15);
-            this.previewPaymentComponent.Name = "previewPaymentComponent";
-            this.previewPaymentComponent.Size = new System.Drawing.Size(623, 656);
-            this.previewPaymentComponent.TabIndex = 7;
             // 
             // PaymentsListBox
             // 
@@ -245,9 +236,9 @@
             this.bankAccInfoPanel.Controls.Add(this.label4);
             this.bankAccInfoPanel.Controls.Add(this.currentAccountlLabel);
             this.bankAccInfoPanel.Controls.Add(this.label11);
-            this.bankAccInfoPanel.Location = new System.Drawing.Point(818, 15);
+            this.bankAccInfoPanel.Location = new System.Drawing.Point(705, 15);
             this.bankAccInfoPanel.Name = "bankAccInfoPanel";
-            this.bankAccInfoPanel.Size = new System.Drawing.Size(322, 548);
+            this.bankAccInfoPanel.Size = new System.Drawing.Size(450, 548);
             this.bankAccInfoPanel.TabIndex = 7;
             this.bankAccInfoPanel.Visible = false;
             // 
@@ -255,33 +246,22 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.bankNameLabel);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.bikLabel);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.bankLocationLabel);
             this.panel1.Location = new System.Drawing.Point(30, 45);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(239, 151);
+            this.panel1.Size = new System.Drawing.Size(399, 151);
             this.panel1.TabIndex = 17;
             // 
             // bankNameLabel
             // 
-            this.bankNameLabel.AutoSize = true;
-            this.bankNameLabel.Location = new System.Drawing.Point(148, 20);
+            this.bankNameLabel.Location = new System.Drawing.Point(8, 19);
             this.bankNameLabel.Name = "bankNameLabel";
-            this.bankNameLabel.Size = new System.Drawing.Size(54, 17);
+            this.bankNameLabel.Size = new System.Drawing.Size(376, 46);
             this.bankNameLabel.TabIndex = 12;
             this.bankNameLabel.Text = "label12";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 17);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Имя";
             // 
             // label9
             // 
@@ -359,7 +339,7 @@
             this.organizationInfoPanel.Controls.Add(this.label1);
             this.organizationInfoPanel.Location = new System.Drawing.Point(372, 15);
             this.organizationInfoPanel.Name = "organizationInfoPanel";
-            this.organizationInfoPanel.Size = new System.Drawing.Size(419, 548);
+            this.organizationInfoPanel.Size = new System.Drawing.Size(315, 548);
             this.organizationInfoPanel.TabIndex = 6;
             this.organizationInfoPanel.Visible = false;
             // 
@@ -378,7 +358,7 @@
             this.bankAccountsListBox.ItemHeight = 16;
             this.bankAccountsListBox.Location = new System.Drawing.Point(25, 226);
             this.bankAccountsListBox.Name = "bankAccountsListBox";
-            this.bankAccountsListBox.Size = new System.Drawing.Size(366, 292);
+            this.bankAccountsListBox.Size = new System.Drawing.Size(259, 292);
             this.bankAccountsListBox.TabIndex = 6;
             this.bankAccountsListBox.SelectedIndexChanged += new System.EventHandler(this.BankAccountsListBoxSelectedIndexChanged);
             // 
@@ -490,6 +470,14 @@
             this.banksDataGridView.Size = new System.Drawing.Size(996, 150);
             this.banksDataGridView.TabIndex = 3;
             // 
+            // previewPaymentComponent
+            // 
+            this.previewPaymentComponent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentComponent.BackgroundImage")));
+            this.previewPaymentComponent.Location = new System.Drawing.Point(450, 15);
+            this.previewPaymentComponent.Name = "previewPaymentComponent";
+            this.previewPaymentComponent.Size = new System.Drawing.Size(623, 656);
+            this.previewPaymentComponent.TabIndex = 7;
+            // 
             // bankInfoApiDBModelBindingSource
             // 
             this.bankInfoApiDBModelBindingSource.DataSource = typeof(WordInteractionLab8.Models.BankInfoApiDBModel);
@@ -553,7 +541,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.BindingSource bankInfoApiDBModelBindingSource;
         private System.Windows.Forms.Button PrintOneButton;
         private System.Windows.Forms.Button PrintAllButton;

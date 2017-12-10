@@ -14,18 +14,22 @@
 
         private readonly IBankInfoFinder bankInfoFinder;
 
-        public BankAccountForm()
+        private readonly OrganizationInfo organizationInfo;
+
+        public BankAccountForm(OrganizationInfo organization)
         {
             this.InitializeComponent();
 
-            this.bankAccount = new BankAccount();
+            this.bankAccount = new BankAccount { OrganizationId = organization.Id };
+
+            this.organizationInfo = organization;
 
             this.bankInfoFinder = ServiceLocator.GetService<IBankInfoFinder>();
         }
 
-        public BankAccountForm(int selectedIndex, BankAccount bankAccount) : this()
+        public BankAccountForm(OrganizationInfo organization, int selectedIndex, BankAccount bankAccount) : this(organization)
         {
-            this.bankAccount = bankAccount;
+            this.bankAccount = bankAccount ?? new BankAccount();
 
             this.FillBankInfo(this.bankInfoFinder.GetBankInfoByBic(this.bankAccount.BankBic));
 
@@ -52,6 +56,7 @@
                 && this.currAccMaskedTextBox.Text != string.Empty)
             {
                 this.bankAccount.BankBic = this.bikMaskedTextBox.Text;
+                this.bankAccount.CurrentAccount = this.currAccMaskedTextBox.Text;
 
                 this.OnBankAccountFinded(new BankInfoEventsArgs
                                              {

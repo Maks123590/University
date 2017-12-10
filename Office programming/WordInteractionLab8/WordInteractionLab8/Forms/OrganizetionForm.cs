@@ -1,39 +1,41 @@
 ﻿namespace WordInteractionLab8.Forms
 {
     using System;
-    using System.Data;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Remoting.Channels;
     using System.Windows.Forms;
 
     using WordInteractionLab8.Models;
     using WordInteractionLab8.Resources;
 
-    using ApplicationContext = WordInteractionLab8.Models.ApplicationContext;
-
     public partial class OrganizationForm : Form
     {
         private readonly OrganizationInfo organizationInfo;
+
+        private readonly List<BankAccount> bankAccounts;
 
         public OrganizationForm()
         {
             this.InitializeComponent();
 
              this.organizationInfo = new OrganizationInfo();
+
+            this.bankAccounts = new List<BankAccount>();
         }
 
-        public OrganizationForm(int selectedIndex, OrganizationInfo organizationInfo) : this()
+        public OrganizationForm(IEnumerable<BankAccount> bankAccounts, int selectedIndex, OrganizationInfo organizationInfo) : this()
         {
             this.SelectedIndex = selectedIndex;
             this.organizationInfo = organizationInfo;
+            this.bankAccounts = bankAccounts.ToList();
 
             this.NameMaskedTextBox.Text = this.organizationInfo.Name;
             this.innMaskedTextBox.Text = this.organizationInfo.INN;
             this.kppMaskedTextBox.Text = this.organizationInfo.CPP;
 
-            if (this.organizationInfo.BankAccounts != null)
+            if (this.bankAccounts != null)
             {
-                foreach (var bankAccount in this.organizationInfo.BankAccounts)
+                foreach (var bankAccount in this.bankAccounts)
                 {
                     this.baknInfoListBox.Items.Add(bankAccount.CurrentAccount);
                 }
@@ -53,7 +55,7 @@
 
         private void AddBAccountButtonClick(object sender, EventArgs e)
         {
-            var addBankAccountForm = new BankAccountForm();
+            var addBankAccountForm = new BankAccountForm(this.organizationInfo);
 
             addBankAccountForm.BankAccountFinded += this.AddBankAccount;
 
@@ -67,9 +69,11 @@
 
         private void EditBAccountButtonClick(object sender, EventArgs e)
         {
-            var bankAccount = this.organizationInfo.BankAccounts.FirstOrDefault(acc => acc.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
+            var bankAccount = this.bankAccounts.FirstOrDefault(acc => acc.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
 
-            var addBankAccountForm = new BankAccountForm(this.baknInfoListBox.SelectedIndex, bankAccount);
+            var addBankAccountForm = new BankAccountForm(this.organizationInfo, this.baknInfoListBox.SelectedIndex, bankAccount);
+
+            addBankAccountForm.BankAccountFinded += this.AddBankAccount;
 
             addBankAccountForm.Show();
         }
@@ -85,6 +89,7 @@
                 this.OnOrganizationFinded(new OrganizationInfoEventsArgs
                                              {
                                                  OrganizationInfo = this.organizationInfo,
+                                                 BankAccounts = this.bankAccounts.ToArray(),
                                                  SelectedIndex = this.SelectedIndex
                                              });
 
@@ -102,9 +107,9 @@
 
         private void DeleteBAccountButtonClick(object sender, EventArgs e)
         {
-            var bancAccount = this.organizationInfo.BankAccounts.FirstOrDefault(a => a.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
+            var bancAccount = this.bankAccounts.FirstOrDefault(a => a.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
 
-            this.organizationInfo.BankAccounts.ToList().Remove(bancAccount);
+            this.bankAccounts.Remove(bancAccount);
 
             this.baknInfoListBox.Items.Remove(this.baknInfoListBox.SelectedItem);
         }
@@ -130,24 +135,15 @@
 
         private void AddBankAccountToOrganization(BankAccount bankAccount)
         {
-            if (this.organizationInfo.BankAccounts == null)
-            {
-                this.organizationInfo.BankAccounts = new[] { bankAccount };
-            }
-            else
-            {
-                var bankAccounts = this.organizationInfo.BankAccounts.ToList();
-
-                bankAccounts.Add(bankAccount);
-
-                this.organizationInfo.BankAccounts = bankAccounts.ToArray();
-            }
+            this.bankAccounts.Add(bankAccount);
         }
     }
 
     public class OrganizationInfoEventsArgs : EventArgs
     {
         public OrganizationInfo OrganizationInfo { get; set; }
+
+        public BankAccount[] BankAccounts { get; set; }
 
         public int? SelectedIndex { get; set; }
     }

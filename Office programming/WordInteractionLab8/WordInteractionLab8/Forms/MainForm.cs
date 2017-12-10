@@ -31,7 +31,7 @@
         {
             var addPaymentForm = new EditPaymentForm();
 
-            addPaymentForm.Show();
+            addPaymentForm.ShowDialog();
         }
 
         private void AddOrganizationButtonClick(object sender, EventArgs e)
@@ -40,7 +40,7 @@
 
             addOrganizationForm.OrganizationFinded += this.AddBankAccount;
 
-            addOrganizationForm.Show();
+            addOrganizationForm.ShowDialog();
         }
 
         private void EditOrganizationButtonClick(object sender, EventArgs e)
@@ -50,7 +50,9 @@
 
             var organization = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
 
-            var editOrganizationForm = new OrganizationForm(this.organizationMainListBox.SelectedIndex, organization);
+            var organizationBankAccounts = this.db.BankAccounts.Where(ac => ac.OrganizationId == organization.Id);
+
+            var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
 
             editOrganizationForm.OrganizationFinded += this.AddBankAccount;
 
@@ -60,7 +62,18 @@
         private void AddBankAccount(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
         {
             this.RefreshListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.SelectedIndex);
-            this.AddBankAccountToOrganization(organizationInfoEventsArgs.OrganizationInfo);
+
+            var organizationId = this.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+
+            if (organizationInfoEventsArgs.BankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.BankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+
+                AddBankAccountToDb(organizationInfoEventsArgs.BankAccounts);
+            }
         }
 
         private void RefreshListBox(OrganizationInfo organizationInfo, int? editingIndex = null)
@@ -75,31 +88,74 @@
             }
         }
 
-        private void AddBankAccountToOrganization(OrganizationInfo organizationInfo)
+        private int AddOrganizationToDb(OrganizationInfo organizationInfo)
         {
-            this.db.Organizations.Add(organizationInfo);
+            var organization = this.db.Organizations.FirstOrDefault(org => org.Id == organizationInfo.Id);
+
+            if (organization != null)
+            {
+                organization = organizationInfo;
+            }
+            else
+            {
+                this.db.Organizations.Add(organizationInfo);
+            }
+
+            this.db.SaveChanges();
+
+            return this.db.Organizations.FirstOrDefault(o => o.Name == organizationInfo.Name).Id;
+        }
+
+        private void AddBankAccountToDb(BankAccount[] bankAccounts)
+        {
+            foreach (var bankAccount in bankAccounts)
+            {
+                var bankAcc = this.db.BankAccounts.FirstOrDefault(ba => ba.Id == bankAccount.Id);
+
+                if (bankAcc != null)
+                {
+                    bankAcc = bankAccount;
+                }
+                else
+                {
+                    this.db.BankAccounts.Add(bankAccount);
+                }
+            }
+            
             this.db.SaveChanges();
         }
 
         private void OrganizationMainListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
-                .ToString();
+            var index = this.organizationMainListBox.SelectedIndex;
 
-            var organizationInfo = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
+            if (index != -1)
+            {
+                var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
+                    .ToString();
 
-            this.FillMainOrganizationInfo(organizationInfo);
+                var organizationInfo = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
+
+                this.FillMainOrganizationInfo(organizationInfo);
+            }
         }
 
         private void FillMainOrganizationInfo(OrganizationInfo organizationInfo)
         {
+            if (organizationInfo == null)
+            {
+                return;
+            }
+
             this.organizationNameLabel.Text = organizationInfo.Name;
             this.cppOrganizationLabel.Text = organizationInfo.CPP;
             this.innOrganizationLabel.Text = organizationInfo.INN;
 
-            if (organizationInfo.BankAccounts != null)
+            this.bankAccountsListBox.Items.Clear();
+
+            if (this.db.BankAccounts.Any(ac => ac.OrganizationId == organizationInfo.Id))
             {
-                foreach (var bankAccount in organizationInfo.BankAccounts)
+                foreach (var bankAccount in this.db.BankAccounts.Where(ac => ac.OrganizationId == organizationInfo.Id))
                 {
                     this.bankAccountsListBox.Items.Add(bankAccount.CurrentAccount);
                 }
@@ -130,8 +186,8 @@
 
             if (organizationInfo != null)
             {
-                var bankAccount = organizationInfo.BankAccounts.FirstOrDefault(
-                    a => a.CurrentAccount == this.bankAccountsListBox.SelectedItem.ToString());
+                var bankAccount = this.db.BankAccounts.FirstOrDefault(
+                    a => (a.OrganizationId == organizationInfo.Id) && (a.CurrentAccount == this.bankAccountsListBox.SelectedItem.ToString()));
 
                 this.FillBankAccountInfo(bankAccount);
             }
@@ -141,10 +197,10 @@
         {
             var organizations = this.db.Organizations;
 
-            //foreach (var organization in organizations)
-            //{
-            //    this.organizationMainListBox.Items.Add(organization.Name);
-            //}
+            foreach (var organization in organizations)
+            {
+                this.organizationMainListBox.Items.Add(organization.Name);
+            }
         }
     }
 }

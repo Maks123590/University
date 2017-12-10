@@ -9,7 +9,5 @@
         public string INN { get; set; }
 
         public string CPP { get; set; }
-
-        public BankAccount[] BankAccounts { get; set; }
     }
 }
