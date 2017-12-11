@@ -34,6 +34,7 @@
             this.uploadDbButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.PaymentsPage = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.PrintOneButton = new System.Windows.Forms.Button();
             this.PrintAllButton = new System.Windows.Forms.Button();
             this.PaymentsListBox = new System.Windows.Forms.ListBox();
@@ -41,6 +42,7 @@
             this.editPaymentButton = new System.Windows.Forms.Button();
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.OrganizationsPage = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.deleteOrganizationButton = new System.Windows.Forms.Button();
             this.editOrganizationButton = new System.Windows.Forms.Button();
             this.addOrganizationButton = new System.Windows.Forms.Button();
@@ -68,8 +70,8 @@
             this.dBVersionLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.banksDataGridView = new System.Windows.Forms.DataGridView();
-            this.previewPaymentComponent = new WordInteractionLab8.Components.PreviewPaymentComponent();
             this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
             this.OrganizationsPage.SuspendLayout();
@@ -89,7 +91,6 @@
             this.IntoDocumentButton.TabIndex = 1;
             this.IntoDocumentButton.Text = "В документ";
             this.IntoDocumentButton.UseVisualStyleBackColor = true;
-            this.IntoDocumentButton.Click += new System.EventHandler(this.IntoDocumentButtonClick);
             // 
             // uploadDbButton
             // 
@@ -113,9 +114,9 @@
             // 
             // PaymentsPage
             // 
+            this.PaymentsPage.Controls.Add(this.panel2);
             this.PaymentsPage.Controls.Add(this.PrintOneButton);
             this.PaymentsPage.Controls.Add(this.PrintAllButton);
-            this.PaymentsPage.Controls.Add(this.previewPaymentComponent);
             this.PaymentsPage.Controls.Add(this.PaymentsListBox);
             this.PaymentsPage.Controls.Add(this.deletePaymentButton);
             this.PaymentsPage.Controls.Add(this.editPaymentButton);
@@ -128,6 +129,14 @@
             this.PaymentsPage.TabIndex = 0;
             this.PaymentsPage.Text = "Платежные поручения";
             this.PaymentsPage.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.Location = new System.Drawing.Point(450, 15);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(640, 659);
+            this.panel2.TabIndex = 10;
             // 
             // PrintOneButton
             // 
@@ -186,6 +195,7 @@
             // 
             // OrganizationsPage
             // 
+            this.OrganizationsPage.Controls.Add(this.button1);
             this.OrganizationsPage.Controls.Add(this.deleteOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.editOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.addOrganizationButton);
@@ -200,6 +210,15 @@
             this.OrganizationsPage.Text = "Организации";
             this.OrganizationsPage.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(971, 636);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 28);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Обновить базу банков";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // deleteOrganizationButton
             // 
             this.deleteOrganizationButton.Location = new System.Drawing.Point(252, 591);
@@ -208,6 +227,7 @@
             this.deleteOrganizationButton.TabIndex = 10;
             this.deleteOrganizationButton.Text = "Удалить";
             this.deleteOrganizationButton.UseVisualStyleBackColor = true;
+            this.deleteOrganizationButton.Click += new System.EventHandler(this.DeleteOrganizationButtonClick);
             // 
             // editOrganizationButton
             // 
@@ -470,14 +490,6 @@
             this.banksDataGridView.Size = new System.Drawing.Size(996, 150);
             this.banksDataGridView.TabIndex = 3;
             // 
-            // previewPaymentComponent
-            // 
-            this.previewPaymentComponent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentComponent.BackgroundImage")));
-            this.previewPaymentComponent.Location = new System.Drawing.Point(450, 15);
-            this.previewPaymentComponent.Name = "previewPaymentComponent";
-            this.previewPaymentComponent.Size = new System.Drawing.Size(623, 656);
-            this.previewPaymentComponent.TabIndex = 7;
-            // 
             // bankInfoApiDBModelBindingSource
             // 
             this.bankInfoApiDBModelBindingSource.DataSource = typeof(WordInteractionLab8.Models.BankInfoApiDBModel);
@@ -523,7 +535,6 @@
         private System.Windows.Forms.DataGridView banksDataGridView;
         private System.Windows.Forms.Panel organizationInfoPanel;
         private System.Windows.Forms.ListBox organizationMainListBox;
-        private Components.PreviewPaymentComponent previewPaymentComponent;
         private System.Windows.Forms.ListBox PaymentsListBox;
         private System.Windows.Forms.Panel bankAccInfoPanel;
         private System.Windows.Forms.ListBox bankAccountsListBox;
@@ -551,6 +562,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label dBVersionLabel;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

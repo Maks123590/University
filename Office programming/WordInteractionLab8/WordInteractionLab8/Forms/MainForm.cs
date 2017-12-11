@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Windows.Forms;
 
-    using WordInteractionLab8.Components;
     using WordInteractionLab8.IoC;
     using WordInteractionLab8.Models;
     using WordInteractionLab8.Models.Interfaces;
@@ -14,17 +13,27 @@
 
     public partial class MainForm : Form
     {
-        private ApplicationContext db = new ApplicationContext();
+        private IDbChanger dbChanger;
+
+        private IBankInfoFinder bankInfoFinder;
+
+        private IBankAccountFinder bankAccountFinder;
+        private IOrganizationFinder organizationInfoFinder;
+        private IPaymentOrderFinder paymentOrderFinder;
 
         public MainForm()
         {
             this.InitializeComponent();
 
-            this.FillAllOrganizations();
-        }
+            this.bankInfoFinder = ServiceLocator.GetService<IBankInfoFinder>();
 
-        private void IntoDocumentButtonClick(object sender, EventArgs e)
-        {
+            this.bankAccountFinder = ServiceLocator.GetService<IBankAccountFinder>();
+            this.organizationInfoFinder = ServiceLocator.GetService<IOrganizationFinder>();
+            this.paymentOrderFinder = ServiceLocator.GetService<IPaymentOrderFinder>();
+
+            this.dbChanger = ServiceLocator.GetService<IDbChanger>();
+
+            this.FillAllOrganizations();
         }
 
         private void AddPaymentButtonClick(object sender, EventArgs e)
@@ -38,7 +47,7 @@
         {
             var addOrganizationForm = new OrganizationForm();
 
-            addOrganizationForm.OrganizationFinded += this.AddBankAccount;
+            addOrganizationForm.OrganizationFinded += this.AddOrganizationInfo;
 
             addOrganizationForm.ShowDialog();
         }
@@ -48,35 +57,35 @@
             var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
                 .ToString();
 
-            var organization = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
+            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
 
-            var organizationBankAccounts = this.db.BankAccounts.Where(ac => ac.OrganizationId == organization.Id);
+            var organizationBankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(organization.Id);
 
             var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
 
-            editOrganizationForm.OrganizationFinded += this.AddBankAccount;
+            editOrganizationForm.OrganizationFinded += this.AddOrganizationInfo;
 
             editOrganizationForm.Show();
         }
 
-        private void AddBankAccount(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+        private void AddOrganizationInfo(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
         {
-            this.RefreshListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.SelectedIndex);
+            this.RefreshOrganizationMainListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.SelectedIndex);
 
-            var organizationId = this.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+            this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
 
             if (organizationInfoEventsArgs.BankAccounts != null)
             {
                 foreach (var account in organizationInfoEventsArgs.BankAccounts)
                 {
-                    account.OrganizationId = organizationId;
-                }
+                    account.OrganizationId = this.organizationInfoFinder.FindOrganizationByName(organizationInfoEventsArgs.OrganizationInfo.Name).Id;
 
-                AddBankAccountToDb(organizationInfoEventsArgs.BankAccounts);
+                    this.dbChanger.AddBankAccountToDb(account);
+                }
             }
         }
 
-        private void RefreshListBox(OrganizationInfo organizationInfo, int? editingIndex = null)
+        private void RefreshOrganizationMainListBox(OrganizationInfo organizationInfo, int? editingIndex = null)
         {
             if (editingIndex == null)
             {
@@ -88,43 +97,6 @@
             }
         }
 
-        private int AddOrganizationToDb(OrganizationInfo organizationInfo)
-        {
-            var organization = this.db.Organizations.FirstOrDefault(org => org.Id == organizationInfo.Id);
-
-            if (organization != null)
-            {
-                organization = organizationInfo;
-            }
-            else
-            {
-                this.db.Organizations.Add(organizationInfo);
-            }
-
-            this.db.SaveChanges();
-
-            return this.db.Organizations.FirstOrDefault(o => o.Name == organizationInfo.Name).Id;
-        }
-
-        private void AddBankAccountToDb(BankAccount[] bankAccounts)
-        {
-            foreach (var bankAccount in bankAccounts)
-            {
-                var bankAcc = this.db.BankAccounts.FirstOrDefault(ba => ba.Id == bankAccount.Id);
-
-                if (bankAcc != null)
-                {
-                    bankAcc = bankAccount;
-                }
-                else
-                {
-                    this.db.BankAccounts.Add(bankAccount);
-                }
-            }
-            
-            this.db.SaveChanges();
-        }
-
         private void OrganizationMainListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             var index = this.organizationMainListBox.SelectedIndex;
@@ -134,7 +106,7 @@
                 var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
                     .ToString();
 
-                var organizationInfo = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
+                var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
 
                 this.FillMainOrganizationInfo(organizationInfo);
             }
@@ -153,9 +125,11 @@
 
             this.bankAccountsListBox.Items.Clear();
 
-            if (this.db.BankAccounts.Any(ac => ac.OrganizationId == organizationInfo.Id))
+            var bankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(organizationInfo.Id);
+
+            if (bankAccounts != null)
             {
-                foreach (var bankAccount in this.db.BankAccounts.Where(ac => ac.OrganizationId == organizationInfo.Id))
+                foreach (var bankAccount in bankAccounts)
                 {
                     this.bankAccountsListBox.Items.Add(bankAccount.CurrentAccount);
                 }
@@ -166,7 +140,7 @@
 
         private void FillBankAccountInfo(BankAccount bankAccount)
         {
-            var bankInfo = ServiceLocator.GetService<IBankInfoFinder>().GetBankInfoByBic(bankAccount.BankBic);
+            var bankInfo = this.bankInfoFinder.GetBankInfoByBic(bankAccount.BankBic);
 
             this.bankNameLabel.Text = bankInfo.FullName;
             this.bankLocationLabel.Text = bankInfo.Locality;
@@ -182,12 +156,11 @@
             var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
                 .ToString();
 
-            var organizationInfo = db.Organizations.FirstOrDefault(oInf => oInf.Name == selectedName);
+            var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
 
-            if (organizationInfo != null)
+            if (organizationInfo != null && this.bankAccountsListBox.SelectedItem != null)
             {
-                var bankAccount = this.db.BankAccounts.FirstOrDefault(
-                    a => (a.OrganizationId == organizationInfo.Id) && (a.CurrentAccount == this.bankAccountsListBox.SelectedItem.ToString()));
+                var bankAccount = this.bankAccountFinder.FindBankAccountsByOrganizationId(organizationInfo.Id).FirstOrDefault(or => or.CurrentAccount == this.bankAccountsListBox.SelectedItem?.ToString());
 
                 this.FillBankAccountInfo(bankAccount);
             }
@@ -195,12 +168,16 @@
 
         private void FillAllOrganizations()
         {
-            var organizations = this.db.Organizations;
+            var organizations = this.organizationInfoFinder.GetAllOrganizations();
 
             foreach (var organization in organizations)
             {
                 this.organizationMainListBox.Items.Add(organization.Name);
             }
+        }
+
+        private void DeleteOrganizationButtonClick(object sender, EventArgs e)
+        {
         }
     }
 }

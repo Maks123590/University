@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WordInteractionLab8
@@ -23,6 +20,8 @@ namespace WordInteractionLab8
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Directory.GetCurrentDirectory());
+
             RegisterComponents();
 
             Application.Run(new MainForm());
@@ -32,6 +31,12 @@ namespace WordInteractionLab8
         {
             ServiceLocator.Register<IDbDownoader>(new CrbDbDownloader(AppResource.App_Data_Path));
             ServiceLocator.Register<IBankInfoFinder>(new BankInfoFinder());
+            ServiceLocator.Register<IDbChanger>(new EntityFrameworkDbChanger());
+
+            ServiceLocator.Register<IBankAccountFinder>(new BankAccountFinder());
+            ServiceLocator.Register<IOrganizationFinder>(new OrganizationInfoFinder());
+            ServiceLocator.Register<IPaymentOrderFinder>(new PaymentOrderFinder());
+
         }
     }
 }

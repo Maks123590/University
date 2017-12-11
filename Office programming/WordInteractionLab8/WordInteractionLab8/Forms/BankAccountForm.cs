@@ -89,6 +89,11 @@
 
         private void FillBankInfo(BankInfo bankInfo)
         {
+            if (bankInfo == null)
+            {
+                return;
+            }
+
             this.nameMaskedTextBox.Text = bankInfo.FullName;
             this.bikMaskedTextBox.Text = bankInfo.Bic;
             this.locationMaskedTextBox.Text = bankInfo.Locality;

@@ -54,18 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\OrganizationSelectorComponent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\OrganizationSelectorComponent.Designer.cs">
-      <DependentUpon>OrganizationSelectorComponent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Components\PreviewPaymentComponent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Components\PreviewPaymentComponent.Designer.cs">
-      <DependentUpon>PreviewPaymentComponent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\BankAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,8 +74,13 @@
     </Compile>
     <Compile Include="IoC\ServiceLocator.cs" />
     <Compile Include="Models\BankInfoApiDBModel.cs" />
-    <Compile Include="Models\DAL\BankInfoFinder.cs" />
+    <Compile Include="Models\DAL\Finders\BankAccountFinder.cs" />
+    <Compile Include="Models\DAL\Finders\BankInfoFinder.cs" />
     <Compile Include="Models\DAL\CrbDbDownloader.cs" />
+    <Compile Include="Models\DAL\EntityFrameworkDbChanger.cs" />
+    <Compile Include="Models\DAL\Finders\OrganizationInfoFinder.cs" />
+    <Compile Include="Models\DAL\Finders\PaymentOrderFinder.cs" />
+    <Compile Include="Models\DAL\Interfaces\IBankAccountFinder.cs" />
     <Compile Include="Models\Entities\BankAccount.cs" />
     <Compile Include="Models\Entities\BankInfo.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -99,8 +92,11 @@
     <Compile Include="Models\Entities\OrganizetionInfo.cs" />
     <Compile Include="Models\Entities\Payment.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
-    <Compile Include="Models\Interfaces\IBankFinder.cs" />
-    <Compile Include="Models\Interfaces\IDbDownoader.cs" />
+    <Compile Include="Models\DAL\Interfaces\IBankInfoFinder.cs" />
+    <Compile Include="Models\DAL\Interfaces\IDbChanger.cs" />
+    <Compile Include="Models\DAL\Interfaces\IDbDownoader.cs" />
+    <Compile Include="Models\DAL\Interfaces\IOrganizationFinder.cs" />
+    <Compile Include="Models\DAL\Interfaces\IPaymentOrderFinder.cs" />
     <Compile Include="Models\View\PaymentView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,12 +106,6 @@
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
     <Compile Include="XmlParser.cs" />
-    <EmbeddedResource Include="Components\OrganizationSelectorComponent.resx">
-      <DependentUpon>OrganizationSelectorComponent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Components\PreviewPaymentComponent.resx">
-      <DependentUpon>PreviewPaymentComponent.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BankAccountForm.resx">
       <DependentUpon>BankAccountForm.cs</DependentUpon>
     </EmbeddedResource>

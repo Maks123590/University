@@ -175,7 +175,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label18);
             this.Name = "OrganizationSelectorComponent";
-            this.Size = new System.Drawing.Size(585, 190);
+            this.Size = new System.Drawing.Size(739, 296);
             this.Load += new System.EventHandler(this.OrganizationSelectorComponent_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
