@@ -43,11 +43,12 @@
             addPaymentForm.ShowDialog();
         }
 
+
         private void AddOrganizationButtonClick(object sender, EventArgs e)
         {
             var addOrganizationForm = new OrganizationForm();
 
-            addOrganizationForm.OrganizationFinded += this.AddOrganizationInfo;
+            addOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
 
             addOrganizationForm.ShowDialog();
         }
@@ -63,37 +64,78 @@
 
             var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
 
-            editOrganizationForm.OrganizationFinded += this.AddOrganizationInfo;
+            editOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
 
-            editOrganizationForm.Show();
+            editOrganizationForm.ShowDialog();
         }
 
-        private void AddOrganizationInfo(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+        private void DeleteOrganizationButtonClick(object sender, EventArgs e)
         {
-            this.RefreshOrganizationMainListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.SelectedIndex);
+            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex].ToString();
 
-            this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
 
-            if (organizationInfoEventsArgs.BankAccounts != null)
+            this.RefreshOrganizationMainListBox(organization, ItemChangeStatus.Removed, this.organizationMainListBox.SelectedIndex);
+
+            this.dbChanger.RemoveOrganizationFromDb(organization);
+        }
+
+
+        private void OrganizationInfoToDb(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+        {
+            this.RefreshOrganizationMainListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.Status, organizationInfoEventsArgs.SelectedIndex);
+
+            if (organizationInfoEventsArgs.Status == ItemChangeStatus.Added)
             {
-                foreach (var account in organizationInfoEventsArgs.BankAccounts)
+                this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+            }
+            else if (organizationInfoEventsArgs.Status == ItemChangeStatus.Edited)
+            {
+                this.dbChanger.ChangeOrganizationInDb(organizationInfoEventsArgs.OrganizationInfo);
+            }
+            else
+            {
+                this.dbChanger.RemoveOrganizationFromDb(organizationInfoEventsArgs.OrganizationInfo);
+            }
+            
+            if (organizationInfoEventsArgs.AddedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
                 {
-                    account.OrganizationId = this.organizationInfoFinder.FindOrganizationByName(organizationInfoEventsArgs.OrganizationInfo.Name).Id;
-
                     this.dbChanger.AddBankAccountToDb(account);
+                }
+            }
+
+            if (organizationInfoEventsArgs.EditedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
+                {
+                    this.dbChanger.ChangeBankAccountInDb(account);
+                }
+            }
+
+            if (organizationInfoEventsArgs.RemovedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
+                {
+                    this.dbChanger.RemoveBankAccountFromDb(account);
                 }
             }
         }
 
-        private void RefreshOrganizationMainListBox(OrganizationInfo organizationInfo, int? editingIndex = null)
+        private void RefreshOrganizationMainListBox(OrganizationInfo organizationInfo, ItemChangeStatus status, int? editingIndex = null)
         {
-            if (editingIndex == null)
+            if (status == ItemChangeStatus.Added)
             {
                 this.organizationMainListBox.Items.Add(organizationInfo.Name);
             }
-            else
+            else if (status == ItemChangeStatus.Edited)
             {
                 this.organizationMainListBox.Items[(int)editingIndex] = organizationInfo.Name;
+            }
+            else
+            {
+                this.organizationMainListBox.Items.RemoveAt((int)editingIndex);
             }
         }
 
@@ -174,10 +216,6 @@
             {
                 this.organizationMainListBox.Items.Add(organization.Name);
             }
-        }
-
-        private void DeleteOrganizationButtonClick(object sender, EventArgs e)
-        {
         }
     }
 }

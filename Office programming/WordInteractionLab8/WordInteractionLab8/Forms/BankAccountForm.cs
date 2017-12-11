@@ -16,6 +16,8 @@
 
         private readonly OrganizationInfo organizationInfo;
 
+        private readonly ItemChangeStatus status;
+
         public BankAccountForm(OrganizationInfo organization)
         {
             this.InitializeComponent();
@@ -25,6 +27,8 @@
             this.organizationInfo = organization;
 
             this.bankInfoFinder = ServiceLocator.GetService<IBankInfoFinder>();
+
+            this.status = ItemChangeStatus.Added;
         }
 
         public BankAccountForm(OrganizationInfo organization, int selectedIndex, BankAccount bankAccount) : this(organization)
@@ -36,6 +40,8 @@
             this.SelectedIndex = selectedIndex;
 
             this.currAccMaskedTextBox.Text = this.bankAccount.CurrentAccount ?? string.Empty;
+
+            this.status = ItemChangeStatus.Edited;
         }
 
         public event EventHandler<BankInfoEventsArgs> BankAccountFinded;
@@ -61,6 +67,7 @@
                 this.OnBankAccountFinded(new BankInfoEventsArgs
                                              {
                                                  BankAccount = this.bankAccount,
+                                                 Status = this.status,
                                                  SelectedIndex = this.SelectedIndex
                                              });
 
@@ -104,6 +111,8 @@
     public class BankInfoEventsArgs : EventArgs
     {
         public BankAccount BankAccount { get; set; }
+
+        public ItemChangeStatus Status { get; set; }
 
         public int? SelectedIndex { get; set; }
     }

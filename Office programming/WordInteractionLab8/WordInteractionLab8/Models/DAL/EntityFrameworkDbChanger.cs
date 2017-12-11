@@ -13,53 +13,62 @@
             this.db = new ApplicationContext();
         }
 
+
         public void AddOrganizationToDb(OrganizationInfo organizationInfo)
         {
-            var organization = this.db.Organizations.FirstOrDefault(org => org.Id == organizationInfo.Id);
-
-            if (organization != null)
-            {
-                organization = organizationInfo;
-            }
-            else
-            {
-                this.db.Organizations.Add(organizationInfo);
-            }
+            this.db.Organizations.Add(organizationInfo);
 
             this.db.SaveChanges();
         }
 
         public void AddBankAccountToDb(BankAccount bankAccount)
         {
-            var bankAcc = this.db.BankAccounts.FirstOrDefault(ba => ba.Id == bankAccount.Id);
-
-            if (bankAcc != null)
-            {
-                bankAcc = bankAccount;
-            }
-            else
-            {
-                this.db.BankAccounts.Add(bankAccount);
-            }
+            this.db.BankAccounts.Add(bankAccount);
 
             this.db.SaveChanges();
         }
 
         public void AddPaymentOrderToDb(Payment paymentOrder)
         {
+            this.db.Payments.Add(paymentOrder);
+
+            this.db.SaveChanges();
+        }
+
+
+        public void ChangeOrganizationInDb(OrganizationInfo organizationInfo)
+        {
+            var organization = this.db.Organizations.FirstOrDefault(org => org.Id == organizationInfo.Id);
+
+            if (organization != null)
+            {
+                organization = organizationInfo;
+                this.db.SaveChanges();
+            }
+        }
+
+        public void ChangeBankAccountInDb(BankAccount bankAccount)
+        {
+            var bankAcc = this.db.BankAccounts.FirstOrDefault(ba => ba.Id == bankAccount.Id);
+
+            if (bankAcc != null)
+            {
+                bankAcc = bankAccount;
+                this.db.SaveChanges();
+            }
+        }
+
+        public void ChangePaymentOrderInDb(Payment paymentOrder)
+        {
             var payment = this.db.Payments.FirstOrDefault(ba => ba.Id == paymentOrder.Id);
 
             if (payment != null)
             {
                 payment = paymentOrder;
+                this.db.SaveChanges();
             }
-            else
-            {
-                this.db.Payments.Add(paymentOrder);
-            }
-
-            this.db.SaveChanges();
         }
+
 
         public void RemoveOrganizationFromDb(OrganizationInfo organizationInfo)
         {
@@ -68,7 +77,13 @@
                 return;
             }
 
-            this.db.Organizations.Remove(organizationInfo);
+            var organization = this.db.Organizations.FirstOrDefault(org => org.Id == organizationInfo.Id);
+
+            if (organization != null)
+            {
+                this.db.Organizations.Remove(organization);
+                this.db.SaveChanges();
+            }
         }
 
         public void RemoveBankAccountFromDb(BankAccount bankAccount)
@@ -78,7 +93,13 @@
                 return;
             }
 
-            this.db.BankAccounts.Remove(bankAccount);
+            var bankAcc = this.db.BankAccounts.FirstOrDefault(ba => ba.Id == bankAccount.Id);
+
+            if (bankAcc != null)
+            {
+                this.db.BankAccounts.Remove(bankAcc);
+                this.db.SaveChanges();
+            }
         }
 
         public void RemoveOrderFromDb(Payment paymentOrder)
@@ -88,7 +109,13 @@
                 return;
             }
 
-            this.db.Payments.Remove(paymentOrder);
+            var payment = this.db.Payments.FirstOrDefault(p => p.Id == paymentOrder.Id);
+
+            if (payment != null)
+            {
+                this.db.Payments.Remove(payment);
+                this.db.SaveChanges();
+            }
         }
     }
 }

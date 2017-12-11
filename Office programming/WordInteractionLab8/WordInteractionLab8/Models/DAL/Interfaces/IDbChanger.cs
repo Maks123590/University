@@ -9,10 +9,17 @@
         void AddPaymentOrderToDb(Payment paymentOrder);
 
 
-        void RemoveOrganizationFromDb(OrganizationInfo organizationInfo);
+        void ChangeOrganizationInDb(OrganizationInfo newOrganizationInfo);
 
-        void RemoveBankAccountFromDb(BankAccount bankAccount);
+        void ChangeBankAccountInDb(BankAccount newBankAccount);
 
-        void RemoveOrderFromDb(Payment paymentOrder);
+        void ChangePaymentOrderInDb(Payment newPaymentOrder);
+
+
+        void RemoveOrganizationFromDb(OrganizationInfo newOrganizationInfo);
+
+        void RemoveBankAccountFromDb(BankAccount newBankAccount);
+
+        void RemoveOrderFromDb(Payment newPaymentOrder);
     }
 }

@@ -14,13 +14,25 @@
 
         private readonly List<BankAccount> bankAccounts;
 
+        private List<BankAccount> addedBankAccounts;
+        private List<BankAccount> editedBankAccounts;
+        private List<BankAccount> removedBankAccounts;
+
+        private ItemChangeStatus status;
+
         public OrganizationForm()
         {
             this.InitializeComponent();
 
-             this.organizationInfo = new OrganizationInfo();
+            this.organizationInfo = new OrganizationInfo();
 
             this.bankAccounts = new List<BankAccount>();
+
+            this.addedBankAccounts = new List<BankAccount>();
+            this.editedBankAccounts = new List<BankAccount>();
+            this.removedBankAccounts = new List<BankAccount>();
+
+            this.status = ItemChangeStatus.Added;
         }
 
         public OrganizationForm(IEnumerable<BankAccount> bankAccounts, int selectedIndex, OrganizationInfo organizationInfo) : this()
@@ -32,6 +44,8 @@
             this.NameMaskedTextBox.Text = this.organizationInfo.Name;
             this.innMaskedTextBox.Text = this.organizationInfo.INN;
             this.kppMaskedTextBox.Text = this.organizationInfo.CPP;
+
+            this.status = ItemChangeStatus.Edited;
 
             if (this.bankAccounts != null)
             {
@@ -53,6 +67,7 @@
             handler?.Invoke(this, e);
         }
 
+
         private void AddBAccountButtonClick(object sender, EventArgs e)
         {
             var addBankAccountForm = new BankAccountForm(this.organizationInfo);
@@ -60,11 +75,6 @@
             addBankAccountForm.BankAccountFinded += this.AddBankAccount;
 
             addBankAccountForm.Show();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void EditBAccountButtonClick(object sender, EventArgs e)
@@ -78,9 +88,19 @@
             addBankAccountForm.Show();
         }
 
+        private void DeleteBAccountButtonClick(object sender, EventArgs e)
+        {
+            var bancAccount = this.bankAccounts.FirstOrDefault(a => a.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
+
+            this.bankAccounts.Remove(bancAccount);
+
+            this.baknInfoListBox.Items.Remove(this.baknInfoListBox.SelectedItem);
+        }
+
+
         private void OkButtonClick(object sender, EventArgs e)
         {
-            if(this.NameMaskedTextBox.Text != string.Empty && this.kppMaskedTextBox.Text != string.Empty && this.innMaskedTextBox.Text != string.Empty)
+            if (this.NameMaskedTextBox.Text != string.Empty && this.kppMaskedTextBox.Text != string.Empty && this.innMaskedTextBox.Text != string.Empty)
             { 
                 this.organizationInfo.Name = this.NameMaskedTextBox.Text;
                 this.organizationInfo.CPP = this.kppMaskedTextBox.Text;
@@ -89,7 +109,9 @@
                 this.OnOrganizationFinded(new OrganizationInfoEventsArgs
                                              {
                                                  OrganizationInfo = this.organizationInfo,
-                                                 BankAccounts = this.bankAccounts.ToArray(),
+                                                 AddedBankAccounts = this.addedBankAccounts,
+                                                 EditedBankAccounts = this.editedBankAccounts,
+                                                 RemovedBankAccounts = this.removedBankAccounts,
                                                  SelectedIndex = this.SelectedIndex
                                              });
 
@@ -105,37 +127,69 @@
             }
         }
 
-        private void DeleteBAccountButtonClick(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
-            var bancAccount = this.bankAccounts.FirstOrDefault(a => a.CurrentAccount == this.baknInfoListBox.SelectedItem.ToString());
-
-            this.bankAccounts.Remove(bancAccount);
-
-            this.baknInfoListBox.Items.Remove(this.baknInfoListBox.SelectedItem);
+            this.Close();
         }
+
 
         private void AddBankAccount(object sender, BankInfoEventsArgs bankInfoEventsArgs)
         {
-            this.RefreshListBox(bankInfoEventsArgs.BankAccount, bankInfoEventsArgs.SelectedIndex);
+            this.RefreshBankInfoListBox(bankInfoEventsArgs.BankAccount, bankInfoEventsArgs.Status, bankInfoEventsArgs.SelectedIndex);
 
-            this.AddBankAccountToOrganization(bankInfoEventsArgs.BankAccount);
+            this.BankAccountToOrganization(bankInfoEventsArgs.BankAccount, bankInfoEventsArgs.Status);
+
+            this.RefreshBankAccounts(bankInfoEventsArgs.BankAccount, bankInfoEventsArgs.Status);
         }
 
-        private void RefreshListBox(BankAccount bankAccount, int? editingIndex = null)
+        private void RefreshBankInfoListBox(BankAccount bankAccount, ItemChangeStatus status, int? editingIndex = null)
         {
-            if (editingIndex == null)
+            if (status == ItemChangeStatus.Added)
             {
                 this.baknInfoListBox.Items.Add(bankAccount.CurrentAccount);
             }
-            else
+            else if (status == ItemChangeStatus.Edited)
             {
                 this.baknInfoListBox.Items[(int)editingIndex] = bankAccount.CurrentAccount;
             }
+            else
+            {
+                this.baknInfoListBox.Items.RemoveAt((int)editingIndex);
+            }
         }
 
-        private void AddBankAccountToOrganization(BankAccount bankAccount)
+        private void BankAccountToOrganization(BankAccount bankAccount, ItemChangeStatus status)
         {
-            this.bankAccounts.Add(bankAccount);
+            if (status == ItemChangeStatus.Added)
+            {
+                this.addedBankAccounts.Add(bankAccount);
+            }
+            else if (status == ItemChangeStatus.Edited)
+            {
+                this.editedBankAccounts.Add(bankAccount);
+            }
+            else
+            {
+                this.removedBankAccounts.Add(bankAccount);
+            }
+        }
+
+        private void RefreshBankAccounts(BankAccount bankAccount, ItemChangeStatus status)
+        {
+            if (status == ItemChangeStatus.Added)
+            {
+                this.bankAccounts.Add(bankAccount);
+            }
+            else if (status == ItemChangeStatus.Edited)
+            {
+                var bankAcc = this.bankAccounts.Find(ba => ba.Id == bankAccount.Id);
+
+                bankAcc = bankAccount;
+            }
+            else
+            {
+                this.bankAccounts.Remove(bankAccount);
+            }
         }
     }
 
@@ -143,8 +197,22 @@
     {
         public OrganizationInfo OrganizationInfo { get; set; }
 
-        public BankAccount[] BankAccounts { get; set; }
+        public IEnumerable<BankAccount> AddedBankAccounts { get; set; }
+
+        public IEnumerable<BankAccount> EditedBankAccounts { get; set; }
+
+        public IEnumerable<BankAccount> RemovedBankAccounts { get; set; }
+
+        public ItemChangeStatus Status { get; set; }
 
         public int? SelectedIndex { get; set; }
+    }
+
+
+    public enum ItemChangeStatus
+    {
+        Added,
+        Edited,
+        Removed
     }
 }
