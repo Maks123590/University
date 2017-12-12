@@ -38,11 +38,19 @@
 
         private void AddPaymentButtonClick(object sender, EventArgs e)
         {
-            var addPaymentForm = new EditPaymentForm();
+            var addPaymentForm = new PaymentForm();
 
             addPaymentForm.ShowDialog();
+
+
         }
 
+        private void RaymentInfoToDb(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+        {
+            
+        }
+
+        #region organization
 
         private void AddOrganizationButtonClick(object sender, EventArgs e)
         {
@@ -239,5 +247,7 @@
                 this.organizationMainListBox.Items.Add(organization.Name);
             }
         }
+
+        #endregion
     }
 }

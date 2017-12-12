@@ -1,6 +1,6 @@
 ﻿namespace WordInteractionLab8.Forms
 {
-    partial class EditPaymentForm
+    partial class PaymentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPaymentForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,33 +66,33 @@
             this.paymentDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.payDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.PayQueueComboBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label32 = new System.Windows.Forms.Label();
+            this.senderBankLocationLabel = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
+            this.senderBankNameLanbel = new System.Windows.Forms.Label();
+            this.senderBicLabel = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.SenderAccComboBox = new System.Windows.Forms.ComboBox();
+            this.SenderNameComboBox = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
+            this.addresseeBankLocationLabel = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
+            this.addresseeBankNameLabel = new System.Windows.Forms.Label();
+            this.addresseeBikLabel = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.addresseeAccComboBox = new System.Windows.Forms.ComboBox();
+            this.addresseeNameComboBox = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -563,23 +563,24 @@
             this.PayQueueComboBox.Size = new System.Drawing.Size(121, 24);
             this.PayQueueComboBox.TabIndex = 25;
             // 
-            // button1
+            // okButton
             // 
-            this.button1.Location = new System.Drawing.Point(378, 647);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 34);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "Принять";
-            this.button1.UseVisualStyleBackColor = true;
+            this.okButton.Location = new System.Drawing.Point(378, 647);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(166, 34);
+            this.okButton.TabIndex = 37;
+            this.okButton.Text = "Принять";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // button2
+            // CancelButton
             // 
-            this.button2.Location = new System.Drawing.Point(727, 647);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 34);
-            this.button2.TabIndex = 38;
-            this.button2.Text = "Отмена";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CancelButton.Location = new System.Drawing.Point(727, 647);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(166, 34);
+            this.CancelButton.TabIndex = 38;
+            this.CancelButton.Text = "Отмена";
+            this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -587,8 +588,8 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label23);
             this.panel2.Controls.Add(this.label24);
-            this.panel2.Controls.Add(this.comboBox5);
-            this.panel2.Controls.Add(this.comboBox6);
+            this.panel2.Controls.Add(this.SenderAccComboBox);
+            this.panel2.Controls.Add(this.SenderNameComboBox);
             this.panel2.Location = new System.Drawing.Point(43, 443);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(583, 167);
@@ -596,10 +597,10 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.label32);
+            this.panel4.Controls.Add(this.senderBankLocationLabel);
             this.panel4.Controls.Add(this.label20);
-            this.panel4.Controls.Add(this.label31);
-            this.panel4.Controls.Add(this.label30);
+            this.panel4.Controls.Add(this.senderBankNameLanbel);
+            this.panel4.Controls.Add(this.senderBicLabel);
             this.panel4.Controls.Add(this.label21);
             this.panel4.Controls.Add(this.label22);
             this.panel4.Location = new System.Drawing.Point(292, 22);
@@ -607,14 +608,14 @@
             this.panel4.Size = new System.Drawing.Size(270, 121);
             this.panel4.TabIndex = 4;
             // 
-            // label32
+            // senderBankLocationLabel
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(129, 83);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(54, 17);
-            this.label32.TabIndex = 35;
-            this.label32.Text = "label32";
+            this.senderBankLocationLabel.AutoSize = true;
+            this.senderBankLocationLabel.Location = new System.Drawing.Point(129, 83);
+            this.senderBankLocationLabel.Name = "senderBankLocationLabel";
+            this.senderBankLocationLabel.Size = new System.Drawing.Size(54, 17);
+            this.senderBankLocationLabel.TabIndex = 35;
+            this.senderBankLocationLabel.Text = "label32";
             // 
             // label20
             // 
@@ -625,23 +626,23 @@
             this.label20.TabIndex = 14;
             this.label20.Text = "БИК";
             // 
-            // label31
+            // senderBankNameLanbel
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(129, 48);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(54, 17);
-            this.label31.TabIndex = 34;
-            this.label31.Text = "label31";
+            this.senderBankNameLanbel.AutoSize = true;
+            this.senderBankNameLanbel.Location = new System.Drawing.Point(129, 48);
+            this.senderBankNameLanbel.Name = "senderBankNameLanbel";
+            this.senderBankNameLanbel.Size = new System.Drawing.Size(54, 17);
+            this.senderBankNameLanbel.TabIndex = 34;
+            this.senderBankNameLanbel.Text = "label31";
             // 
-            // label30
+            // senderBicLabel
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(129, 16);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(54, 17);
-            this.label30.TabIndex = 33;
-            this.label30.Text = "label30";
+            this.senderBicLabel.AutoSize = true;
+            this.senderBicLabel.Location = new System.Drawing.Point(129, 16);
+            this.senderBicLabel.Name = "senderBicLabel";
+            this.senderBicLabel.Size = new System.Drawing.Size(54, 17);
+            this.senderBicLabel.TabIndex = 33;
+            this.senderBicLabel.Text = "label30";
             // 
             // label21
             // 
@@ -679,21 +680,21 @@
             this.label24.TabIndex = 2;
             this.label24.Text = "Наименование";
             // 
-            // comboBox5
+            // SenderAccComboBox
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(18, 119);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(253, 24);
-            this.comboBox5.TabIndex = 1;
+            this.SenderAccComboBox.FormattingEnabled = true;
+            this.SenderAccComboBox.Location = new System.Drawing.Point(18, 119);
+            this.SenderAccComboBox.Name = "SenderAccComboBox";
+            this.SenderAccComboBox.Size = new System.Drawing.Size(253, 24);
+            this.SenderAccComboBox.TabIndex = 1;
             // 
-            // comboBox6
+            // SenderNameComboBox
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(18, 40);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(253, 24);
-            this.comboBox6.TabIndex = 0;
+            this.SenderNameComboBox.FormattingEnabled = true;
+            this.SenderNameComboBox.Location = new System.Drawing.Point(18, 40);
+            this.SenderNameComboBox.Name = "SenderNameComboBox";
+            this.SenderNameComboBox.Size = new System.Drawing.Size(253, 24);
+            this.SenderNameComboBox.TabIndex = 0;
             // 
             // label18
             // 
@@ -710,8 +711,8 @@
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.label33);
             this.panel3.Controls.Add(this.label34);
-            this.panel3.Controls.Add(this.comboBox4);
-            this.panel3.Controls.Add(this.comboBox7);
+            this.panel3.Controls.Add(this.addresseeAccComboBox);
+            this.panel3.Controls.Add(this.addresseeNameComboBox);
             this.panel3.Location = new System.Drawing.Point(644, 443);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(583, 167);
@@ -719,10 +720,10 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.label19);
+            this.panel5.Controls.Add(this.addresseeBankLocationLabel);
             this.panel5.Controls.Add(this.label25);
-            this.panel5.Controls.Add(this.label26);
-            this.panel5.Controls.Add(this.label27);
+            this.panel5.Controls.Add(this.addresseeBankNameLabel);
+            this.panel5.Controls.Add(this.addresseeBikLabel);
             this.panel5.Controls.Add(this.label28);
             this.panel5.Controls.Add(this.label29);
             this.panel5.Location = new System.Drawing.Point(292, 22);
@@ -730,14 +731,14 @@
             this.panel5.Size = new System.Drawing.Size(270, 121);
             this.panel5.TabIndex = 4;
             // 
-            // label19
+            // addresseeBankLocationLabel
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(129, 83);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(54, 17);
-            this.label19.TabIndex = 35;
-            this.label19.Text = "label19";
+            this.addresseeBankLocationLabel.AutoSize = true;
+            this.addresseeBankLocationLabel.Location = new System.Drawing.Point(129, 83);
+            this.addresseeBankLocationLabel.Name = "addresseeBankLocationLabel";
+            this.addresseeBankLocationLabel.Size = new System.Drawing.Size(54, 17);
+            this.addresseeBankLocationLabel.TabIndex = 35;
+            this.addresseeBankLocationLabel.Text = "label19";
             // 
             // label25
             // 
@@ -748,23 +749,23 @@
             this.label25.TabIndex = 14;
             this.label25.Text = "БИК";
             // 
-            // label26
+            // addresseeBankNameLabel
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(129, 48);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(54, 17);
-            this.label26.TabIndex = 34;
-            this.label26.Text = "label26";
+            this.addresseeBankNameLabel.AutoSize = true;
+            this.addresseeBankNameLabel.Location = new System.Drawing.Point(129, 48);
+            this.addresseeBankNameLabel.Name = "addresseeBankNameLabel";
+            this.addresseeBankNameLabel.Size = new System.Drawing.Size(54, 17);
+            this.addresseeBankNameLabel.TabIndex = 34;
+            this.addresseeBankNameLabel.Text = "label26";
             // 
-            // label27
+            // addresseeBikLabel
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(129, 16);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(54, 17);
-            this.label27.TabIndex = 33;
-            this.label27.Text = "label27";
+            this.addresseeBikLabel.AutoSize = true;
+            this.addresseeBikLabel.Location = new System.Drawing.Point(129, 16);
+            this.addresseeBikLabel.Name = "addresseeBikLabel";
+            this.addresseeBikLabel.Size = new System.Drawing.Size(54, 17);
+            this.addresseeBikLabel.TabIndex = 33;
+            this.addresseeBikLabel.Text = "label27";
             // 
             // label28
             // 
@@ -802,21 +803,21 @@
             this.label34.TabIndex = 2;
             this.label34.Text = "Наименование";
             // 
-            // comboBox4
+            // addresseeAccComboBox
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(18, 119);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(253, 24);
-            this.comboBox4.TabIndex = 1;
+            this.addresseeAccComboBox.FormattingEnabled = true;
+            this.addresseeAccComboBox.Location = new System.Drawing.Point(18, 119);
+            this.addresseeAccComboBox.Name = "addresseeAccComboBox";
+            this.addresseeAccComboBox.Size = new System.Drawing.Size(253, 24);
+            this.addresseeAccComboBox.TabIndex = 1;
             // 
-            // comboBox7
+            // addresseeNameComboBox
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(18, 40);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(253, 24);
-            this.comboBox7.TabIndex = 0;
+            this.addresseeNameComboBox.FormattingEnabled = true;
+            this.addresseeNameComboBox.Location = new System.Drawing.Point(18, 40);
+            this.addresseeNameComboBox.Name = "addresseeNameComboBox";
+            this.addresseeNameComboBox.Size = new System.Drawing.Size(253, 24);
+            this.addresseeNameComboBox.TabIndex = 0;
             // 
             // label35
             // 
@@ -827,7 +828,7 @@
             this.label35.TabIndex = 35;
             this.label35.Text = "Получатель";
             // 
-            // EditPaymentForm
+            // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -836,8 +837,8 @@
             this.Controls.Add(this.label35);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.PayQueueComboBox);
             this.Controls.Add(this.payDescriptionTextBox);
             this.Controls.Add(this.paymentDateTimePicker);
@@ -857,7 +858,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "EditPaymentForm";
+            this.Name = "PaymentForm";
             this.Text = "EditPaymentForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -910,36 +911,36 @@
         private System.Windows.Forms.DateTimePicker paymentDateTimePicker;
         private System.Windows.Forms.TextBox payDescriptionTextBox;
         private System.Windows.Forms.ComboBox PayQueueComboBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label senderBankLocationLabel;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label senderBankNameLanbel;
+        private System.Windows.Forms.Label senderBicLabel;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox SenderAccComboBox;
+        private System.Windows.Forms.ComboBox SenderNameComboBox;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label addresseeBankLocationLabel;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label addresseeBankNameLabel;
+        private System.Windows.Forms.Label addresseeBikLabel;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox addresseeAccComboBox;
+        private System.Windows.Forms.ComboBox addresseeNameComboBox;
         private System.Windows.Forms.Label label35;
     }
 }

@@ -208,12 +208,4 @@
 
         public int? SelectedIndex { get; set; }
     }
-
-
-    public enum ItemChangeStatus
-    {
-        Added,
-        Edited,
-        Removed
-    }
 }

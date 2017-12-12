@@ -72,6 +72,8 @@
             this.banksDataGridView = new System.Windows.Forms.DataGridView();
             this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
             this.OrganizationsPage.SuspendLayout();
@@ -195,6 +197,8 @@
             // 
             // OrganizationsPage
             // 
+            this.OrganizationsPage.Controls.Add(this.label6);
+            this.OrganizationsPage.Controls.Add(this.label8);
             this.OrganizationsPage.Controls.Add(this.button1);
             this.OrganizationsPage.Controls.Add(this.deleteOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.editOrganizationButton);
@@ -494,6 +498,24 @@
             // 
             this.bankInfoApiDBModelBindingSource.DataSource = typeof(WordInteractionLab8.Models.BankInfoApiDBModel);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1067, 582);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 17);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "label6";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(968, 582);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 17);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Версия базы";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -508,6 +530,7 @@
             this.tabControl1.ResumeLayout(false);
             this.PaymentsPage.ResumeLayout(false);
             this.OrganizationsPage.ResumeLayout(false);
+            this.OrganizationsPage.PerformLayout();
             this.bankAccInfoPanel.ResumeLayout(false);
             this.bankAccInfoPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -565,6 +588,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
     }
 }
 

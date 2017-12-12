@@ -66,11 +66,11 @@
     <Compile Include="Forms\OrganizetionForm.Designer.cs">
       <DependentUpon>OrganizetionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditPaymentForm.cs">
+    <Compile Include="Forms\PaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditPaymentForm.Designer.cs">
-      <DependentUpon>EditPaymentForm.cs</DependentUpon>
+    <Compile Include="Forms\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\ServiceLocator.cs" />
     <Compile Include="Models\BankInfoApiDBModel.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Models\DAL\Finders\OrganizationInfoFinder.cs" />
     <Compile Include="Models\DAL\Finders\PaymentOrderFinder.cs" />
     <Compile Include="Models\DAL\Interfaces\IBankAccountFinder.cs" />
+    <Compile Include="Models\ItemChangeStatusEnum.cs" />
     <Compile Include="Models\Entities\BankAccount.cs" />
     <Compile Include="Models\Entities\BankInfo.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -112,8 +113,8 @@
     <EmbeddedResource Include="Forms\OrganizetionForm.resx">
       <DependentUpon>OrganizetionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditPaymentForm.resx">
-      <DependentUpon>EditPaymentForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
