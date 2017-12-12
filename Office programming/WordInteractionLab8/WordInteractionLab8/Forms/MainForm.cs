@@ -316,5 +316,144 @@
         }
 
         #endregion
+
+        private void PaymentsListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.PaymentsListBox.SelectedIndex != -1)
+            {
+                var selectedName = this.PaymentsListBox.SelectedItem.ToString();
+
+                var payment = this.paymentOrderFinder.FindPaymentOrderByNumber(selectedName);
+
+                this.RefreshPreview(this.GetPaymentView(payment));
+
+                this.previewPaymentPanel.Visible = true;
+            }
+            else
+            {
+                this.previewPaymentPanel.Visible = false;
+            }
+        }
+
+        private void RefreshPreview(PaymentView payment)
+        {
+            this.PaymentNumberLabel.Text = payment.Number;
+            this.DataLabel.Text = payment.Date;
+            this.payTypeLabel.Text = payment.PaymentType;
+            this.amountLabel.Text = payment.PaymentAmount;
+            this.payAnountWordsLabel.Text = payment.PaymentAmountInWords;
+            this.payDescriptionLabel.Text = payment.Description;
+            this.payQueueLabel.Text = payment.PayQueue;
+
+            this.payerInnLabel.Text = payment.Payer.INN;
+            this.payerKppLabel.Text = payment.Payer.CPP;
+            this.payerNameLabel.Text = payment.Payer.Name;
+            this.payerBankAccLabel.Text = payment.Payer.BankAccount.CurrentAccount;
+            this.payerBankBicLabel.Text = payment.Payer.BankAccount.BankInfo.Bic;
+            this.payerBankNameLabel.Text = payment.Payer.BankAccount.BankInfo.FullName + payment.Payer.BankAccount.BankInfo.Locality;
+            
+
+            this.payeeInnLabel.Text = payment.Payee.INN;
+            this.payeeKppLabel.Text = payment.Payee.CPP;
+            this.payeeNameLabel.Text = payment.Payee.Name;
+            this.payeeBankAccLabel.Text = payment.Payee.BankAccount.CurrentAccount;
+            this.payeeBankBicLabel.Text = payment.Payee.BankAccount.BankInfo.Bic;
+            this.payeeBankNameLabel.Text = payment.Payee.BankAccount.BankInfo.FullName + payment.Payee.BankAccount.BankInfo.Locality;
+        }
+
+        private PaymentView GetPaymentView(Payment payment)
+        {
+            
+
+            var entityPayer = this.organizationInfoFinder.FindByOrganizationId(payment.PayerId);
+            var entityPayee = this.organizationInfoFinder.FindByOrganizationId(payment.PayeeId);
+
+            var entityPayerAccount = this.bankAccountFinder.FindById(payment.PayerAccountId);
+            var entityPayeeAccount = this.bankAccountFinder.FindById(payment.PayeeAccountId);
+
+            var entityBankPayer = this.bankInfoFinder.GetBankInfoByBic(entityPayerAccount.BankBic);
+            var entityBankPayee = this.bankInfoFinder.GetBankInfoByBic(entityPayeeAccount.BankBic);
+
+            string paymentType;
+
+            switch (payment.Type)
+            {
+                case PaymentType.Electronic:
+                    paymentType = AppResource.PayType_электронно;
+                    break;
+                case PaymentType.Postal:
+                    paymentType = AppResource.PayType_почтой;
+                    break;
+                case PaymentType.Telegraph:
+                    paymentType = AppResource.PayType_телеграфом;
+                    break;
+                case PaymentType.Urgent:
+                    paymentType = AppResource.PayType_срочно;
+                    break;
+                case PaymentType.None:
+                    paymentType = AppResource.PayType_не_указывать;
+                    break;
+                default:
+                    paymentType = string.Empty;
+                    break;
+            }
+
+            var payerView = new OrganizationView
+                                {
+                                    Name = entityPayer.Name,
+                                    CPP = entityPayer.CPP,
+                                    INN = entityPayer.INN,
+                                    BankAccount = new BankAccountView
+                                                      {
+                                                          BankInfo  = new BankInfoView
+                                                                          {
+                                                                              Bic = entityBankPayer.Bic,
+                                                                              FullName = entityBankPayer.FullName,
+                                                                              CorrespondentAccount = entityBankPayer.CorrespondentAccount,
+                                                                              Locality = entityBankPayer.Locality
+                                                                           },
+                                                          CurrentAccount = entityPayerAccount.CurrentAccount
+                                                      }
+                                };
+
+            var payeeView = new OrganizationView
+                                {
+                                    Name = entityPayee.Name,
+                                    CPP = entityPayee.CPP,
+                                    INN = entityPayee.INN,
+                                    BankAccount = new BankAccountView
+                                                      {
+                                                          BankInfo = new BankInfoView
+                                                                         {
+                                                                             Bic = entityBankPayee.Bic,
+                                                                             FullName = entityBankPayee.FullName,
+                                                                             CorrespondentAccount = entityBankPayee.CorrespondentAccount,
+                                                                             Locality = entityBankPayee.Locality
+                                                                         },
+                                                          CurrentAccount = entityPayeeAccount.CurrentAccount
+                                                      }
+                                };
+
+            return new PaymentView
+                              {
+                                  Number = payment.Number.ToString(),
+                                  Date = payment.Date.ToShortDateString(),
+                                  Description = payment.Details,
+                                  PaymentAmount = payment.Rub + "-" + payment.Cop,
+                                  PayQueue = payment.Queue.ToString(),
+                                  Payer = payerView,
+                                  Payee = payeeView,
+                                  PaymentAmountInWords = this.GetPaymentAmountInWords(payment.Rub.ToString(), payment.Cop.ToString()),
+                                  PaymentType = paymentType
+                              };
+
+        }
+
+        private string GetPaymentAmountInWords(string rub, string cop)
+        {
+            // TODO
+
+            return string.Empty;
+        }
     }
 }

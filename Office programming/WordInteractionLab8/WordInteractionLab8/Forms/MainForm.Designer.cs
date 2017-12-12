@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.IntoDocumentButton = new System.Windows.Forms.Button();
-            this.uploadDbButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.PaymentsPage = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
+            this.previewPaymentPanel = new System.Windows.Forms.Panel();
+            this.payAnountWordsLabel = new System.Windows.Forms.Label();
+            this.payTypeLabel = new System.Windows.Forms.Label();
+            this.payQueueLabel = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.payDescriptionLabel = new System.Windows.Forms.Label();
+            this.payeeNameLabel = new System.Windows.Forms.Label();
+            this.payeeBankAccLabel = new System.Windows.Forms.Label();
+            this.payeeBankBicLabel = new System.Windows.Forms.Label();
+            this.payeeKppLabel = new System.Windows.Forms.Label();
+            this.payeeInnLabel = new System.Windows.Forms.Label();
+            this.payeeBankNameLabel = new System.Windows.Forms.Label();
+            this.payerBankAccLabel = new System.Windows.Forms.Label();
+            this.payerBankBicLabel = new System.Windows.Forms.Label();
+            this.payerCurrAccLabel = new System.Windows.Forms.Label();
+            this.payerBankNameLabel = new System.Windows.Forms.Label();
+            this.payerNameLabel = new System.Windows.Forms.Label();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.payerKppLabel = new System.Windows.Forms.Label();
+            this.payerInnLabel = new System.Windows.Forms.Label();
+            this.DataLabel = new System.Windows.Forms.Label();
             this.PaymentNumberLabel = new System.Windows.Forms.Label();
             this.PrintOneButton = new System.Windows.Forms.Button();
             this.PrintAllButton = new System.Windows.Forms.Button();
@@ -61,9 +61,9 @@
             this.editPaymentButton = new System.Windows.Forms.Button();
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.OrganizationsPage = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
+            this.bankDbCurrentVersionLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.UploadBankDbButton = new System.Windows.Forms.Button();
             this.deleteOrganizationButton = new System.Windows.Forms.Button();
             this.editOrganizationButton = new System.Windows.Forms.Button();
             this.addOrganizationButton = new System.Windows.Forms.Button();
@@ -87,56 +87,41 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.organizationMainListBox = new System.Windows.Forms.ListBox();
-            this.BanksPage = new System.Windows.Forms.TabPage();
-            this.dBVersionLabel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.banksDataGridView = new System.Windows.Forms.DataGridView();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.bankInfoApiDBModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.UploadDbPanel = new System.Windows.Forms.Panel();
+            this.bankDbActualVersionLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.previewPaymentPanel.SuspendLayout();
             this.OrganizationsPage.SuspendLayout();
             this.bankAccInfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.organizationInfoPanel.SuspendLayout();
-            this.BanksPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.banksDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoApiDBModelBindingSource)).BeginInit();
+            this.UploadDbPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // IntoDocumentButton
             // 
             this.IntoDocumentButton.Location = new System.Drawing.Point(17, 643);
             this.IntoDocumentButton.Name = "IntoDocumentButton";
-            this.IntoDocumentButton.Size = new System.Drawing.Size(106, 31);
+            this.IntoDocumentButton.Size = new System.Drawing.Size(106, 28);
             this.IntoDocumentButton.TabIndex = 1;
             this.IntoDocumentButton.Text = "В документ";
             this.IntoDocumentButton.UseVisualStyleBackColor = true;
-            // 
-            // uploadDbButton
-            // 
-            this.uploadDbButton.Location = new System.Drawing.Point(1010, 130);
-            this.uploadDbButton.Name = "uploadDbButton";
-            this.uploadDbButton.Size = new System.Drawing.Size(145, 28);
-            this.uploadDbButton.TabIndex = 2;
-            this.uploadDbButton.Text = "Обновить базу";
-            this.uploadDbButton.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.PaymentsPage);
             this.tabControl1.Controls.Add(this.OrganizationsPage);
-            this.tabControl1.Controls.Add(this.BanksPage);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1174, 728);
+            this.tabControl1.Size = new System.Drawing.Size(1174, 752);
             this.tabControl1.TabIndex = 5;
             // 
             // PaymentsPage
             // 
-            this.PaymentsPage.Controls.Add(this.panel2);
+            this.PaymentsPage.Controls.Add(this.previewPaymentPanel);
             this.PaymentsPage.Controls.Add(this.PrintOneButton);
             this.PaymentsPage.Controls.Add(this.PrintAllButton);
             this.PaymentsPage.Controls.Add(this.PaymentsListBox);
@@ -147,211 +132,271 @@
             this.PaymentsPage.Location = new System.Drawing.Point(4, 25);
             this.PaymentsPage.Name = "PaymentsPage";
             this.PaymentsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.PaymentsPage.Size = new System.Drawing.Size(1166, 699);
+            this.PaymentsPage.Size = new System.Drawing.Size(1166, 723);
             this.PaymentsPage.TabIndex = 0;
             this.PaymentsPage.Text = "Платежные поручения";
             this.PaymentsPage.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // previewPaymentPanel
             // 
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.Controls.Add(this.label29);
-            this.panel2.Controls.Add(this.label28);
-            this.panel2.Controls.Add(this.label27);
-            this.panel2.Controls.Add(this.label26);
-            this.panel2.Controls.Add(this.label25);
-            this.panel2.Controls.Add(this.label24);
-            this.panel2.Controls.Add(this.label23);
-            this.panel2.Controls.Add(this.label22);
-            this.panel2.Controls.Add(this.label21);
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.PaymentNumberLabel);
-            this.panel2.Location = new System.Drawing.Point(450, 15);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(640, 659);
-            this.panel2.TabIndex = 10;
+            this.previewPaymentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentPanel.BackgroundImage")));
+            this.previewPaymentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.previewPaymentPanel.Controls.Add(this.payAnountWordsLabel);
+            this.previewPaymentPanel.Controls.Add(this.payTypeLabel);
+            this.previewPaymentPanel.Controls.Add(this.payQueueLabel);
+            this.previewPaymentPanel.Controls.Add(this.label28);
+            this.previewPaymentPanel.Controls.Add(this.payDescriptionLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeNameLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeBankAccLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeBankBicLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeKppLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeInnLabel);
+            this.previewPaymentPanel.Controls.Add(this.payeeBankNameLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerBankAccLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerBankBicLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerCurrAccLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerBankNameLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerNameLabel);
+            this.previewPaymentPanel.Controls.Add(this.amountLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerKppLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerInnLabel);
+            this.previewPaymentPanel.Controls.Add(this.DataLabel);
+            this.previewPaymentPanel.Controls.Add(this.PaymentNumberLabel);
+            this.previewPaymentPanel.Location = new System.Drawing.Point(450, 15);
+            this.previewPaymentPanel.Name = "previewPaymentPanel";
+            this.previewPaymentPanel.Size = new System.Drawing.Size(640, 659);
+            this.previewPaymentPanel.TabIndex = 10;
+            this.previewPaymentPanel.Visible = false;
             // 
-            // label29
+            // payAnountWordsLabel
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(549, 483);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(54, 17);
-            this.label29.TabIndex = 29;
-            this.label29.Text = "label29";
+            this.payAnountWordsLabel.AutoSize = true;
+            this.payAnountWordsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payAnountWordsLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payAnountWordsLabel.Location = new System.Drawing.Point(98, 147);
+            this.payAnountWordsLabel.Name = "payAnountWordsLabel";
+            this.payAnountWordsLabel.Size = new System.Drawing.Size(55, 15);
+            this.payAnountWordsLabel.TabIndex = 31;
+            this.payAnountWordsLabel.Text = "label12";
+            // 
+            // payTypeLabel
+            // 
+            this.payTypeLabel.AutoSize = true;
+            this.payTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payTypeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payTypeLabel.Location = new System.Drawing.Point(407, 92);
+            this.payTypeLabel.Name = "payTypeLabel";
+            this.payTypeLabel.Size = new System.Drawing.Size(55, 15);
+            this.payTypeLabel.TabIndex = 30;
+            this.payTypeLabel.Text = "label12";
+            // 
+            // payQueueLabel
+            // 
+            this.payQueueLabel.AutoSize = true;
+            this.payQueueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payQueueLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payQueueLabel.Location = new System.Drawing.Point(549, 483);
+            this.payQueueLabel.Name = "payQueueLabel";
+            this.payQueueLabel.Size = new System.Drawing.Size(55, 15);
+            this.payQueueLabel.TabIndex = 29;
+            this.payQueueLabel.Text = "label29";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label28.Location = new System.Drawing.Point(397, 458);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(24, 17);
+            this.label28.Size = new System.Drawing.Size(23, 15);
             this.label28.TabIndex = 28;
             this.label28.Text = "01";
             // 
-            // label27
+            // payDescriptionLabel
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(16, 570);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(54, 17);
-            this.label27.TabIndex = 27;
-            this.label27.Text = "label27";
+            this.payDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payDescriptionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payDescriptionLabel.Location = new System.Drawing.Point(16, 570);
+            this.payDescriptionLabel.Name = "payDescriptionLabel";
+            this.payDescriptionLabel.Size = new System.Drawing.Size(599, 21);
+            this.payDescriptionLabel.TabIndex = 27;
+            this.payDescriptionLabel.Text = "label27";
             // 
-            // label26
+            // payeeNameLabel
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(16, 447);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(54, 17);
-            this.label26.TabIndex = 26;
-            this.label26.Text = "label26";
+            this.payeeNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeNameLabel.Location = new System.Drawing.Point(16, 447);
+            this.payeeNameLabel.Name = "payeeNameLabel";
+            this.payeeNameLabel.Size = new System.Drawing.Size(297, 53);
+            this.payeeNameLabel.TabIndex = 26;
+            this.payeeNameLabel.Text = "label26";
             // 
-            // label25
+            // payeeBankAccLabel
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(397, 382);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(54, 17);
-            this.label25.TabIndex = 25;
-            this.label25.Text = "label25";
+            this.payeeBankAccLabel.AutoSize = true;
+            this.payeeBankAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeBankAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankAccLabel.Location = new System.Drawing.Point(397, 382);
+            this.payeeBankAccLabel.Name = "payeeBankAccLabel";
+            this.payeeBankAccLabel.Size = new System.Drawing.Size(55, 15);
+            this.payeeBankAccLabel.TabIndex = 25;
+            this.payeeBankAccLabel.Text = "label25";
             // 
-            // label24
+            // payeeBankBicLabel
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(397, 344);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(54, 17);
-            this.label24.TabIndex = 24;
-            this.label24.Text = "label24";
+            this.payeeBankBicLabel.AutoSize = true;
+            this.payeeBankBicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeBankBicLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankBicLabel.Location = new System.Drawing.Point(397, 344);
+            this.payeeBankBicLabel.Name = "payeeBankBicLabel";
+            this.payeeBankBicLabel.Size = new System.Drawing.Size(55, 15);
+            this.payeeBankBicLabel.TabIndex = 24;
+            this.payeeBankBicLabel.Text = "label24";
             // 
-            // label23
+            // payeeKppLabel
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(190, 413);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(54, 17);
-            this.label23.TabIndex = 23;
-            this.label23.Text = "label23";
+            this.payeeKppLabel.AutoSize = true;
+            this.payeeKppLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeKppLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeKppLabel.Location = new System.Drawing.Point(190, 413);
+            this.payeeKppLabel.Name = "payeeKppLabel";
+            this.payeeKppLabel.Size = new System.Drawing.Size(55, 15);
+            this.payeeKppLabel.TabIndex = 23;
+            this.payeeKppLabel.Text = "label23";
             // 
-            // label22
+            // payeeInnLabel
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(51, 413);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(54, 17);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "label22";
+            this.payeeInnLabel.AutoSize = true;
+            this.payeeInnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeInnLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeInnLabel.Location = new System.Drawing.Point(51, 413);
+            this.payeeInnLabel.Name = "payeeInnLabel";
+            this.payeeInnLabel.Size = new System.Drawing.Size(55, 15);
+            this.payeeInnLabel.TabIndex = 22;
+            this.payeeInnLabel.Text = "label22";
             // 
-            // label21
+            // payeeBankNameLabel
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(16, 344);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(54, 17);
-            this.label21.TabIndex = 21;
-            this.label21.Text = "label21";
+            this.payeeBankNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeBankNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankNameLabel.Location = new System.Drawing.Point(16, 344);
+            this.payeeBankNameLabel.Name = "payeeBankNameLabel";
+            this.payeeBankNameLabel.Size = new System.Drawing.Size(297, 41);
+            this.payeeBankNameLabel.TabIndex = 21;
+            this.payeeBankNameLabel.Text = "label21";
             // 
-            // label20
+            // payerBankAccLabel
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(397, 306);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 17);
-            this.label20.TabIndex = 20;
-            this.label20.Text = "label20";
+            this.payerBankAccLabel.AutoSize = true;
+            this.payerBankAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerBankAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankAccLabel.Location = new System.Drawing.Point(397, 306);
+            this.payerBankAccLabel.Name = "payerBankAccLabel";
+            this.payerBankAccLabel.Size = new System.Drawing.Size(55, 15);
+            this.payerBankAccLabel.TabIndex = 20;
+            this.payerBankAccLabel.Text = "label20";
             // 
-            // label19
+            // payerBankBicLabel
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(397, 276);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(54, 17);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "label19";
+            this.payerBankBicLabel.AutoSize = true;
+            this.payerBankBicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerBankBicLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankBicLabel.Location = new System.Drawing.Point(397, 276);
+            this.payerBankBicLabel.Name = "payerBankBicLabel";
+            this.payerBankBicLabel.Size = new System.Drawing.Size(55, 15);
+            this.payerBankBicLabel.TabIndex = 19;
+            this.payerBankBicLabel.Text = "label19";
             // 
-            // label18
+            // payerCurrAccLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(397, 236);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 17);
-            this.label18.TabIndex = 18;
-            this.label18.Text = "label18";
+            this.payerCurrAccLabel.AutoSize = true;
+            this.payerCurrAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerCurrAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerCurrAccLabel.Location = new System.Drawing.Point(397, 236);
+            this.payerCurrAccLabel.Name = "payerCurrAccLabel";
+            this.payerCurrAccLabel.Size = new System.Drawing.Size(55, 15);
+            this.payerCurrAccLabel.TabIndex = 18;
+            this.payerCurrAccLabel.Text = "label18";
             // 
-            // label17
+            // payerBankNameLabel
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 276);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 17);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "label17";
+            this.payerBankNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerBankNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankNameLabel.Location = new System.Drawing.Point(16, 276);
+            this.payerBankNameLabel.Name = "payerBankNameLabel";
+            this.payerBankNameLabel.Size = new System.Drawing.Size(297, 36);
+            this.payerBankNameLabel.TabIndex = 17;
+            this.payerBankNameLabel.Text = "label17";
             // 
-            // label16
+            // payerNameLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(16, 219);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 17);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "label16";
+            this.payerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerNameLabel.Location = new System.Drawing.Point(16, 219);
+            this.payerNameLabel.Name = "payerNameLabel";
+            this.payerNameLabel.Size = new System.Drawing.Size(297, 34);
+            this.payerNameLabel.TabIndex = 16;
+            this.payerNameLabel.Text = "label16";
             // 
-            // label15
+            // amountLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(397, 189);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 17);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "label15";
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.amountLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.amountLabel.Location = new System.Drawing.Point(397, 189);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(55, 15);
+            this.amountLabel.TabIndex = 15;
+            this.amountLabel.Text = "label15";
             // 
-            // label14
+            // payerKppLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(190, 189);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 17);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "label14";
+            this.payerKppLabel.AutoSize = true;
+            this.payerKppLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerKppLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerKppLabel.Location = new System.Drawing.Point(190, 189);
+            this.payerKppLabel.Name = "payerKppLabel";
+            this.payerKppLabel.Size = new System.Drawing.Size(55, 15);
+            this.payerKppLabel.TabIndex = 14;
+            this.payerKppLabel.Text = "label14";
             // 
-            // label13
+            // payerInnLabel
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(51, 189);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 17);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "label13";
+            this.payerInnLabel.AutoSize = true;
+            this.payerInnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payerInnLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerInnLabel.Location = new System.Drawing.Point(51, 189);
+            this.payerInnLabel.Name = "payerInnLabel";
+            this.payerInnLabel.Size = new System.Drawing.Size(55, 15);
+            this.payerInnLabel.TabIndex = 13;
+            this.payerInnLabel.Text = "label13";
             // 
-            // label12
+            // DataLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(288, 92);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 17);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "label12";
+            this.DataLabel.AutoSize = true;
+            this.DataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DataLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DataLabel.Location = new System.Drawing.Point(288, 92);
+            this.DataLabel.Name = "DataLabel";
+            this.DataLabel.Size = new System.Drawing.Size(55, 15);
+            this.DataLabel.TabIndex = 12;
+            this.DataLabel.Text = "label12";
             // 
             // PaymentNumberLabel
             // 
             this.PaymentNumberLabel.AutoSize = true;
+            this.PaymentNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PaymentNumberLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.PaymentNumberLabel.Location = new System.Drawing.Point(190, 92);
             this.PaymentNumberLabel.Name = "PaymentNumberLabel";
-            this.PaymentNumberLabel.Size = new System.Drawing.Size(54, 17);
+            this.PaymentNumberLabel.Size = new System.Drawing.Size(39, 15);
             this.PaymentNumberLabel.TabIndex = 11;
-            this.PaymentNumberLabel.Text = "label12";
+            this.PaymentNumberLabel.Text = "label";
             // 
             // PrintOneButton
             // 
+            this.PrintOneButton.Enabled = false;
             this.PrintOneButton.Location = new System.Drawing.Point(129, 643);
             this.PrintOneButton.Name = "PrintOneButton";
             this.PrintOneButton.Size = new System.Drawing.Size(117, 28);
@@ -361,6 +406,7 @@
             // 
             // PrintAllButton
             // 
+            this.PrintAllButton.Enabled = false;
             this.PrintAllButton.Location = new System.Drawing.Point(252, 643);
             this.PrintAllButton.Name = "PrintAllButton";
             this.PrintAllButton.Size = new System.Drawing.Size(105, 28);
@@ -376,6 +422,7 @@
             this.PaymentsListBox.Name = "PaymentsListBox";
             this.PaymentsListBox.Size = new System.Drawing.Size(342, 548);
             this.PaymentsListBox.TabIndex = 6;
+            this.PaymentsListBox.SelectedIndexChanged += new System.EventHandler(this.PaymentsListBoxSelectedIndexChanged);
             // 
             // deletePaymentButton
             // 
@@ -409,9 +456,7 @@
             // 
             // OrganizationsPage
             // 
-            this.OrganizationsPage.Controls.Add(this.label6);
-            this.OrganizationsPage.Controls.Add(this.label8);
-            this.OrganizationsPage.Controls.Add(this.button1);
+            this.OrganizationsPage.Controls.Add(this.UploadDbPanel);
             this.OrganizationsPage.Controls.Add(this.deleteOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.editOrganizationButton);
             this.OrganizationsPage.Controls.Add(this.addOrganizationButton);
@@ -421,37 +466,37 @@
             this.OrganizationsPage.Location = new System.Drawing.Point(4, 25);
             this.OrganizationsPage.Name = "OrganizationsPage";
             this.OrganizationsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OrganizationsPage.Size = new System.Drawing.Size(1166, 699);
+            this.OrganizationsPage.Size = new System.Drawing.Size(1166, 723);
             this.OrganizationsPage.TabIndex = 1;
             this.OrganizationsPage.Text = "Организации";
             this.OrganizationsPage.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // bankDbCurrentVersionLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1067, 582);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "label6";
+            this.bankDbCurrentVersionLabel.AutoSize = true;
+            this.bankDbCurrentVersionLabel.Location = new System.Drawing.Point(342, 11);
+            this.bankDbCurrentVersionLabel.Name = "bankDbCurrentVersionLabel";
+            this.bankDbCurrentVersionLabel.Size = new System.Drawing.Size(46, 17);
+            this.bankDbCurrentVersionLabel.TabIndex = 13;
+            this.bankDbCurrentVersionLabel.Text = "label6";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(968, 582);
+            this.label8.Location = new System.Drawing.Point(180, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 17);
+            this.label8.Size = new System.Drawing.Size(153, 17);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Версия базы";
+            this.label8.Text = "Текущая версия базы";
             // 
-            // button1
+            // UploadBankDbButton
             // 
-            this.button1.Location = new System.Drawing.Point(971, 636);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 28);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Обновить базу банков";
-            this.button1.UseVisualStyleBackColor = true;
+            this.UploadBankDbButton.Location = new System.Drawing.Point(246, 80);
+            this.UploadBankDbButton.Name = "UploadBankDbButton";
+            this.UploadBankDbButton.Size = new System.Drawing.Size(184, 28);
+            this.UploadBankDbButton.TabIndex = 11;
+            this.UploadBankDbButton.Text = "Обновить базу банков";
+            this.UploadBankDbButton.UseVisualStyleBackColor = true;
             // 
             // deleteOrganizationButton
             // 
@@ -680,60 +725,43 @@
             this.organizationMainListBox.TabIndex = 5;
             this.organizationMainListBox.SelectedIndexChanged += new System.EventHandler(this.OrganizationMainListBoxSelectedIndexChanged);
             // 
-            // BanksPage
+            // UploadDbPanel
             // 
-            this.BanksPage.Controls.Add(this.dBVersionLabel);
-            this.BanksPage.Controls.Add(this.label5);
-            this.BanksPage.Controls.Add(this.banksDataGridView);
-            this.BanksPage.Controls.Add(this.uploadDbButton);
-            this.BanksPage.Location = new System.Drawing.Point(4, 25);
-            this.BanksPage.Name = "BanksPage";
-            this.BanksPage.Padding = new System.Windows.Forms.Padding(3);
-            this.BanksPage.Size = new System.Drawing.Size(1166, 699);
-            this.BanksPage.TabIndex = 2;
-            this.BanksPage.Text = "Список банков";
-            this.BanksPage.UseVisualStyleBackColor = true;
+            this.UploadDbPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UploadDbPanel.Controls.Add(this.bankDbActualVersionLabel);
+            this.UploadDbPanel.Controls.Add(this.label12);
+            this.UploadDbPanel.Controls.Add(this.bankDbCurrentVersionLabel);
+            this.UploadDbPanel.Controls.Add(this.UploadBankDbButton);
+            this.UploadDbPanel.Controls.Add(this.label8);
+            this.UploadDbPanel.Location = new System.Drawing.Point(705, 591);
+            this.UploadDbPanel.Name = "UploadDbPanel";
+            this.UploadDbPanel.Size = new System.Drawing.Size(450, 126);
+            this.UploadDbPanel.TabIndex = 14;
             // 
-            // dBVersionLabel
+            // bankDbActualVersionLabel
             // 
-            this.dBVersionLabel.AutoSize = true;
-            this.dBVersionLabel.Location = new System.Drawing.Point(1109, 35);
-            this.dBVersionLabel.Name = "dBVersionLabel";
-            this.dBVersionLabel.Size = new System.Drawing.Size(46, 17);
-            this.dBVersionLabel.TabIndex = 5;
-            this.dBVersionLabel.Text = "label6";
+            this.bankDbActualVersionLabel.AutoSize = true;
+            this.bankDbActualVersionLabel.Location = new System.Drawing.Point(342, 44);
+            this.bankDbActualVersionLabel.Name = "bankDbActualVersionLabel";
+            this.bankDbActualVersionLabel.Size = new System.Drawing.Size(46, 17);
+            this.bankDbActualVersionLabel.TabIndex = 15;
+            this.bankDbActualVersionLabel.Text = "label5";
             // 
-            // label5
+            // label12
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1010, 35);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Версия базы";
-            // 
-            // banksDataGridView
-            // 
-            this.banksDataGridView.AllowUserToAddRows = false;
-            this.banksDataGridView.AllowUserToDeleteRows = false;
-            this.banksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.banksDataGridView.Location = new System.Drawing.Point(8, 8);
-            this.banksDataGridView.Name = "banksDataGridView";
-            this.banksDataGridView.ReadOnly = true;
-            this.banksDataGridView.RowTemplate.Height = 24;
-            this.banksDataGridView.Size = new System.Drawing.Size(996, 150);
-            this.banksDataGridView.TabIndex = 3;
-            // 
-            // bankInfoApiDBModelBindingSource
-            // 
-            this.bankInfoApiDBModelBindingSource.DataSource = typeof(WordInteractionLab8.Models.BankInfoApiDBModel);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(181, 44);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(135, 17);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Актуальная версия";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1171, 726);
+            this.ClientSize = new System.Drawing.Size(1171, 754);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -741,35 +769,29 @@
             this.Text = "Payment creator";
             this.tabControl1.ResumeLayout(false);
             this.PaymentsPage.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.previewPaymentPanel.ResumeLayout(false);
+            this.previewPaymentPanel.PerformLayout();
             this.OrganizationsPage.ResumeLayout(false);
-            this.OrganizationsPage.PerformLayout();
             this.bankAccInfoPanel.ResumeLayout(false);
             this.bankAccInfoPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.organizationInfoPanel.ResumeLayout(false);
             this.organizationInfoPanel.PerformLayout();
-            this.BanksPage.ResumeLayout(false);
-            this.BanksPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.banksDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bankInfoApiDBModelBindingSource)).EndInit();
+            this.UploadDbPanel.ResumeLayout(false);
+            this.UploadDbPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Button IntoDocumentButton;
-        private System.Windows.Forms.Button uploadDbButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage PaymentsPage;
         private System.Windows.Forms.TabPage OrganizationsPage;
-        private System.Windows.Forms.TabPage BanksPage;
         private System.Windows.Forms.Button deletePaymentButton;
         private System.Windows.Forms.Button editPaymentButton;
         private System.Windows.Forms.Button addPaymentButton;
-        private System.Windows.Forms.DataGridView banksDataGridView;
         private System.Windows.Forms.Panel organizationInfoPanel;
         private System.Windows.Forms.ListBox organizationMainListBox;
         private System.Windows.Forms.ListBox PaymentsListBox;
@@ -789,7 +811,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.BindingSource bankInfoApiDBModelBindingSource;
         private System.Windows.Forms.Button PrintOneButton;
         private System.Windows.Forms.Button PrintAllButton;
         private System.Windows.Forms.Button deleteOrganizationButton;
@@ -797,32 +818,34 @@
         private System.Windows.Forms.Button addOrganizationButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label dBVersionLabel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button UploadBankDbButton;
+        private System.Windows.Forms.Panel previewPaymentPanel;
+        private System.Windows.Forms.Label bankDbCurrentVersionLabel;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label payQueueLabel;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label payDescriptionLabel;
+        private System.Windows.Forms.Label payeeNameLabel;
+        private System.Windows.Forms.Label payeeBankAccLabel;
+        private System.Windows.Forms.Label payeeBankBicLabel;
+        private System.Windows.Forms.Label payeeKppLabel;
+        private System.Windows.Forms.Label payeeInnLabel;
+        private System.Windows.Forms.Label payeeBankNameLabel;
+        private System.Windows.Forms.Label payerBankAccLabel;
+        private System.Windows.Forms.Label payerBankBicLabel;
+        private System.Windows.Forms.Label payerCurrAccLabel;
+        private System.Windows.Forms.Label payerBankNameLabel;
+        private System.Windows.Forms.Label payerNameLabel;
+        private System.Windows.Forms.Label amountLabel;
+        private System.Windows.Forms.Label payerKppLabel;
+        private System.Windows.Forms.Label payerInnLabel;
+        private System.Windows.Forms.Label DataLabel;
         private System.Windows.Forms.Label PaymentNumberLabel;
+        private System.Windows.Forms.Label payTypeLabel;
+        private System.Windows.Forms.Label payAnountWordsLabel;
+        private System.Windows.Forms.Panel UploadDbPanel;
+        private System.Windows.Forms.Label bankDbActualVersionLabel;
+        private System.Windows.Forms.Label label12;
     }
 }
 

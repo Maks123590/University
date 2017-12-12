@@ -4,14 +4,22 @@
 
     public class PaymentView
     {
-        public uint Number { get; set; }
+        public string Number { get; set; }
 
-        public decimal PaymentAmount { get; set; }
+        public string PaymentAmount { get; set; }
 
-        public string PayerName { get; set; }
+        public string PaymentAmountInWords { get; set; }
 
-        public string PayeeName { get; set; }
+        public string PaymentType { get; set; }
 
-        public DateTime Date { get; set; }
+        public OrganizationView Payer { get; set; }
+
+        public OrganizationView Payee { get; set; }
+
+        public string PayQueue { get; set; }
+
+        public string Description { get; set; }
+
+        public string Date { get; set; }
     }
 }

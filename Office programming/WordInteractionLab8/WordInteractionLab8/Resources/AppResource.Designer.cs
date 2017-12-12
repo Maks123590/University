@@ -86,5 +86,50 @@ namespace WordInteractionLab8.Resources {
                 return ResourceManager.GetString("InfoMessageBox_Все_значения_должны_быть_заполнены_", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на не указывать.
+        /// </summary>
+        internal static string PayType_не_указывать {
+            get {
+                return ResourceManager.GetString("PayType_не_указывать", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на почтой.
+        /// </summary>
+        internal static string PayType_почтой {
+            get {
+                return ResourceManager.GetString("PayType_почтой", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на срочно.
+        /// </summary>
+        internal static string PayType_срочно {
+            get {
+                return ResourceManager.GetString("PayType_срочно", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на телеграфом.
+        /// </summary>
+        internal static string PayType_телеграфом {
+            get {
+                return ResourceManager.GetString("PayType_телеграфом", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на электронно.
+        /// </summary>
+        internal static string PayType_электронно {
+            get {
+                return ResourceManager.GetString("PayType_электронно", resourceCulture);
+            }
+        }
     }
 }

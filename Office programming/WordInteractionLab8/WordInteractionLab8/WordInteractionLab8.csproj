@@ -98,6 +98,9 @@
     <Compile Include="Models\DAL\Interfaces\IDbDownoader.cs" />
     <Compile Include="Models\DAL\Interfaces\IOrganizationFinder.cs" />
     <Compile Include="Models\DAL\Interfaces\IPaymentOrderFinder.cs" />
+    <Compile Include="Models\View\BankAccountView.cs" />
+    <Compile Include="Models\View\BankView.cs" />
+    <Compile Include="Models\View\OrganizetionView.cs" />
     <Compile Include="Models\View\PaymentView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,7 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
-    <Compile Include="XmlParser.cs" />
+    <Compile Include="Models\DAL\XmlParser.cs" />
     <EmbeddedResource Include="Forms\BankAccountForm.resx">
       <DependentUpon>BankAccountForm.cs</DependentUpon>
     </EmbeddedResource>

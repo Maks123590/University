@@ -126,4 +126,19 @@
   <data name="InfoMessageBox_Все_значения_должны_быть_заполнены_" xml:space="preserve">
     <value>Все значения должны быть заполнены!</value>
   </data>
+  <data name="PayType_не_указывать" xml:space="preserve">
+    <value>не указывать</value>
+  </data>
+  <data name="PayType_почтой" xml:space="preserve">
+    <value>почтой</value>
+  </data>
+  <data name="PayType_срочно" xml:space="preserve">
+    <value>срочно</value>
+  </data>
+  <data name="PayType_телеграфом" xml:space="preserve">
+    <value>телеграфом</value>
+  </data>
+  <data name="PayType_электронно" xml:space="preserve">
+    <value>электронно</value>
+  </data>
 </root>
