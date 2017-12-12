@@ -34,20 +34,87 @@
             this.dbChanger = ServiceLocator.GetService<IDbChanger>();
 
             this.FillAllOrganizations();
+            this.FillAllPayments();
         }
 
         private void AddPaymentButtonClick(object sender, EventArgs e)
         {
             var addPaymentForm = new PaymentForm();
 
+            addPaymentForm.OrganizationFinded += this.PaymentInfoToDb;
+
             addPaymentForm.ShowDialog();
-
-
         }
 
-        private void RaymentInfoToDb(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+
+        private void EditPaymentButtonClick(object sender, EventArgs e)
         {
-            
+            var number = this.PaymentsListBox.SelectedItem.ToString();
+
+            var payment = this.paymentOrderFinder.FindPaymentOrderByNumber(number);
+
+            var addPaymentForm = new PaymentForm(payment, this.PaymentsListBox.SelectedIndex);
+
+            addPaymentForm.OrganizationFinded += this.PaymentInfoToDb;
+
+            addPaymentForm.ShowDialog();
+        }
+
+        private void DeletePaymentButtonClick(object sender, EventArgs e)
+        {
+            var selectedName = this.PaymentsListBox.SelectedItem.ToString();
+
+            var payment = this.paymentOrderFinder.FindPaymentOrderByNumber(selectedName);
+
+            this.RefreshPaymentsListBox(payment, ItemChangeStatus.Removed, this.PaymentsListBox.SelectedIndex);
+
+            this.dbChanger.RemovePaymentOrderFromDb(payment);
+        }
+
+        private void PaymentInfoToDb(object sender, PaymentEventsArgs paymentEventsArgs)
+        {
+            if (paymentEventsArgs.Status == ItemChangeStatus.Added)
+            {
+                this.dbChanger.AddPaymentOrderToDb(paymentEventsArgs.Payment);
+            }
+            else if (paymentEventsArgs.Status == ItemChangeStatus.Edited)
+            {
+                this.dbChanger.ChangePaymentOrderInDb(paymentEventsArgs.Payment);
+            }
+            else
+            {
+                this.dbChanger.RemovePaymentOrderFromDb(paymentEventsArgs.Payment);
+            }
+
+            this.RefreshPaymentsListBox(paymentEventsArgs.Payment, paymentEventsArgs.Status, paymentEventsArgs.SelectedIndex);
+        }
+
+        private void RefreshPaymentsListBox(Payment payment, ItemChangeStatus status, int? selectedIndex)
+        {
+            if (status == ItemChangeStatus.Added)
+            {
+                this.PaymentsListBox.Items.Add(payment.Number);
+            }
+            else if (status == ItemChangeStatus.Edited)
+            {
+                this.PaymentsListBox.Items[(int)selectedIndex] = payment.Number;
+            }
+            else
+            {
+                this.PaymentsListBox.Items.RemoveAt((int)selectedIndex);
+            }
+        }
+
+        private void FillAllPayments()
+        {
+            this.PaymentsListBox.Items.Clear();
+
+            var payments = this.paymentOrderFinder.GetAllPayments();
+
+            foreach (var payment in payments)
+            {
+                this.PaymentsListBox.Items.Add(payment.Number);
+            }
         }
 
         #region organization
@@ -68,7 +135,7 @@
 
             var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
 
-            var organizationBankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(organization.Id);
+            var organizationBankAccounts = this.bankAccountFinder.FindByOrganizationId(organization.Id);
 
             var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
 
@@ -85,7 +152,7 @@
 
             this.RefreshOrganizationMainListBox(organization, ItemChangeStatus.Removed, this.organizationMainListBox.SelectedIndex);
 
-            foreach (var account in this.bankAccountFinder.FindBankAccountsByOrganizationId(organization.Id))
+            foreach (var account in this.bankAccountFinder.FindByOrganizationId(organization.Id))
             {
                 this.dbChanger.RemoveBankAccountFromDb(account);
             }
@@ -197,7 +264,7 @@
 
             this.bankAccountsListBox.Items.Clear();
 
-            var bankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(organizationInfo.Id);
+            var bankAccounts = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id);
 
             if (bankAccounts != null)
             {
@@ -232,7 +299,7 @@
 
             if (organizationInfo != null && this.bankAccountsListBox.SelectedItem != null)
             {
-                var bankAccount = this.bankAccountFinder.FindBankAccountsByOrganizationId(organizationInfo.Id).FirstOrDefault(or => or.CurrentAccount == this.bankAccountsListBox.SelectedItem?.ToString());
+                var bankAccount = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id).FirstOrDefault(or => or.CurrentAccount == this.bankAccountsListBox.SelectedItem?.ToString());
 
                 this.FillBankAccountInfo(bankAccount);
             }

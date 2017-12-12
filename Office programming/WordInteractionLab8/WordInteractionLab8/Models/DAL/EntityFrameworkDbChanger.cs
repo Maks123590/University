@@ -1,5 +1,6 @@
 ﻿namespace WordInteractionLab8.Models
 {
+    using System.Data.Entity;
     using System.Linq;
 
     using WordInteractionLab8.Models.Interfaces;
@@ -42,7 +43,10 @@
 
             if (organization != null)
             {
-                organization = organizationInfo;
+                organization.Name = organizationInfo.Name;
+                organization.CPP = organizationInfo.CPP;
+                organization.INN = organizationInfo.INN;
+
                 this.db.SaveChanges();
             }
         }
@@ -53,7 +57,10 @@
 
             if (bankAcc != null)
             {
-                bankAcc = bankAccount;
+                bankAcc.BankBic = bankAccount.BankBic;
+                bankAcc.OrganizationId = bankAccount.OrganizationId;
+                bankAcc.CurrentAccount = bankAccount.CurrentAccount;
+
                 this.db.SaveChanges();
             }
         }
@@ -65,6 +72,28 @@
             if (payment != null)
             {
                 payment = paymentOrder;
+
+                payment.DocumentDateIndicator = payment.DocumentDateIndicator;
+                payment.Number = paymentOrder.Number;
+                payment.PayeeAccountId = paymentOrder.PayeeAccountId;
+                payment.PayeeId = paymentOrder.PayeeId;
+                payment.PayerAccountId = paymentOrder.PayerAccountId;
+                payment.PayerId = paymentOrder.PayerId;
+                payment.Status = paymentOrder.Status;
+                payment.TaxPeriodIndicator = payment.TaxPeriodIndicator;
+                payment.Address = paymentOrder.Address;
+                payment.Basis = paymentOrder.Basis;
+                payment.Rub = paymentOrder.Rub;
+                payment.Cop = paymentOrder.Cop;
+                payment.CustomsCode = paymentOrder.CustomsCode;
+                payment.Date = paymentOrder.Date;
+                payment.Details = paymentOrder.Details;
+                payment.DocumentNumberIndicator = paymentOrder.DocumentNumberIndicator;
+                payment.KBK = paymentOrder.KBK;
+                payment.OKTMO = paymentOrder.OKTMO;
+                payment.Queue = paymentOrder.Queue;
+                payment.Type = paymentOrder.Type;
+                
                 this.db.SaveChanges();
             }
         }
@@ -102,7 +131,7 @@
             }
         }
 
-        public void RemoveOrderFromDb(Payment paymentOrder)
+        public void RemovePaymentOrderFromDb(Payment paymentOrder)
         {
             if (paymentOrder == null)
             {

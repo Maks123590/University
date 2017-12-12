@@ -571,7 +571,7 @@
             this.okButton.TabIndex = 37;
             this.okButton.Text = "Принять";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // CancelButton
             // 
@@ -581,6 +581,7 @@
             this.CancelButton.TabIndex = 38;
             this.CancelButton.Text = "Отмена";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // panel2
             // 
@@ -695,6 +696,7 @@
             this.SenderNameComboBox.Name = "SenderNameComboBox";
             this.SenderNameComboBox.Size = new System.Drawing.Size(253, 24);
             this.SenderNameComboBox.TabIndex = 0;
+            this.SenderNameComboBox.SelectedIndexChanged += new System.EventHandler(this.SenderNameComboBoxSelectedIndexChanged);
             // 
             // label18
             // 
@@ -818,6 +820,7 @@
             this.addresseeNameComboBox.Name = "addresseeNameComboBox";
             this.addresseeNameComboBox.Size = new System.Drawing.Size(253, 24);
             this.addresseeNameComboBox.TabIndex = 0;
+            this.addresseeNameComboBox.SelectedIndexChanged += new System.EventHandler(this.AddresseeNameComboBoxSelectedIndexChanged);
             // 
             // label35
             // 

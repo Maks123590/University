@@ -37,25 +37,25 @@
     {
         public int Id { get; set; }
 
-        public uint Number { get; set; }
+        public int Number { get; set; }
 
         public DateTime Date { get; set; }
 
         public PaymentType Type { get; set; }
 
-        public uint Rub { get; set; }
+        public int Rub { get; set; }
 
-        public uint Cop { get; set; }
+        public int Cop { get; set; }
 
         public string Details { get; set; }
 
-        public OrganizationInfo Payer { get; set; }
+        public int PayerId { get; set; }
 
-        public OrganizationInfo Payee { get; set; }
+        public int PayeeId { get; set; }
 
-        public BankAccount PayerAccount { get; set; }
+        public int PayerAccountId { get; set; }
 
-        public BankAccount PayeeAccount { get; set; }
+        public int PayeeAccountId { get; set; }
 
         public byte Queue { get; set; }
 

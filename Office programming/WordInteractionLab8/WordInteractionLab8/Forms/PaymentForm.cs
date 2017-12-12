@@ -29,6 +29,8 @@ namespace WordInteractionLab8.Forms
             this.InitializeComponent();
 
             this.InitializaComboBoxes();
+
+            this.status = ItemChangeStatus.Added;
         }
 
         public PaymentForm(Payment payment, int selectedIndex) : this()
@@ -36,7 +38,20 @@ namespace WordInteractionLab8.Forms
             this.payment = payment;
             this.SelectedIndex = selectedIndex;
 
+            this.status = ItemChangeStatus.Edited;
+
             this.FillPreInfo(payment);
+        }
+
+        public event EventHandler<PaymentEventsArgs> OrganizationFinded;
+
+        public int? SelectedIndex { get; set; }
+
+        protected virtual void OnPaymentOrderFilled(PaymentEventsArgs e)
+        {
+            EventHandler<PaymentEventsArgs> handler = this.OrganizationFinded;
+
+            handler?.Invoke(this, e);
         }
 
         private void InitializaComboBoxes()
@@ -72,34 +87,36 @@ namespace WordInteractionLab8.Forms
             this.rubMaskedTextBox.Text = payment.Rub.ToString();
             this.copMaskedTextBox.Text = payment.Cop.ToString();
             this.payDescriptionTextBox.Text = payment.Details;
-            this.PayQueueComboBox.SelectedText = payment.Queue.ToString();
+            this.PayQueueComboBox.Text = payment.Queue.ToString();
 
             //// Organizations
 
-            this.SenderNameComboBox.SelectedText = payment.Payer.Name;
-            this.addresseeNameComboBox.SelectedText = payment.Payee.Name;
+            var payer = this.organizationFinder.FindByOrganizationId(payment.PayerId);
+            var payee = this.organizationFinder.FindByOrganizationId(payment.PayeeId);
 
+            this.SenderNameComboBox.Text = payer.Name;
+            this.addresseeNameComboBox.Text = payee.Name;
 
-            var payer = this.organizationFinder.FindOrganizationByName(payment.Payer.Name);
-            var payee = this.organizationFinder.FindOrganizationByName(payment.Payee.Name);
+            var payerBankAccounts = this.bankAccountFinder.FindByOrganizationId(payer.Id);
+            var payeeBankAccounts = this.bankAccountFinder.FindByOrganizationId(payee.Id);
 
-            var payerBankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(payer.Id);
-            var payeeBankAccounts = this.bankAccountFinder.FindBankAccountsByOrganizationId(payee.Id);
+            this.RefreshCurrentAccounts(this.SenderAccComboBox, payerBankAccounts);
+            this.RefreshCurrentAccounts(this.addresseeAccComboBox, payeeBankAccounts);
 
-            this.RefresCurrentAccounts(this.SenderAccComboBox, payerBankAccounts);
-            this.RefresCurrentAccounts(this.addresseeAccComboBox, payeeBankAccounts);
+            var payerBankAccount = this.bankAccountFinder.FindById(payment.PayerAccountId);
+            var payeeBankAccount = this.bankAccountFinder.FindById(payment.PayeeAccountId);
 
-            this.SenderAccComboBox.SelectedText = payment.PayerAccount.CurrentAccount;
-            this.addresseeAccComboBox.SelectedText = payment.PayeeAccount.CurrentAccount;
+            this.SenderAccComboBox.Text = payerBankAccount.CurrentAccount;
+            this.addresseeAccComboBox.Text = payeeBankAccount.CurrentAccount;
 
-            var payerBank = this.bankInfoFinder.GetBankInfoByBic(payment.PayerAccount.BankBic);
-            var payeeBank = this.bankInfoFinder.GetBankInfoByBic(payment.PayeeAccount.BankBic);
+            var payerBank = this.bankInfoFinder.GetBankInfoByBic(payerBankAccount.BankBic);
+            var payeeBank = this.bankInfoFinder.GetBankInfoByBic(payeeBankAccount.BankBic);
 
-            this.senderBicLabel.Text = payment.PayerAccount.BankBic;
+            this.senderBicLabel.Text = payerBankAccount.BankBic;
             this.senderBankNameLanbel.Text = payerBank.FullName;
             this.senderBankLocationLabel.Text = payerBank.Locality;
 
-            this.addresseeBikLabel.Text = payment.PayeeAccount.BankBic;
+            this.addresseeBikLabel.Text = payeeBankAccount.BankBic;
             this.addresseeBankNameLabel.Text = payeeBank.FullName;
             this.addresseeBankLocationLabel.Text = payeeBank.Locality;
 
@@ -108,11 +125,11 @@ namespace WordInteractionLab8.Forms
             //// TODO
         }
 
-        private Payment GetBuildPayment()
+        private Payment GetAggregatePayment()
         {
             var payment = new Payment();
 
-            payment.Number = uint.Parse(this.payNumberMaskedTextBox.Text);
+            payment.Number = int.Parse(this.payNumberMaskedTextBox.Text);
 
             payment.Date = this.paymentDateTimePicker.Value;
 
@@ -134,52 +151,37 @@ namespace WordInteractionLab8.Forms
                     break;
             }
 
-            payment.Rub = uint.Parse(this.rubMaskedTextBox.Text);
-            payment.Cop = uint.Parse(this.copMaskedTextBox.Text);
+            payment.Rub = int.Parse(this.rubMaskedTextBox.Text);
+            payment.Cop = byte.Parse(this.copMaskedTextBox.Text);
 
             payment.Details = this.payDescriptionTextBox.Text;
-            payment.Queue = byte.Parse(this.PayQueueComboBox.SelectedText);
+            payment.Queue = byte.Parse(this.PayQueueComboBox.Text);
 
             //// Organizations
 
-            payment.Payer = new OrganizationInfo();
-            payment.Payee = new OrganizationInfo();
+            var payer = this.organizationFinder.FindOrganizationByName(this.SenderNameComboBox.Text);
+            var payee = this.organizationFinder.FindOrganizationByName(this.addresseeNameComboBox.Text);
 
-            payment.Payer.Name = this.SenderNameComboBox.SelectedText;
-            payment.Payee.Name = this.addresseeNameComboBox.SelectedText;
+            payment.PayerId = payer.Id;
+            payment.PayeeId = payee.Id;
 
-            var payer = this.organizationFinder.FindOrganizationByName(payment.Payer.Name);
-            var payee = this.organizationFinder.FindOrganizationByName(payment.Payee.Name);
+            var payerAcc = this.bankAccountFinder.FindByOrganizationId(payer.Id).FirstOrDefault(a => a.CurrentAccount == this.SenderAccComboBox.Text);
+            var payeeAcc = this.bankAccountFinder.FindByOrganizationId(payee.Id).FirstOrDefault(a => a.CurrentAccount == this.addresseeAccComboBox.Text);
 
-            payment.Payer.Name = payer.Name;
-            payment.Payer.CPP = payer.CPP;
-            payment.Payer.INN = payer.INN;
-
-            payment.Payee.Name = payee.Name;
-            payment.Payee.CPP = payee.CPP;
-            payment.Payee.INN = payee.INN;
-
-            payment.PayerAccount = new BankAccount();
-            payment.PayeeAccount = new BankAccount();
-
-            payment.PayerAccount.CurrentAccount = this.SenderAccComboBox.SelectedText;
-            payment.PayeeAccount.CurrentAccount = this.addresseeAccComboBox.SelectedText;
-
-            payment.PayerAccount.BankBic = this.senderBicLabel.Text;
-            payment.PayeeAccount.BankBic = this.addresseeBikLabel.Text;
-
-            payment.PayerAccount.OrganizationId = payment.PayerAccount.Id;
-            payment.PayeeAccount.OrganizationId = payment.PayeeAccount.Id;
+            payment.PayerAccountId = payerAcc.Id;
+            payment.PayeeAccountId = payeeAcc.Id;
 
             //// Additionals
+            
+            payment.DocumentDateIndicator = DateTime.Now;
+            payment.TaxPeriodIndicator = DateTime.Now;
 
             //// TODO
 
             return payment;
-
         }
 
-        private void RefresCurrentAccounts(ComboBox combobox, IEnumerable<BankAccount> bankAccounts)
+        private void RefreshCurrentAccounts(ComboBox combobox, IEnumerable<BankAccount> bankAccounts)
         {
             combobox.Items.Clear();
 
@@ -189,11 +191,40 @@ namespace WordInteractionLab8.Forms
             }
         }
 
-        public int? SelectedIndex { get; set; }
-
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButtonClick(object sender, EventArgs e)
         {
+            //// TODO Model Validate
 
+
+            this.OnPaymentOrderFilled(new PaymentEventsArgs
+                                          {
+                                              Payment = this.GetAggregatePayment(),
+                                              SelectedIndex = this.SelectedIndex,
+                                              Status = this.status
+                                          });
+
+            this.Close();
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SenderNameComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var organization = this.organizationFinder.FindOrganizationByName(this.SenderNameComboBox.Text);
+             var bankAccounts = this.bankAccountFinder.FindByOrganizationId(organization.Id);
+
+            this.RefreshCurrentAccounts(this.SenderAccComboBox, bankAccounts);
+        }
+
+        private void AddresseeNameComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var organization = this.organizationFinder.FindOrganizationByName(this.addresseeNameComboBox.Text);
+            var bankAccounts = this.bankAccountFinder.FindByOrganizationId(organization.Id);
+
+            this.RefreshCurrentAccounts(this.addresseeAccComboBox, bankAccounts);
         }
     }
 

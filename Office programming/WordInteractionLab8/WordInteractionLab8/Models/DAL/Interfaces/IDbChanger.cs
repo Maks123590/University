@@ -20,6 +20,6 @@
 
         void RemoveBankAccountFromDb(BankAccount newBankAccount);
 
-        void RemoveOrderFromDb(Payment newPaymentOrder);
+        void RemovePaymentOrderFromDb(Payment newPaymentOrder);
     }
 }

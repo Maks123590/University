@@ -4,6 +4,8 @@
 
     public interface IBankAccountFinder
     {
-        IEnumerable<BankAccount> FindBankAccountsByOrganizationId(int organizationId);
+        IEnumerable<BankAccount> FindByOrganizationId(int organizationId);
+
+        BankAccount FindById(int id);
     }
 }
