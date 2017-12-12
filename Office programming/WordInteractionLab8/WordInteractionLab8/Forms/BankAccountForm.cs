@@ -33,7 +33,7 @@
 
         public BankAccountForm(OrganizationInfo organization, int selectedIndex, BankAccount bankAccount) : this(organization)
         {
-            this.bankAccount = bankAccount ?? new BankAccount();
+            this.bankAccount = bankAccount ?? new BankAccount { OrganizationId = organization.Id };
 
             this.FillBankInfo(this.bankInfoFinder.GetBankInfoByBic(this.bankAccount.BankBic));
 

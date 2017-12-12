@@ -77,6 +77,11 @@
 
             this.RefreshOrganizationMainListBox(organization, ItemChangeStatus.Removed, this.organizationMainListBox.SelectedIndex);
 
+            foreach (var account in this.bankAccountFinder.FindBankAccountsByOrganizationId(organization.Id))
+            {
+                this.dbChanger.RemoveBankAccountFromDb(account);
+            }
+
             this.dbChanger.RemoveOrganizationFromDb(organization);
         }
 
@@ -88,6 +93,23 @@
             if (organizationInfoEventsArgs.Status == ItemChangeStatus.Added)
             {
                 this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+
+                var organizationId = this.organizationInfoFinder.FindOrganizationByName(organizationInfoEventsArgs.OrganizationInfo.Name).Id;
+
+                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+
+                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+
+                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
             }
             else if (organizationInfoEventsArgs.Status == ItemChangeStatus.Edited)
             {

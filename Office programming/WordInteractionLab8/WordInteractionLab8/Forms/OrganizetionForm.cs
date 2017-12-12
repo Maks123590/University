@@ -74,7 +74,7 @@
 
             addBankAccountForm.BankAccountFinded += this.AddBankAccount;
 
-            addBankAccountForm.Show();
+            addBankAccountForm.ShowDialog();
         }
 
         private void EditBAccountButtonClick(object sender, EventArgs e)
@@ -112,7 +112,8 @@
                                                  AddedBankAccounts = this.addedBankAccounts,
                                                  EditedBankAccounts = this.editedBankAccounts,
                                                  RemovedBankAccounts = this.removedBankAccounts,
-                                                 SelectedIndex = this.SelectedIndex
+                                                 SelectedIndex = this.SelectedIndex,
+                                                 Status = this.status
                                              });
 
                 this.Close();
