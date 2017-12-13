@@ -481,9 +481,9 @@
             this.bankDbCurrentVersionLabel.Text = this.dbDownloader.GetCurrentDbVeresion();  
         }
 
-        private void GetActualVersionButtonClick(object sender, EventArgs e)
+        private async void GetActualVersionButtonClick(object sender, EventArgs e)
         {
-            this.bankDbActualVersionLabel.Text = this.dbDownloader.GetActualDbVersion();
+            this.bankDbActualVersionLabel.Text = await this.dbDownloader.GetActualDbVersionAsync();
         }
 
         private void ShowInfoMessage(object sender, InfoMessageEventsArgs e)

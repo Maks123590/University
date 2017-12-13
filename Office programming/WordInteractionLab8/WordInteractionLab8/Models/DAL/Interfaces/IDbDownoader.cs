@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     public interface IDbDownloader
@@ -14,6 +15,6 @@
 
         string GetCurrentDbVeresion();
 
-        string GetActualDbVersion();
+        Task<string> GetActualDbVersionAsync();
     }
 }

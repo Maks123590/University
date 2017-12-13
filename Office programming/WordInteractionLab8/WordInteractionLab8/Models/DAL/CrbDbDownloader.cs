@@ -6,6 +6,7 @@
     using System.IO;
     using System.IO.Compression;
     using System.Net;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Xml.Linq;
 
@@ -60,22 +61,22 @@
             return "версия не определена";
         }
 
-        public string GetActualDbVersion()
+        public async Task<string> GetActualDbVersionAsync()
         {
-            var infoFileElem = this.GetDbInfoFile(false);
+            var infoFileElem = await this.GetDbInfoFile(false);
 
             return infoFileElem?.Attribute("date")?.Value;
         }
 
-        public void UploadDb(ProgressBar progress = null)
+        public async void UploadDb(ProgressBar progress = null)
         {
             var currentVersion = this.GetCurrentDbVeresion();
 
-            var actualVersion = this.GetActualDbVersion();
+            var actualVersion = await this.GetActualDbVersionAsync();
 
             if (currentVersion != actualVersion)
             {
-                this.DownloadDb(progress);
+                this.DownloadDbAsync(progress);
             }
             else
             {
@@ -114,9 +115,9 @@
             handler?.Invoke(this, e);
         }
 
-        private void DownloadDb(ProgressBar progress = null)
+        private async void DownloadDbAsync(ProgressBar progress = null)
         {
-            var infoFileElem = this.GetDbInfoFile(false);
+            var infoFileElem = await this.GetDbInfoFile(false);
 
             var currentZipArchName = this.GetCurrentDbFileName(infoFileElem);
 
@@ -163,7 +164,7 @@
             this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Загрузка базы..", Type = MessageType.StateMessage });
         }
 
-        private XElement GetDbInfoFile(bool forcibly)
+        private async Task<XElement> GetDbInfoFile(bool forcibly)
         {
             if (forcibly || this.DbFileInfo == null)
             {
@@ -171,7 +172,7 @@
 
                 this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Проверка актуальной версии..", Type = MessageType.StateMessage });
 
-                var stream = webClient.OpenRead(new Uri(BicCatalogSourcePath));
+                var stream = await webClient.OpenReadTaskAsync(new Uri(BicCatalogSourcePath));
 
                 var xdoc = XDocument.Load(stream);
 
