@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.IntoDocumentButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.PaymentsPage = new System.Windows.Forms.TabPage();
             this.previewPaymentPanel = new System.Windows.Forms.Panel();
+            this.payeeCurrAccLabel = new System.Windows.Forms.Label();
             this.payAnountWordsLabel = new System.Windows.Forms.Label();
             this.payTypeLabel = new System.Windows.Forms.Label();
             this.payQueueLabel = new System.Windows.Forms.Label();
@@ -62,6 +62,8 @@
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.OrganizationsPage = new System.Windows.Forms.TabPage();
             this.UploadDbPanel = new System.Windows.Forms.Panel();
+            this.dbDownloadStateMessage = new System.Windows.Forms.Label();
+            this.dbDownloadProgressBar = new System.Windows.Forms.ProgressBar();
             this.GetActualVersionButton = new System.Windows.Forms.Button();
             this.bankDbActualVersionLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -91,8 +93,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.organizationMainListBox = new System.Windows.Forms.ListBox();
-            this.dbDownloadProgressBar = new System.Windows.Forms.ProgressBar();
-            this.dbDownloadStateMessage = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
             this.previewPaymentPanel.SuspendLayout();
@@ -111,6 +111,7 @@
             this.IntoDocumentButton.TabIndex = 1;
             this.IntoDocumentButton.Text = "В документ";
             this.IntoDocumentButton.UseVisualStyleBackColor = true;
+            this.IntoDocumentButton.Click += new System.EventHandler(this.IntoDocumentButtonClick);
             // 
             // tabControl1
             // 
@@ -142,8 +143,9 @@
             // 
             // previewPaymentPanel
             // 
-            this.previewPaymentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("previewPaymentPanel.BackgroundImage")));
+            this.previewPaymentPanel.BackgroundImage = global::WordInteractionLab8.Properties.Resources.bgPayment2;
             this.previewPaymentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.previewPaymentPanel.Controls.Add(this.payeeCurrAccLabel);
             this.previewPaymentPanel.Controls.Add(this.payAnountWordsLabel);
             this.previewPaymentPanel.Controls.Add(this.payTypeLabel);
             this.previewPaymentPanel.Controls.Add(this.payQueueLabel);
@@ -171,11 +173,22 @@
             this.previewPaymentPanel.TabIndex = 10;
             this.previewPaymentPanel.Visible = false;
             // 
+            // payeeCurrAccLabel
+            // 
+            this.payeeCurrAccLabel.AutoSize = true;
+            this.payeeCurrAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payeeCurrAccLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.payeeCurrAccLabel.Location = new System.Drawing.Point(397, 413);
+            this.payeeCurrAccLabel.Name = "payeeCurrAccLabel";
+            this.payeeCurrAccLabel.Size = new System.Drawing.Size(55, 15);
+            this.payeeCurrAccLabel.TabIndex = 32;
+            this.payeeCurrAccLabel.Text = "label15";
+            // 
             // payAnountWordsLabel
             // 
             this.payAnountWordsLabel.AutoSize = true;
             this.payAnountWordsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payAnountWordsLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payAnountWordsLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payAnountWordsLabel.Location = new System.Drawing.Point(98, 147);
             this.payAnountWordsLabel.Name = "payAnountWordsLabel";
             this.payAnountWordsLabel.Size = new System.Drawing.Size(55, 15);
@@ -186,7 +199,7 @@
             // 
             this.payTypeLabel.AutoSize = true;
             this.payTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payTypeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payTypeLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payTypeLabel.Location = new System.Drawing.Point(407, 92);
             this.payTypeLabel.Name = "payTypeLabel";
             this.payTypeLabel.Size = new System.Drawing.Size(55, 15);
@@ -197,7 +210,7 @@
             // 
             this.payQueueLabel.AutoSize = true;
             this.payQueueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payQueueLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payQueueLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payQueueLabel.Location = new System.Drawing.Point(549, 483);
             this.payQueueLabel.Name = "payQueueLabel";
             this.payQueueLabel.Size = new System.Drawing.Size(55, 15);
@@ -208,7 +221,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label28.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.label28.Location = new System.Drawing.Point(397, 458);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(23, 15);
@@ -218,7 +231,7 @@
             // payDescriptionLabel
             // 
             this.payDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payDescriptionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payDescriptionLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payDescriptionLabel.Location = new System.Drawing.Point(16, 570);
             this.payDescriptionLabel.Name = "payDescriptionLabel";
             this.payDescriptionLabel.Size = new System.Drawing.Size(599, 21);
@@ -228,7 +241,7 @@
             // payeeNameLabel
             // 
             this.payeeNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeNameLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeNameLabel.Location = new System.Drawing.Point(16, 447);
             this.payeeNameLabel.Name = "payeeNameLabel";
             this.payeeNameLabel.Size = new System.Drawing.Size(297, 53);
@@ -239,7 +252,7 @@
             // 
             this.payeeBankAccLabel.AutoSize = true;
             this.payeeBankAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeBankAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankAccLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeBankAccLabel.Location = new System.Drawing.Point(397, 382);
             this.payeeBankAccLabel.Name = "payeeBankAccLabel";
             this.payeeBankAccLabel.Size = new System.Drawing.Size(55, 15);
@@ -250,7 +263,7 @@
             // 
             this.payeeBankBicLabel.AutoSize = true;
             this.payeeBankBicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeBankBicLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankBicLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeBankBicLabel.Location = new System.Drawing.Point(397, 344);
             this.payeeBankBicLabel.Name = "payeeBankBicLabel";
             this.payeeBankBicLabel.Size = new System.Drawing.Size(55, 15);
@@ -261,7 +274,7 @@
             // 
             this.payeeKppLabel.AutoSize = true;
             this.payeeKppLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeKppLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeKppLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeKppLabel.Location = new System.Drawing.Point(190, 413);
             this.payeeKppLabel.Name = "payeeKppLabel";
             this.payeeKppLabel.Size = new System.Drawing.Size(55, 15);
@@ -272,7 +285,7 @@
             // 
             this.payeeInnLabel.AutoSize = true;
             this.payeeInnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeInnLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeInnLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeInnLabel.Location = new System.Drawing.Point(51, 413);
             this.payeeInnLabel.Name = "payeeInnLabel";
             this.payeeInnLabel.Size = new System.Drawing.Size(55, 15);
@@ -282,7 +295,7 @@
             // payeeBankNameLabel
             // 
             this.payeeBankNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payeeBankNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payeeBankNameLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payeeBankNameLabel.Location = new System.Drawing.Point(16, 344);
             this.payeeBankNameLabel.Name = "payeeBankNameLabel";
             this.payeeBankNameLabel.Size = new System.Drawing.Size(297, 41);
@@ -293,7 +306,7 @@
             // 
             this.payerBankAccLabel.AutoSize = true;
             this.payerBankAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerBankAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankAccLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerBankAccLabel.Location = new System.Drawing.Point(397, 306);
             this.payerBankAccLabel.Name = "payerBankAccLabel";
             this.payerBankAccLabel.Size = new System.Drawing.Size(55, 15);
@@ -304,7 +317,7 @@
             // 
             this.payerBankBicLabel.AutoSize = true;
             this.payerBankBicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerBankBicLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankBicLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerBankBicLabel.Location = new System.Drawing.Point(397, 276);
             this.payerBankBicLabel.Name = "payerBankBicLabel";
             this.payerBankBicLabel.Size = new System.Drawing.Size(55, 15);
@@ -315,7 +328,7 @@
             // 
             this.payerCurrAccLabel.AutoSize = true;
             this.payerCurrAccLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerCurrAccLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerCurrAccLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerCurrAccLabel.Location = new System.Drawing.Point(397, 236);
             this.payerCurrAccLabel.Name = "payerCurrAccLabel";
             this.payerCurrAccLabel.Size = new System.Drawing.Size(55, 15);
@@ -325,7 +338,7 @@
             // payerBankNameLabel
             // 
             this.payerBankNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerBankNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerBankNameLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerBankNameLabel.Location = new System.Drawing.Point(16, 276);
             this.payerBankNameLabel.Name = "payerBankNameLabel";
             this.payerBankNameLabel.Size = new System.Drawing.Size(297, 36);
@@ -335,7 +348,7 @@
             // payerNameLabel
             // 
             this.payerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerNameLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerNameLabel.Location = new System.Drawing.Point(16, 219);
             this.payerNameLabel.Name = "payerNameLabel";
             this.payerNameLabel.Size = new System.Drawing.Size(297, 34);
@@ -346,7 +359,7 @@
             // 
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.amountLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.amountLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.amountLabel.Location = new System.Drawing.Point(397, 189);
             this.amountLabel.Name = "amountLabel";
             this.amountLabel.Size = new System.Drawing.Size(55, 15);
@@ -357,7 +370,7 @@
             // 
             this.payerKppLabel.AutoSize = true;
             this.payerKppLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerKppLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerKppLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerKppLabel.Location = new System.Drawing.Point(190, 189);
             this.payerKppLabel.Name = "payerKppLabel";
             this.payerKppLabel.Size = new System.Drawing.Size(55, 15);
@@ -368,7 +381,7 @@
             // 
             this.payerInnLabel.AutoSize = true;
             this.payerInnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.payerInnLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.payerInnLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.payerInnLabel.Location = new System.Drawing.Point(51, 189);
             this.payerInnLabel.Name = "payerInnLabel";
             this.payerInnLabel.Size = new System.Drawing.Size(55, 15);
@@ -379,7 +392,7 @@
             // 
             this.DataLabel.AutoSize = true;
             this.DataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DataLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.DataLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.DataLabel.Location = new System.Drawing.Point(288, 92);
             this.DataLabel.Name = "DataLabel";
             this.DataLabel.Size = new System.Drawing.Size(55, 15);
@@ -390,7 +403,7 @@
             // 
             this.PaymentNumberLabel.AutoSize = true;
             this.PaymentNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PaymentNumberLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.PaymentNumberLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.PaymentNumberLabel.Location = new System.Drawing.Point(190, 92);
             this.PaymentNumberLabel.Name = "PaymentNumberLabel";
             this.PaymentNumberLabel.Size = new System.Drawing.Size(39, 15);
@@ -489,6 +502,23 @@
             this.UploadDbPanel.Name = "UploadDbPanel";
             this.UploadDbPanel.Size = new System.Drawing.Size(450, 138);
             this.UploadDbPanel.TabIndex = 14;
+            // 
+            // dbDownloadStateMessage
+            // 
+            this.dbDownloadStateMessage.Location = new System.Drawing.Point(292, 63);
+            this.dbDownloadStateMessage.Name = "dbDownloadStateMessage";
+            this.dbDownloadStateMessage.Size = new System.Drawing.Size(152, 36);
+            this.dbDownloadStateMessage.TabIndex = 18;
+            this.dbDownloadStateMessage.Text = "label5";
+            this.dbDownloadStateMessage.Visible = false;
+            // 
+            // dbDownloadProgressBar
+            // 
+            this.dbDownloadProgressBar.Location = new System.Drawing.Point(3, 70);
+            this.dbDownloadProgressBar.Name = "dbDownloadProgressBar";
+            this.dbDownloadProgressBar.Size = new System.Drawing.Size(283, 10);
+            this.dbDownloadProgressBar.TabIndex = 17;
+            this.dbDownloadProgressBar.Visible = false;
             // 
             // GetActualVersionButton
             // 
@@ -773,23 +803,6 @@
             this.organizationMainListBox.TabIndex = 5;
             this.organizationMainListBox.SelectedIndexChanged += new System.EventHandler(this.OrganizationMainListBoxSelectedIndexChanged);
             // 
-            // dbDownloadProgressBar
-            // 
-            this.dbDownloadProgressBar.Location = new System.Drawing.Point(3, 70);
-            this.dbDownloadProgressBar.Name = "dbDownloadProgressBar";
-            this.dbDownloadProgressBar.Size = new System.Drawing.Size(283, 10);
-            this.dbDownloadProgressBar.TabIndex = 17;
-            this.dbDownloadProgressBar.Visible = false;
-            // 
-            // dbDownloadStateMessage
-            // 
-            this.dbDownloadStateMessage.Location = new System.Drawing.Point(292, 63);
-            this.dbDownloadStateMessage.Name = "dbDownloadStateMessage";
-            this.dbDownloadStateMessage.Size = new System.Drawing.Size(152, 36);
-            this.dbDownloadStateMessage.TabIndex = 18;
-            this.dbDownloadStateMessage.Text = "label5";
-            this.dbDownloadStateMessage.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -883,6 +896,7 @@
         private System.Windows.Forms.Button GetActualVersionButton;
         private System.Windows.Forms.ProgressBar dbDownloadProgressBar;
         private System.Windows.Forms.Label dbDownloadStateMessage;
+        private System.Windows.Forms.Label payeeCurrAccLabel;
     }
 }
 

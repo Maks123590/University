@@ -131,5 +131,14 @@ namespace WordInteractionLab8.Resources {
                 return ResourceManager.GetString("PayType_электронно", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Templates\.
+        /// </summary>
+        internal static string WordReleaser_Templates_path {
+            get {
+                return ResourceManager.GetString("WordReleaser_Templates_path", resourceCulture);
+            }
+        }
     }
 }

@@ -37,6 +37,8 @@ namespace WordInteractionLab8
             ServiceLocator.Register<IOrganizationFinder>(new OrganizationInfoFinder());
             ServiceLocator.Register<IPaymentOrderFinder>(new PaymentOrderFinder());
 
+            ServiceLocator.Register<IReleaser>(new WordReleaser(AppResource.WordReleaser_Templates_path));
+
         }
     }
 }

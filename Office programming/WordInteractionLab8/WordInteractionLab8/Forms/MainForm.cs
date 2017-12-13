@@ -23,6 +23,7 @@
         private readonly IOrganizationFinder organizationInfoFinder;
         private readonly IPaymentOrderFinder paymentOrderFinder;
 
+
         public MainForm()
         {
             this.InitializeComponent();
@@ -36,7 +37,6 @@
             this.dbChanger = ServiceLocator.GetService<IDbChanger>();
             this.dbDownloader = ServiceLocator.GetService<IDbDownloader>();
             this.dbDownloader.ShowInfoMessage += this.ShowInfoMessage;
-
 
             this.FillAllOrganizations();
             this.FillAllPayments();
@@ -71,9 +71,7 @@
 
         private void DeletePaymentButtonClick(object sender, EventArgs e)
         {
-            var selectedName = this.PaymentsListBox.SelectedItem.ToString();
-
-            var payment = this.paymentOrderFinder.FindPaymentOrderByNumber(selectedName);
+            var payment = this.GetSelectedPayment();
 
             this.RefreshPaymentsListBox(payment, ItemChangeStatus.Removed, this.PaymentsListBox.SelectedIndex);
 
@@ -132,9 +130,7 @@
         {
             if (this.PaymentsListBox.SelectedIndex != -1)
             {
-                var selectedName = this.PaymentsListBox.SelectedItem.ToString();
-
-                var payment = this.paymentOrderFinder.FindPaymentOrderByNumber(selectedName);
+                var payment = this.GetSelectedPayment();
 
                 this.RefreshPreview(this.GetPaymentView(payment));
 
@@ -159,23 +155,23 @@
             this.payerInnLabel.Text = payment.Payer.INN;
             this.payerKppLabel.Text = payment.Payer.CPP;
             this.payerNameLabel.Text = payment.Payer.Name;
-            this.payerBankAccLabel.Text = payment.Payer.BankAccount.CurrentAccount;
+            this.payerBankAccLabel.Text = payment.Payer.BankAccount.BankInfo.CorrespondentAccount;
             this.payerBankBicLabel.Text = payment.Payer.BankAccount.BankInfo.Bic;
             this.payerBankNameLabel.Text = payment.Payer.BankAccount.BankInfo.FullName + payment.Payer.BankAccount.BankInfo.Locality;
+            this.payerCurrAccLabel.Text = payment.Payer.BankAccount.CurrentAccount;
             
 
             this.payeeInnLabel.Text = payment.Payee.INN;
             this.payeeKppLabel.Text = payment.Payee.CPP;
             this.payeeNameLabel.Text = payment.Payee.Name;
-            this.payeeBankAccLabel.Text = payment.Payee.BankAccount.CurrentAccount;
+            this.payeeBankAccLabel.Text = payment.Payee.BankAccount.BankInfo.CorrespondentAccount;
             this.payeeBankBicLabel.Text = payment.Payee.BankAccount.BankInfo.Bic;
             this.payeeBankNameLabel.Text = payment.Payee.BankAccount.BankInfo.FullName + payment.Payee.BankAccount.BankInfo.Locality;
+            this.payeeCurrAccLabel.Text = payment.Payee.BankAccount.CurrentAccount;
         }
 
         private PaymentView GetPaymentView(Payment payment)
         {
-            
-
             var entityPayer = this.organizationInfoFinder.FindByOrganizationId(payment.PayerId);
             var entityPayee = this.organizationInfoFinder.FindByOrganizationId(payment.PayeeId);
 
@@ -262,9 +258,14 @@
 
         private string GetPaymentAmountInWords(string rub, string cop)
         {
-            // TODO
+            return NumByWords.RurPhrase(RubCopDecimalConverter.GetDecimal(int.Parse(rub), int.Parse(cop)));
+        }
 
-            return string.Empty;
+        private Payment GetSelectedPayment()
+        {
+            var selectedName = this.PaymentsListBox.SelectedItem.ToString();
+
+            return this.paymentOrderFinder.FindPaymentOrderByNumber(selectedName);
         }
 
         #endregion
@@ -471,7 +472,13 @@
 
         private void UploadBankDbButtonClick(object sender, EventArgs e)
         {
+            this.GetActualVersionButton.Enabled = false;
+            this.UploadBankDbButton.Enabled = false;
+
             this.dbDownloader.UploadDb(this.dbDownloadProgressBar);
+
+            this.GetActualVersionButton.Enabled = true;
+            this.UploadBankDbButton.Enabled = true;
 
             this.FillDbInfo();
         }
@@ -483,7 +490,13 @@
 
         private async void GetActualVersionButtonClick(object sender, EventArgs e)
         {
+            this.GetActualVersionButton.Enabled = false;
+            this.UploadBankDbButton.Enabled = false;
+
             this.bankDbActualVersionLabel.Text = await this.dbDownloader.GetActualDbVersionAsync();
+
+            this.GetActualVersionButton.Enabled = true;
+            this.UploadBankDbButton.Enabled = true;
         }
 
         private void ShowInfoMessage(object sender, InfoMessageEventsArgs e)
@@ -510,6 +523,21 @@
         {
             this.dbDownloadStateMessage.Text = message;
             this.dbDownloadStateMessage.Visible = true;
+        }
+
+        private void IntoDocumentButtonClick(object sender, EventArgs e)
+        {
+            var paymentView = this.GetPaymentView(this.GetSelectedPayment());
+
+            using (var releaser = ServiceLocator.GetService<IReleaser>())
+            {
+                var folderDialog = new FolderBrowserDialog();
+
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    releaser.ReleasePayment(paymentView, folderDialog.SelectedPath);
+                }
+            }
         }
     }
 }

@@ -38,6 +38,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -74,6 +79,7 @@
     </Compile>
     <Compile Include="IoC\ServiceLocator.cs" />
     <Compile Include="Models\BankInfoApiDBModel.cs" />
+    <Compile Include="Models\NumByWords.cs" />
     <Compile Include="Models\DAL\Finders\BankAccountFinder.cs" />
     <Compile Include="Models\DAL\Finders\BankInfoFinder.cs" />
     <Compile Include="Models\DAL\CrbDbDownloader.cs" />
@@ -81,6 +87,7 @@
     <Compile Include="Models\DAL\Finders\OrganizationInfoFinder.cs" />
     <Compile Include="Models\DAL\Finders\PaymentOrderFinder.cs" />
     <Compile Include="Models\DAL\Interfaces\IBankAccountFinder.cs" />
+    <Compile Include="Models\IPaymentReleaser.cs" />
     <Compile Include="Models\ItemChangeStatusEnum.cs" />
     <Compile Include="Models\Entities\BankAccount.cs" />
     <Compile Include="Models\Entities\BankInfo.cs" />
@@ -98,6 +105,8 @@
     <Compile Include="Models\DAL\Interfaces\IDbDownoader.cs" />
     <Compile Include="Models\DAL\Interfaces\IOrganizationFinder.cs" />
     <Compile Include="Models\DAL\Interfaces\IPaymentOrderFinder.cs" />
+    <Compile Include="Models\PaymentWordReleaser.cs" />
+    <Compile Include="Models\RubCopDecimalConverter.cs" />
     <Compile Include="Models\View\BankAccountView.cs" />
     <Compile Include="Models\View\BankView.cs" />
     <Compile Include="Models\View\OrganizetionView.cs" />
@@ -149,12 +158,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\PaymentOrderTemplate.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\base.xml" />
+    <None Include="Resources\bgPaymentPreview.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

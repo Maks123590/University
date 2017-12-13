@@ -141,4 +141,7 @@
   <data name="PayType_электронно" xml:space="preserve">
     <value>электронно</value>
   </data>
+  <data name="WordReleaser_Templates_path" xml:space="preserve">
+    <value>Templates\</value>
+  </data>
 </root>
