@@ -61,9 +61,13 @@
             this.editPaymentButton = new System.Windows.Forms.Button();
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.OrganizationsPage = new System.Windows.Forms.TabPage();
+            this.UploadDbPanel = new System.Windows.Forms.Panel();
+            this.GetActualVersionButton = new System.Windows.Forms.Button();
+            this.bankDbActualVersionLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.bankDbCurrentVersionLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.UploadBankDbButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.deleteOrganizationButton = new System.Windows.Forms.Button();
             this.editOrganizationButton = new System.Windows.Forms.Button();
             this.addOrganizationButton = new System.Windows.Forms.Button();
@@ -87,17 +91,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.organizationMainListBox = new System.Windows.Forms.ListBox();
-            this.UploadDbPanel = new System.Windows.Forms.Panel();
-            this.bankDbActualVersionLabel = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.dbDownloadProgressBar = new System.Windows.Forms.ProgressBar();
+            this.dbDownloadStateMessage = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.PaymentsPage.SuspendLayout();
             this.previewPaymentPanel.SuspendLayout();
             this.OrganizationsPage.SuspendLayout();
+            this.UploadDbPanel.SuspendLayout();
             this.bankAccInfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.organizationInfoPanel.SuspendLayout();
-            this.UploadDbPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // IntoDocumentButton
@@ -471,32 +474,77 @@
             this.OrganizationsPage.Text = "Организации";
             this.OrganizationsPage.UseVisualStyleBackColor = true;
             // 
+            // UploadDbPanel
+            // 
+            this.UploadDbPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UploadDbPanel.Controls.Add(this.dbDownloadStateMessage);
+            this.UploadDbPanel.Controls.Add(this.dbDownloadProgressBar);
+            this.UploadDbPanel.Controls.Add(this.GetActualVersionButton);
+            this.UploadDbPanel.Controls.Add(this.bankDbActualVersionLabel);
+            this.UploadDbPanel.Controls.Add(this.label12);
+            this.UploadDbPanel.Controls.Add(this.bankDbCurrentVersionLabel);
+            this.UploadDbPanel.Controls.Add(this.UploadBankDbButton);
+            this.UploadDbPanel.Controls.Add(this.label8);
+            this.UploadDbPanel.Location = new System.Drawing.Point(705, 582);
+            this.UploadDbPanel.Name = "UploadDbPanel";
+            this.UploadDbPanel.Size = new System.Drawing.Size(450, 138);
+            this.UploadDbPanel.TabIndex = 14;
+            // 
+            // GetActualVersionButton
+            // 
+            this.GetActualVersionButton.Location = new System.Drawing.Point(3, 102);
+            this.GetActualVersionButton.Name = "GetActualVersionButton";
+            this.GetActualVersionButton.Size = new System.Drawing.Size(232, 28);
+            this.GetActualVersionButton.TabIndex = 16;
+            this.GetActualVersionButton.Text = "Проверить актуальную версию";
+            this.GetActualVersionButton.UseVisualStyleBackColor = true;
+            this.GetActualVersionButton.Click += new System.EventHandler(this.GetActualVersionButtonClick);
+            // 
+            // bankDbActualVersionLabel
+            // 
+            this.bankDbActualVersionLabel.AutoSize = true;
+            this.bankDbActualVersionLabel.Location = new System.Drawing.Point(173, 35);
+            this.bankDbActualVersionLabel.Name = "bankDbActualVersionLabel";
+            this.bankDbActualVersionLabel.Size = new System.Drawing.Size(113, 17);
+            this.bankDbActualVersionLabel.TabIndex = 15;
+            this.bankDbActualVersionLabel.Text = "не проверялась";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(135, 17);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Актуальная версия";
+            // 
             // bankDbCurrentVersionLabel
             // 
             this.bankDbCurrentVersionLabel.AutoSize = true;
-            this.bankDbCurrentVersionLabel.Location = new System.Drawing.Point(342, 11);
+            this.bankDbCurrentVersionLabel.Location = new System.Drawing.Point(173, 8);
             this.bankDbCurrentVersionLabel.Name = "bankDbCurrentVersionLabel";
             this.bankDbCurrentVersionLabel.Size = new System.Drawing.Size(46, 17);
             this.bankDbCurrentVersionLabel.TabIndex = 13;
             this.bankDbCurrentVersionLabel.Text = "label6";
             // 
+            // UploadBankDbButton
+            // 
+            this.UploadBankDbButton.Location = new System.Drawing.Point(241, 102);
+            this.UploadBankDbButton.Name = "UploadBankDbButton";
+            this.UploadBankDbButton.Size = new System.Drawing.Size(203, 28);
+            this.UploadBankDbButton.TabIndex = 11;
+            this.UploadBankDbButton.Text = "Обновить базу банков";
+            this.UploadBankDbButton.UseVisualStyleBackColor = true;
+            this.UploadBankDbButton.Click += new System.EventHandler(this.UploadBankDbButtonClick);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(180, 11);
+            this.label8.Location = new System.Drawing.Point(14, 8);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(153, 17);
             this.label8.TabIndex = 12;
             this.label8.Text = "Текущая версия базы";
-            // 
-            // UploadBankDbButton
-            // 
-            this.UploadBankDbButton.Location = new System.Drawing.Point(246, 80);
-            this.UploadBankDbButton.Name = "UploadBankDbButton";
-            this.UploadBankDbButton.Size = new System.Drawing.Size(184, 28);
-            this.UploadBankDbButton.TabIndex = 11;
-            this.UploadBankDbButton.Text = "Обновить базу банков";
-            this.UploadBankDbButton.UseVisualStyleBackColor = true;
             // 
             // deleteOrganizationButton
             // 
@@ -725,36 +773,22 @@
             this.organizationMainListBox.TabIndex = 5;
             this.organizationMainListBox.SelectedIndexChanged += new System.EventHandler(this.OrganizationMainListBoxSelectedIndexChanged);
             // 
-            // UploadDbPanel
+            // dbDownloadProgressBar
             // 
-            this.UploadDbPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UploadDbPanel.Controls.Add(this.bankDbActualVersionLabel);
-            this.UploadDbPanel.Controls.Add(this.label12);
-            this.UploadDbPanel.Controls.Add(this.bankDbCurrentVersionLabel);
-            this.UploadDbPanel.Controls.Add(this.UploadBankDbButton);
-            this.UploadDbPanel.Controls.Add(this.label8);
-            this.UploadDbPanel.Location = new System.Drawing.Point(705, 591);
-            this.UploadDbPanel.Name = "UploadDbPanel";
-            this.UploadDbPanel.Size = new System.Drawing.Size(450, 126);
-            this.UploadDbPanel.TabIndex = 14;
+            this.dbDownloadProgressBar.Location = new System.Drawing.Point(3, 70);
+            this.dbDownloadProgressBar.Name = "dbDownloadProgressBar";
+            this.dbDownloadProgressBar.Size = new System.Drawing.Size(283, 10);
+            this.dbDownloadProgressBar.TabIndex = 17;
+            this.dbDownloadProgressBar.Visible = false;
             // 
-            // bankDbActualVersionLabel
+            // dbDownloadStateMessage
             // 
-            this.bankDbActualVersionLabel.AutoSize = true;
-            this.bankDbActualVersionLabel.Location = new System.Drawing.Point(342, 44);
-            this.bankDbActualVersionLabel.Name = "bankDbActualVersionLabel";
-            this.bankDbActualVersionLabel.Size = new System.Drawing.Size(46, 17);
-            this.bankDbActualVersionLabel.TabIndex = 15;
-            this.bankDbActualVersionLabel.Text = "label5";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(181, 44);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(135, 17);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Актуальная версия";
+            this.dbDownloadStateMessage.Location = new System.Drawing.Point(292, 63);
+            this.dbDownloadStateMessage.Name = "dbDownloadStateMessage";
+            this.dbDownloadStateMessage.Size = new System.Drawing.Size(152, 36);
+            this.dbDownloadStateMessage.TabIndex = 18;
+            this.dbDownloadStateMessage.Text = "label5";
+            this.dbDownloadStateMessage.Visible = false;
             // 
             // MainForm
             // 
@@ -772,14 +806,14 @@
             this.previewPaymentPanel.ResumeLayout(false);
             this.previewPaymentPanel.PerformLayout();
             this.OrganizationsPage.ResumeLayout(false);
+            this.UploadDbPanel.ResumeLayout(false);
+            this.UploadDbPanel.PerformLayout();
             this.bankAccInfoPanel.ResumeLayout(false);
             this.bankAccInfoPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.organizationInfoPanel.ResumeLayout(false);
             this.organizationInfoPanel.PerformLayout();
-            this.UploadDbPanel.ResumeLayout(false);
-            this.UploadDbPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -846,6 +880,9 @@
         private System.Windows.Forms.Panel UploadDbPanel;
         private System.Windows.Forms.Label bankDbActualVersionLabel;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button GetActualVersionButton;
+        private System.Windows.Forms.ProgressBar dbDownloadProgressBar;
+        private System.Windows.Forms.Label dbDownloadStateMessage;
     }
 }
 

@@ -29,7 +29,7 @@ namespace WordInteractionLab8
 
         private static void RegisterComponents()
         {
-            ServiceLocator.Register<IDbDownoader>(new CrbDbDownloader(AppResource.App_Data_Path));
+            ServiceLocator.Register<IDbDownloader>(new CrbDbDownloader(AppResource.App_Data_Path));
             ServiceLocator.Register<IBankInfoFinder>(new BankInfoFinder());
             ServiceLocator.Register<IDbChanger>(new EntityFrameworkDbChanger());
 

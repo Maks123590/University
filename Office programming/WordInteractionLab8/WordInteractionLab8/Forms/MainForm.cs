@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     using WordInteractionLab8.IoC;
@@ -9,17 +10,18 @@
     using WordInteractionLab8.Models.Interfaces;
     using WordInteractionLab8.Resources;
 
-    using ApplicationContext = WordInteractionLab8.Models.ApplicationContext;
+    using Timer = System.Timers.Timer;
 
     public partial class MainForm : Form
     {
-        private IDbChanger dbChanger;
+        private readonly IDbChanger dbChanger;
+        private readonly IDbDownloader dbDownloader;
 
-        private IBankInfoFinder bankInfoFinder;
+        private readonly IBankInfoFinder bankInfoFinder;
 
-        private IBankAccountFinder bankAccountFinder;
-        private IOrganizationFinder organizationInfoFinder;
-        private IPaymentOrderFinder paymentOrderFinder;
+        private readonly IBankAccountFinder bankAccountFinder;
+        private readonly IOrganizationFinder organizationInfoFinder;
+        private readonly IPaymentOrderFinder paymentOrderFinder;
 
         public MainForm()
         {
@@ -32,10 +34,17 @@
             this.paymentOrderFinder = ServiceLocator.GetService<IPaymentOrderFinder>();
 
             this.dbChanger = ServiceLocator.GetService<IDbChanger>();
+            this.dbDownloader = ServiceLocator.GetService<IDbDownloader>();
+            this.dbDownloader.ShowInfoMessage += this.ShowInfoMessage;
+
 
             this.FillAllOrganizations();
             this.FillAllPayments();
+
+            this.FillDbInfo();
         }
+
+        #region payments
 
         private void AddPaymentButtonClick(object sender, EventArgs e)
         {
@@ -117,205 +126,7 @@
             }
         }
 
-        #region organization
 
-        private void AddOrganizationButtonClick(object sender, EventArgs e)
-        {
-            var addOrganizationForm = new OrganizationForm();
-
-            addOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
-
-            addOrganizationForm.ShowDialog();
-        }
-
-        private void EditOrganizationButtonClick(object sender, EventArgs e)
-        {
-            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
-                .ToString();
-
-            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
-
-            var organizationBankAccounts = this.bankAccountFinder.FindByOrganizationId(organization.Id);
-
-            var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
-
-            editOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
-
-            editOrganizationForm.ShowDialog();
-        }
-
-        private void DeleteOrganizationButtonClick(object sender, EventArgs e)
-        {
-            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex].ToString();
-
-            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
-
-            this.RefreshOrganizationMainListBox(organization, ItemChangeStatus.Removed, this.organizationMainListBox.SelectedIndex);
-
-            foreach (var account in this.bankAccountFinder.FindByOrganizationId(organization.Id))
-            {
-                this.dbChanger.RemoveBankAccountFromDb(account);
-            }
-
-            this.dbChanger.RemoveOrganizationFromDb(organization);
-        }
-
-
-        private void OrganizationInfoToDb(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
-        {
-            this.RefreshOrganizationMainListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.Status, organizationInfoEventsArgs.SelectedIndex);
-
-            if (organizationInfoEventsArgs.Status == ItemChangeStatus.Added)
-            {
-                this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
-
-                var organizationId = this.organizationInfoFinder.FindOrganizationByName(organizationInfoEventsArgs.OrganizationInfo.Name).Id;
-
-                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
-                {
-                    account.OrganizationId = organizationId;
-                }
-
-                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
-                {
-                    account.OrganizationId = organizationId;
-                }
-
-                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
-                {
-                    account.OrganizationId = organizationId;
-                }
-            }
-            else if (organizationInfoEventsArgs.Status == ItemChangeStatus.Edited)
-            {
-                this.dbChanger.ChangeOrganizationInDb(organizationInfoEventsArgs.OrganizationInfo);
-            }
-            else
-            {
-                this.dbChanger.RemoveOrganizationFromDb(organizationInfoEventsArgs.OrganizationInfo);
-            }
-            
-            if (organizationInfoEventsArgs.AddedBankAccounts != null)
-            {
-                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
-                {
-                    this.dbChanger.AddBankAccountToDb(account);
-                }
-            }
-
-            if (organizationInfoEventsArgs.EditedBankAccounts != null)
-            {
-                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
-                {
-                    this.dbChanger.ChangeBankAccountInDb(account);
-                }
-            }
-
-            if (organizationInfoEventsArgs.RemovedBankAccounts != null)
-            {
-                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
-                {
-                    this.dbChanger.RemoveBankAccountFromDb(account);
-                }
-            }
-        }
-
-        private void RefreshOrganizationMainListBox(OrganizationInfo organizationInfo, ItemChangeStatus status, int? editingIndex = null)
-        {
-            if (status == ItemChangeStatus.Added)
-            {
-                this.organizationMainListBox.Items.Add(organizationInfo.Name);
-            }
-            else if (status == ItemChangeStatus.Edited)
-            {
-                this.organizationMainListBox.Items[(int)editingIndex] = organizationInfo.Name;
-            }
-            else
-            {
-                this.organizationMainListBox.Items.RemoveAt((int)editingIndex);
-            }
-        }
-
-        private void OrganizationMainListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            var index = this.organizationMainListBox.SelectedIndex;
-
-            if (index != -1)
-            {
-                var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
-                    .ToString();
-
-                var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
-
-                this.FillMainOrganizationInfo(organizationInfo);
-            }
-        }
-
-        private void FillMainOrganizationInfo(OrganizationInfo organizationInfo)
-        {
-            if (organizationInfo == null)
-            {
-                return;
-            }
-
-            this.organizationNameLabel.Text = organizationInfo.Name;
-            this.cppOrganizationLabel.Text = organizationInfo.CPP;
-            this.innOrganizationLabel.Text = organizationInfo.INN;
-
-            this.bankAccountsListBox.Items.Clear();
-
-            var bankAccounts = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id);
-
-            if (bankAccounts != null)
-            {
-                foreach (var bankAccount in bankAccounts)
-                {
-                    this.bankAccountsListBox.Items.Add(bankAccount.CurrentAccount);
-                }
-            }
-
-            this.organizationInfoPanel.Visible = true;
-        }
-
-        private void FillBankAccountInfo(BankAccount bankAccount)
-        {
-            var bankInfo = this.bankInfoFinder.GetBankInfoByBic(bankAccount.BankBic);
-
-            this.bankNameLabel.Text = bankInfo.FullName;
-            this.bankLocationLabel.Text = bankInfo.Locality;
-            this.bikLabel.Text = bankInfo.Bic;
-
-            this.currentAccountlLabel.Text = bankAccount.CurrentAccount;
-
-            this.bankAccInfoPanel.Visible = true;
-        }
-
-        private void BankAccountsListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
-                .ToString();
-
-            var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
-
-            if (organizationInfo != null && this.bankAccountsListBox.SelectedItem != null)
-            {
-                var bankAccount = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id).FirstOrDefault(or => or.CurrentAccount == this.bankAccountsListBox.SelectedItem?.ToString());
-
-                this.FillBankAccountInfo(bankAccount);
-            }
-        }
-
-        private void FillAllOrganizations()
-        {
-            var organizations = this.organizationInfoFinder.GetAllOrganizations();
-
-            foreach (var organization in organizations)
-            {
-                this.organizationMainListBox.Items.Add(organization.Name);
-            }
-        }
-
-        #endregion
 
         private void PaymentsListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -454,6 +265,251 @@
             // TODO
 
             return string.Empty;
+        }
+
+        #endregion
+
+        #region organization
+
+        private void AddOrganizationButtonClick(object sender, EventArgs e)
+        {
+            var addOrganizationForm = new OrganizationForm();
+
+            addOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
+
+            addOrganizationForm.ShowDialog();
+        }
+
+        private void EditOrganizationButtonClick(object sender, EventArgs e)
+        {
+            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
+                .ToString();
+
+            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
+
+            var organizationBankAccounts = this.bankAccountFinder.FindByOrganizationId(organization.Id);
+
+            var editOrganizationForm = new OrganizationForm(organizationBankAccounts, this.organizationMainListBox.SelectedIndex, organization);
+
+            editOrganizationForm.OrganizationFinded += this.OrganizationInfoToDb;
+
+            editOrganizationForm.ShowDialog();
+        }
+
+        private void DeleteOrganizationButtonClick(object sender, EventArgs e)
+        {
+            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex].ToString();
+
+            var organization = this.organizationInfoFinder.FindOrganizationByName(selectedName);
+
+            this.RefreshOrganizationMainListBox(organization, ItemChangeStatus.Removed, this.organizationMainListBox.SelectedIndex);
+
+            foreach (var account in this.bankAccountFinder.FindByOrganizationId(organization.Id))
+            {
+                this.dbChanger.RemoveBankAccountFromDb(account);
+            }
+
+            this.dbChanger.RemoveOrganizationFromDb(organization);
+        }
+
+
+        private void OrganizationInfoToDb(object sender, OrganizationInfoEventsArgs organizationInfoEventsArgs)
+        {
+            this.RefreshOrganizationMainListBox(organizationInfoEventsArgs.OrganizationInfo, organizationInfoEventsArgs.Status, organizationInfoEventsArgs.SelectedIndex);
+
+            if (organizationInfoEventsArgs.Status == ItemChangeStatus.Added)
+            {
+                this.dbChanger.AddOrganizationToDb(organizationInfoEventsArgs.OrganizationInfo);
+
+                var organizationId = this.organizationInfoFinder.FindOrganizationByName(organizationInfoEventsArgs.OrganizationInfo.Name).Id;
+
+                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+
+                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+
+                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
+                {
+                    account.OrganizationId = organizationId;
+                }
+            }
+            else if (organizationInfoEventsArgs.Status == ItemChangeStatus.Edited)
+            {
+                this.dbChanger.ChangeOrganizationInDb(organizationInfoEventsArgs.OrganizationInfo);
+            }
+            else
+            {
+                this.dbChanger.RemoveOrganizationFromDb(organizationInfoEventsArgs.OrganizationInfo);
+            }
+
+            if (organizationInfoEventsArgs.AddedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.AddedBankAccounts)
+                {
+                    this.dbChanger.AddBankAccountToDb(account);
+                }
+            }
+
+            if (organizationInfoEventsArgs.EditedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.EditedBankAccounts)
+                {
+                    this.dbChanger.ChangeBankAccountInDb(account);
+                }
+            }
+
+            if (organizationInfoEventsArgs.RemovedBankAccounts != null)
+            {
+                foreach (var account in organizationInfoEventsArgs.RemovedBankAccounts)
+                {
+                    this.dbChanger.RemoveBankAccountFromDb(account);
+                }
+            }
+        }
+
+        private void RefreshOrganizationMainListBox(OrganizationInfo organizationInfo, ItemChangeStatus status, int? editingIndex = null)
+        {
+            if (status == ItemChangeStatus.Added)
+            {
+                this.organizationMainListBox.Items.Add(organizationInfo.Name);
+            }
+            else if (status == ItemChangeStatus.Edited)
+            {
+                this.organizationMainListBox.Items[(int)editingIndex] = organizationInfo.Name;
+            }
+            else
+            {
+                this.organizationMainListBox.Items.RemoveAt((int)editingIndex);
+            }
+        }
+
+        private void OrganizationMainListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = this.organizationMainListBox.SelectedIndex;
+
+            if (index != -1)
+            {
+                var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
+                    .ToString();
+
+                var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
+
+                this.FillMainOrganizationInfo(organizationInfo);
+            }
+        }
+
+        private void FillMainOrganizationInfo(OrganizationInfo organizationInfo)
+        {
+            if (organizationInfo == null)
+            {
+                return;
+            }
+
+            this.organizationNameLabel.Text = organizationInfo.Name;
+            this.cppOrganizationLabel.Text = organizationInfo.CPP;
+            this.innOrganizationLabel.Text = organizationInfo.INN;
+
+            this.bankAccountsListBox.Items.Clear();
+
+            var bankAccounts = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id);
+
+            if (bankAccounts != null)
+            {
+                foreach (var bankAccount in bankAccounts)
+                {
+                    this.bankAccountsListBox.Items.Add(bankAccount.CurrentAccount);
+                }
+            }
+
+            this.organizationInfoPanel.Visible = true;
+        }
+
+        private void FillBankAccountInfo(BankAccount bankAccount)
+        {
+            var bankInfo = this.bankInfoFinder.GetBankInfoByBic(bankAccount.BankBic);
+
+            this.bankNameLabel.Text = bankInfo.FullName;
+            this.bankLocationLabel.Text = bankInfo.Locality;
+            this.bikLabel.Text = bankInfo.Bic;
+
+            this.currentAccountlLabel.Text = bankAccount.CurrentAccount;
+
+            this.bankAccInfoPanel.Visible = true;
+        }
+
+        private void BankAccountsListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedName = this.organizationMainListBox.Items[this.organizationMainListBox.SelectedIndex]
+                .ToString();
+
+            var organizationInfo = this.organizationInfoFinder.FindOrganizationByName(selectedName);
+
+            if (organizationInfo != null && this.bankAccountsListBox.SelectedItem != null)
+            {
+                var bankAccount = this.bankAccountFinder.FindByOrganizationId(organizationInfo.Id).FirstOrDefault(or => or.CurrentAccount == this.bankAccountsListBox.SelectedItem?.ToString());
+
+                this.FillBankAccountInfo(bankAccount);
+            }
+        }
+
+        private void FillAllOrganizations()
+        {
+            var organizations = this.organizationInfoFinder.GetAllOrganizations();
+
+            foreach (var organization in organizations)
+            {
+                this.organizationMainListBox.Items.Add(organization.Name);
+            }
+        }
+
+        #endregion
+
+        private void UploadBankDbButtonClick(object sender, EventArgs e)
+        {
+            this.dbDownloader.UploadDb(this.dbDownloadProgressBar);
+
+            this.FillDbInfo();
+        }
+
+        private void FillDbInfo()
+        {
+            this.bankDbCurrentVersionLabel.Text = this.dbDownloader.GetCurrentDbVeresion();  
+        }
+
+        private void GetActualVersionButtonClick(object sender, EventArgs e)
+        {
+            this.bankDbActualVersionLabel.Text = this.dbDownloader.GetActualDbVersion();
+        }
+
+        private void ShowInfoMessage(object sender, InfoMessageEventsArgs e)
+        {
+            if (e.Type == MessageType.StateMessage)
+            {
+                this.OnStateLabel(e.Message);
+            }
+            else if (e.Type == MessageType.InfoMessage)
+            {
+                MessageBox.Show(e.Message, AppResource.InfoMessageBox_Внимание);
+            }
+            else if (e.Type == MessageType.StateMessageEnd)
+            {
+                this.OnStateLabel(e.Message);
+
+                Task.Delay(3000);
+
+                this.dbDownloadStateMessage.Visible = false;
+            }
+        }
+
+        private void OnStateLabel(string message)
+        {
+            this.dbDownloadStateMessage.Text = message;
+            this.dbDownloadStateMessage.Visible = true;
         }
     }
 }

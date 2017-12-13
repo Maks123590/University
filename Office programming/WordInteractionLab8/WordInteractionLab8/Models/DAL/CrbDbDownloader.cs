@@ -1,20 +1,25 @@
 ﻿namespace WordInteractionLab8.Models
 {
+    using System;
     using System.Data;
     using System.Data.Odbc;
+    using System.IO;
     using System.IO.Compression;
     using System.Net;
+    using System.Windows.Forms;
     using System.Xml.Linq;
 
     using WordInteractionLab8.Models.Interfaces;
 
-    public class CrbDbDownloader : IDbDownoader
+    public class CrbDbDownloader : IDbDownloader
     {
         private const string SourceDbPath = @"http://www.cbr.ru/mcirabis/BIK/";
 
         private const string BicCatalogSourcePath = @"http://www.cbr.ru/mcirabis/PluginInterface/GetBicCatalog.aspx";
 
         private const string DbName = @"bnkseek.dbf";
+
+        private const string DbInfoName = @"dbInfo.xml";
 
         private readonly string localDbPath = @"Data\";
 
@@ -24,18 +29,58 @@
         {
             this.localDbPath = localDbPath;
 
-            dbConnectionString = "Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + localDbPath + ";Exclusive=No; NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
+            if (!Directory.Exists(this.localDbPath))
+            {
+                Directory.CreateDirectory(this.localDbPath);
+            }
+
+            this.dbConnectionString = "Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + localDbPath + ";Exclusive=No; NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
         }
+
+        public event EventHandler<InfoMessageEventsArgs> ShowInfoMessage;
+
+        public bool DbFileExist => File.Exists(this.localDbPath + DbName);
+
+        private XElement DbFileInfo { get; set; }
 
         public DataTable GetBankInfoTable()
         {
             return this.GetBankInfosDataTable();
         }
 
-        public void UploadDb()
+        public string GetCurrentDbVeresion()
         {
-            // TODO test db version
-            this.DownloadDb();
+            if (File.Exists(this.localDbPath + DbInfoName))
+            {
+                var xdoc = XDocument.Load(this.localDbPath + DbInfoName);
+
+                return xdoc.Element("item")?.Attribute("date")?.Value;
+            }
+
+            return "версия не определена";
+        }
+
+        public string GetActualDbVersion()
+        {
+            var infoFileElem = this.GetDbInfoFile(false);
+
+            return infoFileElem?.Attribute("date")?.Value;
+        }
+
+        public void UploadDb(ProgressBar progress = null)
+        {
+            var currentVersion = this.GetCurrentDbVeresion();
+
+            var actualVersion = this.GetActualDbVersion();
+
+            if (currentVersion != actualVersion)
+            {
+                this.DownloadDb(progress);
+            }
+            else
+            {
+                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Уже загружена актуальная версия базы данных.", Type = MessageType.InfoMessage });
+            }
         }
 
         public DataTable GetBankInfosDataTable()
@@ -62,36 +107,114 @@
             return dataTable;
         }
 
-        private void DownloadDb()
+        protected virtual void OnShowInfoMessage(InfoMessageEventsArgs e)
         {
-            var currentZipArchName = this.GetCurrentDbFileName();
+            EventHandler<InfoMessageEventsArgs> handler = this.ShowInfoMessage;
+
+            handler?.Invoke(this, e);
+        }
+
+        private void DownloadDb(ProgressBar progress = null)
+        {
+            var infoFileElem = this.GetDbInfoFile(false);
+
+            var currentZipArchName = this.GetCurrentDbFileName(infoFileElem);
 
             var webClient = new WebClient();
 
-            var stream = webClient.OpenRead(SourceDbPath + currentZipArchName);
-
-            using (var zipArchive = new ZipArchive(stream))
-            {
-                foreach (var entry in zipArchive.Entries)
+            webClient.DownloadProgressChanged += (s, e) =>
                 {
-                    if (entry.Name == DbName)
+                    
+
+                    if (progress != null)
                     {
-                        entry.ExtractToFile(this.localDbPath + DbName, true);
-                        break;
+                        progress.Visible = true;
+                        progress.Value = e.ProgressPercentage;
                     }
-                }
+                };
+            webClient.DownloadDataCompleted += (s, e) =>
+                {
+                    if (progress != null)
+                    {
+                        progress.Visible = false;
+                    }
+
+                    var stream = new MemoryStream(e.Result);
+
+                    using (var zipArchive = new ZipArchive(stream))
+                    {
+                        foreach (var entry in zipArchive.Entries)
+                        {
+                            if (entry.Name == DbName)
+                            {
+                                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Сохранение на диск..", Type = MessageType.StateMessage });
+                                entry.ExtractToFile(this.localDbPath + DbName, true);
+                                this.SaveDbInfo(infoFileElem);
+
+                                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
+                                break;
+                            }
+                        }
+                    }
+                };
+
+            webClient.DownloadDataAsync(new Uri(SourceDbPath + currentZipArchName));
+
+            this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Загрузка базы..", Type = MessageType.StateMessage });
+        }
+
+        private XElement GetDbInfoFile(bool forcibly)
+        {
+            if (forcibly || this.DbFileInfo == null)
+            {
+                var webClient = new WebClient();
+
+                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Проверка актуальной версии..", Type = MessageType.StateMessage });
+
+                var stream = webClient.OpenRead(new Uri(BicCatalogSourcePath));
+
+                var xdoc = XDocument.Load(stream);
+
+                this.DbFileInfo = xdoc.Element("BicDBList")?.Element("item");
+
+                this.OnShowInfoMessage(
+                    new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
+
+                return this.DbFileInfo;
+
+            }
+            else
+            {
+                return this.DbFileInfo;
             }
         }
 
-        private string GetCurrentDbFileName()
+        private string GetCurrentDbFileName(XElement infoFileElem)
         {
-            var webClient = new WebClient();
-
-            var stream = webClient.OpenRead(BicCatalogSourcePath);
-            var xdoc = XDocument.Load(stream);
-
-            return xdoc.Element("BicDBList")?.Element("item")?.Attribute("file")?.Value;
-
+            return infoFileElem.Attribute("file")?.Value;
         }
+
+        private void SaveDbInfo(XElement item)
+        {
+            var xdoc = new XDocument(item);
+
+            this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Сохранение на диск..", Type = MessageType.StateMessage });
+
+            xdoc.Save(this.localDbPath + DbInfoName);
+        }
+    }
+
+    public class InfoMessageEventsArgs : EventArgs
+    {
+        public string Message { get; set; }
+
+        public MessageType Type { get; set; }
+    }
+
+    public enum MessageType
+    {
+        StateMessage,
+        InfoMessage,
+        StateMessageEnd
     }
 }

@@ -7,11 +7,11 @@
 
     public class BankInfoFinder : IBankInfoFinder
     {
-        private readonly IDbDownoader dbDownoader;
+        private readonly IDbDownloader dbDownoader;
 
         public BankInfoFinder()
         {
-            this.dbDownoader = ServiceLocator.GetService<IDbDownoader>();
+            this.dbDownoader = ServiceLocator.GetService<IDbDownloader>();
         }
 
         public BankInfo GetBankInfoByBic(string bic)
