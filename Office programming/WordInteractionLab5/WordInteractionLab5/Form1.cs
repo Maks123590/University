@@ -75,9 +75,7 @@ namespace WordInteractionLab5
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
-            }
-
-            
+            }            
         }
 
         private void runWordBtn_Click(object sender, EventArgs e)

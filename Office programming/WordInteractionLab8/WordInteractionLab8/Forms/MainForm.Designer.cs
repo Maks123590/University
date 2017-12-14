@@ -31,6 +31,7 @@
             this.IntoDocumentButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.PaymentsPage = new System.Windows.Forms.TabPage();
+            this.showAdvancedCheckBox = new System.Windows.Forms.CheckBox();
             this.previewPaymentPanel = new System.Windows.Forms.Panel();
             this.payeeCurrAccLabel = new System.Windows.Forms.Label();
             this.payAnountWordsLabel = new System.Windows.Forms.Label();
@@ -125,6 +126,7 @@
             // 
             // PaymentsPage
             // 
+            this.PaymentsPage.Controls.Add(this.showAdvancedCheckBox);
             this.PaymentsPage.Controls.Add(this.previewPaymentPanel);
             this.PaymentsPage.Controls.Add(this.PrintOneButton);
             this.PaymentsPage.Controls.Add(this.PrintAllButton);
@@ -140,6 +142,16 @@
             this.PaymentsPage.TabIndex = 0;
             this.PaymentsPage.Text = "Платежные поручения";
             this.PaymentsPage.UseVisualStyleBackColor = true;
+            // 
+            // showAdvancedCheckBox
+            // 
+            this.showAdvancedCheckBox.AutoSize = true;
+            this.showAdvancedCheckBox.Location = new System.Drawing.Point(450, 680);
+            this.showAdvancedCheckBox.Name = "showAdvancedCheckBox";
+            this.showAdvancedCheckBox.Size = new System.Drawing.Size(244, 21);
+            this.showAdvancedCheckBox.TabIndex = 11;
+            this.showAdvancedCheckBox.Text = "Показать дополнительные поля";
+            this.showAdvancedCheckBox.UseVisualStyleBackColor = true;
             // 
             // previewPaymentPanel
             // 
@@ -816,6 +828,7 @@
             this.Text = "Payment creator";
             this.tabControl1.ResumeLayout(false);
             this.PaymentsPage.ResumeLayout(false);
+            this.PaymentsPage.PerformLayout();
             this.previewPaymentPanel.ResumeLayout(false);
             this.previewPaymentPanel.PerformLayout();
             this.OrganizationsPage.ResumeLayout(false);
@@ -897,6 +910,7 @@
         private System.Windows.Forms.ProgressBar dbDownloadProgressBar;
         private System.Windows.Forms.Label dbDownloadStateMessage;
         private System.Windows.Forms.Label payeeCurrAccLabel;
+        private System.Windows.Forms.CheckBox showAdvancedCheckBox;
     }
 }
 
