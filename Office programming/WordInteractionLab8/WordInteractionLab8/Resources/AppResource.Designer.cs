@@ -88,6 +88,15 @@ namespace WordInteractionLab8.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Нет Подключения к интернету.
+        /// </summary>
+        internal static string MainForm_GetActualVersionButtonClick_Нет_Подключения_к_интернету {
+            get {
+                return ResourceManager.GetString("MainForm_GetActualVersionButtonClick_Нет_Подключения_к_интернету", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на не указывать.
         /// </summary>
         internal static string PayType_не_указывать {

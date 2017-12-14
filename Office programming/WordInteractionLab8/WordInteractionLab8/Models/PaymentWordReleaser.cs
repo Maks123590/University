@@ -29,20 +29,36 @@
             this.wordApplication = new Word.Application();
         }
 
+        public event EventHandler<InfoMessageEventsArgs> ShowInfoMessage;
+
         public void ReleasePayment(PaymentView payment, string savePath = "SaivedPayments")
         {
-            var doc = this.CreateDoc(Application.StartupPath + this.templatePath);
+            try
+            {
+                var doc = this.CreateDoc(Application.StartupPath + this.templatePath);
 
-            doc = this.FillPaymentDoc(doc, payment);
+                doc = this.FillPaymentDoc(doc, payment);
 
-            this.DeleteBookmarks(doc);
+                this.DeleteBookmarks(doc);
 
-            this.SaveDoc(doc, savePath + @"\Payment" + payment.Number);
+                this.SaveDoc(doc, savePath + @"\Payment" + payment.Number);
+            }
+            catch (Exception e)
+            {
+                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Внутренняя ошибка!", Type = MessageType.InfoMessage });
+            }   
         }
 
         public void Dispose()
         {
             this.wordApplication.Quit();
+        }
+
+        protected virtual void OnShowInfoMessage(InfoMessageEventsArgs e)
+        {
+            EventHandler<InfoMessageEventsArgs> handler = this.ShowInfoMessage;
+
+            handler?.Invoke(this, e);
         }
 
         private Word.Document CreateDoc(string templatePath)
@@ -87,6 +103,8 @@
         private void SaveDoc(Word.Document document, string fileName)
         {
             document.SaveAs(fileName);
+
+            this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.InfoMessage });
         }
 
         private void DeleteBookmarks(Word.Document document)

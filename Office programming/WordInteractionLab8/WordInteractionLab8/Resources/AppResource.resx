@@ -144,4 +144,7 @@
   <data name="WordReleaser_Templates_path" xml:space="preserve">
     <value>Templates\</value>
   </data>
+  <data name="MainForm_GetActualVersionButtonClick_Нет_Подключения_к_интернету" xml:space="preserve">
+    <value>Нет Подключения к интернету</value>
+  </data>
 </root>

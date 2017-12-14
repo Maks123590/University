@@ -475,7 +475,14 @@
             this.GetActualVersionButton.Enabled = false;
             this.UploadBankDbButton.Enabled = false;
 
-            this.dbDownloader.UploadDb(this.dbDownloadProgressBar);
+            try
+            {
+                this.dbDownloader.UploadDb(this.dbDownloadProgressBar);
+            }
+            catch
+            {
+                MessageBox.Show(AppResource.MainForm_GetActualVersionButtonClick_Нет_Подключения_к_интернету, AppResource.InfoMessageBox_Внимание);
+            }  
 
             this.GetActualVersionButton.Enabled = true;
             this.UploadBankDbButton.Enabled = true;
@@ -493,7 +500,14 @@
             this.GetActualVersionButton.Enabled = false;
             this.UploadBankDbButton.Enabled = false;
 
-            this.bankDbActualVersionLabel.Text = await this.dbDownloader.GetActualDbVersionAsync();
+            try
+            {
+                this.bankDbActualVersionLabel.Text = await this.dbDownloader.GetActualDbVersionAsync();
+            }
+            catch
+            {
+                MessageBox.Show(AppResource.MainForm_GetActualVersionButtonClick_Нет_Подключения_к_интернету, AppResource.InfoMessageBox_Внимание);
+            }
 
             this.GetActualVersionButton.Enabled = true;
             this.UploadBankDbButton.Enabled = true;
@@ -531,6 +545,8 @@
 
             using (var releaser = ServiceLocator.GetService<IReleaser>())
             {
+                releaser.ShowInfoMessage += this.ShowInfoMessage;
+
                 var folderDialog = new FolderBrowserDialog();
 
                 if (folderDialog.ShowDialog() == DialogResult.OK)

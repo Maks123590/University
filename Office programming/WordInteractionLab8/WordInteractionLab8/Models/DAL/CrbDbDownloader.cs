@@ -72,7 +72,7 @@
         {
             var currentVersion = this.GetCurrentDbVeresion();
 
-            var actualVersion = await this.GetActualDbVersionAsync();
+            var actualVersion = await this.GetActualDbVersionAsync();  
 
             if (currentVersion != actualVersion)
             {
@@ -140,22 +140,29 @@
                         progress.Visible = false;
                     }
 
-                    var stream = new MemoryStream(e.Result);
-
-                    using (var zipArchive = new ZipArchive(stream))
+                    try
                     {
-                        foreach (var entry in zipArchive.Entries)
-                        {
-                            if (entry.Name == DbName)
-                            {
-                                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Сохранение на диск..", Type = MessageType.StateMessage });
-                                entry.ExtractToFile(this.localDbPath + DbName, true);
-                                this.SaveDbInfo(infoFileElem);
+                        var stream = new MemoryStream(e.Result);
 
-                                this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
-                                break;
+                        using (var zipArchive = new ZipArchive(stream))
+                        {
+                            foreach (var entry in zipArchive.Entries)
+                            {
+                                if (entry.Name == DbName)
+                                {
+                                    this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Сохранение на диск..", Type = MessageType.StateMessage });
+                                    entry.ExtractToFile(this.localDbPath + DbName, true);
+                                    this.SaveDbInfo(infoFileElem);
+
+                                    this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
+                                    break;
+                                }
                             }
                         }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Нет подключения к интернету", "Внимание");
                     }
                 };
 
@@ -172,16 +179,25 @@
 
                 this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Проверка актуальной версии..", Type = MessageType.StateMessage });
 
-                var stream = await webClient.OpenReadTaskAsync(new Uri(BicCatalogSourcePath));
+                try
+                {
+                    var stream = await webClient.OpenReadTaskAsync(new Uri(BicCatalogSourcePath));
 
-                var xdoc = XDocument.Load(stream);
+                    var xdoc = XDocument.Load(stream);
 
-                this.DbFileInfo = xdoc.Element("BicDBList")?.Element("item");
+                    this.DbFileInfo = xdoc.Element("BicDBList")?.Element("item");
 
-                this.OnShowInfoMessage(
-                    new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
+                    this.OnShowInfoMessage(
+                        new InfoMessageEventsArgs() { Message = "Готово.", Type = MessageType.StateMessageEnd });
 
-                return this.DbFileInfo;
+                    return this.DbFileInfo;
+                }
+                catch
+                {
+                    this.OnShowInfoMessage(new InfoMessageEventsArgs() { Message = "Проверка актуальной версии..", Type = MessageType.StateMessage });
+                    return new XElement("error");
+                }
+
 
             }
             else
