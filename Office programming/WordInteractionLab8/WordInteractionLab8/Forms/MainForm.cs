@@ -168,6 +168,14 @@
             this.payeeBankBicLabel.Text = payment.Payee.BankAccount.BankInfo.Bic;
             this.payeeBankNameLabel.Text = payment.Payee.BankAccount.BankInfo.FullName + payment.Payee.BankAccount.BankInfo.Locality;
             this.payeeCurrAccLabel.Text = payment.Payee.BankAccount.CurrentAccount;
+
+            this.payerStatusLabel.Text = payment.Status;
+            this.kbkLabel.Text = payment.KBK;
+            this.OKTMOLabel.Text = payment.OKTMO;
+            this.PayBaseLabel.Text = payment.Basis;
+            this.PeriodIndicatorLabel.Text = payment.TaxPeriodIndicator;
+            this.dateIndicatorLabel.Text = payment.Basis;
+            this.dateIndicatorLabel.Text = payment.DocumentDateIndicator;
         }
 
         private PaymentView GetPaymentView(Payment payment)
@@ -241,7 +249,7 @@
                                                       }
                                 };
 
-            return new PaymentView
+            var paymentView = new PaymentView
                               {
                                   Number = payment.Number.ToString(),
                                   Date = payment.Date.ToShortDateString(),
@@ -253,6 +261,19 @@
                                   PaymentAmountInWords = this.GetPaymentAmountInWords(payment.Rub.ToString(), payment.Cop.ToString()),
                                   PaymentType = paymentType
                               };
+
+            paymentView.Status = payment.Status.ToString();
+            paymentView.Address = payment.Address;
+            paymentView.KBK = payment.KBK;
+            paymentView.OKTMO = payment.OKTMO;
+            paymentView.Basis = payment.Basis.ToString();
+            paymentView.TaxPeriodIndicator = payment.TaxPeriodIndicatorDay + "." + payment.TaxPeriodIndicatorMonth + "." + payment.TaxPeriodIndicatorYear;
+
+            paymentView.CustomsCode = payment.CustomsCode;
+            paymentView.DocumentNumberIndicator = payment.DocumentNumberIndicator;
+            paymentView.DocumentDateIndicator = payment.DocumentDateIndicator.ToShortDateString();
+
+            return paymentView;
 
         }
 
@@ -553,6 +574,30 @@
                 {
                     releaser.ReleasePayment(paymentView, folderDialog.SelectedPath);
                 }
+            }
+        }
+
+        private void ShowAdvancedCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            if (this.showAdvancedCheckBox.Checked)
+            {
+                this.payerStatusLabel.Visible = true;
+                this.OKTMOLabel.Visible = true;
+                this.PayBaseLabel.Visible = true;
+                this.PeriodIndicatorLabel.Visible = true;
+                this.dateIndicatorLabel.Visible = true;
+                this.dateIndicatorLabel.Visible = true;
+                this.kbkLabel.Visible = true;
+            }
+            else
+            {
+                this.payerStatusLabel.Visible = false;
+                this.OKTMOLabel.Visible = false;
+                this.PayBaseLabel.Visible = false;
+                this.PeriodIndicatorLabel.Visible = false;
+                this.dateIndicatorLabel.Visible = false;
+                this.dateIndicatorLabel.Visible = false;
+                this.kbkLabel.Visible = false;
             }
         }
     }

@@ -21,5 +21,24 @@
         public string Description { get; set; }
 
         public string Date { get; set; }
+
+
+        public string Basis { get; set; }
+
+        public string Status { get; set; }
+
+        public string Address { get; set; }
+
+        public string KBK { get; set; }
+
+        public string OKTMO { get; set; }
+
+        public string TaxPeriodIndicator { get; set; }
+
+        public string CustomsCode { get; set; }
+
+        public string DocumentNumberIndicator { get; set; }
+
+        public string DocumentDateIndicator { get; set; }
     }
 }

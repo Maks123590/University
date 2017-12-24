@@ -13,24 +13,25 @@
 
     public enum PaymentBasis
     {
-        TP,
-        ZD,
-        BF,
-        TR,
-        RS,
-        OT,
-        RT,
-        PB,
-        PR,
-        AP,
-        AR,
-        IN,
-        TL,
-        ZT,
-        DE,
-        PO,
-        KT,
-        ID
+        Нет,
+        ТП,
+        ЗД,
+        БФ,
+        ТР,
+        РС,
+        ОТ,
+        РТ,
+        ПБ,
+        ПР,
+        АП,
+        АР,
+        ИН,
+        ТЛ,
+        ЗТ,
+        ДЕ,
+        ПО,
+        КТ,
+        ИД
     }
 
     public class Payment
@@ -69,7 +70,11 @@
 
         public string OKTMO { get; set; }
 
-        public DateTime TaxPeriodIndicator { get; set; }
+        public string TaxPeriodIndicatorDay { get; set; }
+
+        public string TaxPeriodIndicatorMonth { get; set; }
+
+        public string TaxPeriodIndicatorYear { get; set; }
 
         public string CustomsCode { get; set; }
 

@@ -162,13 +162,11 @@ namespace WordInteractionLab7
             {
                 var district = Districts[i];
 
-                
                 table.Rows.Add();
 
                 table.Cell(i + 2, 1).Range.Text = district.Name;
                 table.Cell(i + 2, 2).Range.Text = $"Административный центр - {district.Center.Name}\nТерритория - {district.Area} кв.км\nНаселение - {district.Population} чел.";
-
-                
+    
                 var image = GetDistrictMapImage(district);
 
                 Clipboard.SetImage(image);

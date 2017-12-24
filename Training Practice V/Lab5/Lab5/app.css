@@ -1,4 +1,5 @@
-body {
+﻿html, body {
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     display: flex;
     height: 100%;
@@ -16,23 +17,21 @@ body {
 }
 
 .settings-window {
-    box-sizing: border-box; 
+    box-sizing: border-box;
     width: 90%;
-    height: 90%;
     border: red 2px solid;
     margin: 4%;
-    padding: 4%; 
+    padding: 4%;
 }
 
-.settings-window > div {
+.settings-window > div, .h1-settings {
     border: red 1px solid;
-
-    padding: 2%; 
-    margin: 2% auto;
+    padding: 2px;
+    margin: 2px auto;
 }
 
 .settings-window > div > div {
-    margin: 2% auto;
+    margin: 2px auto;
 }
 
 .input-number {
@@ -41,10 +40,23 @@ body {
 
 .control-button-panel {
     width: 80%;
-    padding: 4%;
+    padding: 2px 14px;
 }
 
 .preview-window {
     width: 78%;
-    background: red;
+    height: 100%;
+    background: #ffeeee;
+}
+
+.main-settings > div {
+    border: blue 1px solid;
+}
+
+.settings-window > div > div {
+    display: inline-block;
+}
+
+.main-settings > div {
+    padding: 4px;
 }

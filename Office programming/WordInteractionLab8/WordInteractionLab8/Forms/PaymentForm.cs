@@ -121,8 +121,24 @@ namespace WordInteractionLab8.Forms
             this.addresseeBankLocationLabel.Text = payeeBank.Locality;
 
             //// Additionals
-            
-            //// TODO
+
+            this.PayStatusComboBox.SelectedIndex = payment.Status;
+
+            this.AddressTextBox.Text = payment.Address;
+
+            this.kbkMaskedTextBox.Text = payment.KBK;
+            this.oktmoMaskedTextBox.Text = payment.OKTMO;
+
+            this.payBaseComboBox.SelectedIndex = (int)payment.Basis;
+
+            this.taskPeriodDayComboBox.Text = payment.TaxPeriodIndicatorDay;
+            this.taskPeriodMonthComboBox.Text = payment.TaxPeriodIndicatorMonth;
+            this.taskPeriodYearComboBox.Text = payment.TaxPeriodIndicatorYear;
+
+
+            this.customsCodeMaskedTextBox.Text = payment.CustomsCode;
+            this.docNumberIndicatorMaskedTextBox.Text = payment.DocumentNumberIndicator;
+            this.DateIndicatorDateTimePicker.Value = payment.DocumentDateIndicator;
         }
 
         private Payment GetAggregatePayment()
@@ -172,11 +188,30 @@ namespace WordInteractionLab8.Forms
             payment.PayeeAccountId = payeeAcc.Id;
 
             //// Additionals
-            
-            payment.DocumentDateIndicator = DateTime.Now;
-            payment.TaxPeriodIndicator = DateTime.Now;
 
-            //// TODO
+            payment.Status = int.Parse(this.PayStatusComboBox.Text.Substring(0, 2));
+
+            payment.Address = this.AddressTextBox.Text;
+
+            payment.KBK = this.kbkMaskedTextBox.Text;
+            payment.OKTMO = this.oktmoMaskedTextBox.Text;
+
+            if (this.payBaseComboBox.SelectedIndex != 0)
+            {
+                payment.Basis = (PaymentBasis)Enum.Parse(typeof(PaymentBasis), this.payBaseComboBox.Text.Substring(0, 2));
+            }
+            else
+            {
+                payment.Basis = PaymentBasis.Нет;
+            }
+
+            payment.TaxPeriodIndicatorDay = this.taskPeriodDayComboBox.Text.Substring(0, 2);
+            payment.TaxPeriodIndicatorMonth = this.taskPeriodMonthComboBox.Text;
+            payment.TaxPeriodIndicatorYear = this.taskPeriodYearComboBox.Text;
+
+            payment.CustomsCode = this.customsCodeMaskedTextBox.Text;
+            payment.DocumentNumberIndicator = this.docNumberIndicatorMaskedTextBox.Text;
+            payment.DocumentDateIndicator = this.DateIndicatorDateTimePicker.Value;
 
             return payment;
         }

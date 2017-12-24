@@ -45,12 +45,11 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.taskPeriodDayComboBox = new System.Windows.Forms.ComboBox();
+            this.taskPeriodMonthComboBox = new System.Windows.Forms.ComboBox();
+            this.taskPeriodYearComboBox = new System.Windows.Forms.ComboBox();
             this.customsCodeMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.docNumberIndicatorMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox8 = new System.Windows.Forms.MaskedTextBox();
             this.payBaseComboBox = new System.Windows.Forms.ComboBox();
             this.oktmoMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.kbkMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -94,6 +93,7 @@
             this.addresseeAccComboBox = new System.Windows.Forms.ComboBox();
             this.addresseeNameComboBox = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.DateIndicatorDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -234,12 +234,12 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBox3);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.DateIndicatorDateTimePicker);
+            this.panel1.Controls.Add(this.taskPeriodDayComboBox);
+            this.panel1.Controls.Add(this.taskPeriodMonthComboBox);
+            this.panel1.Controls.Add(this.taskPeriodYearComboBox);
             this.panel1.Controls.Add(this.customsCodeMaskedTextBox);
             this.panel1.Controls.Add(this.docNumberIndicatorMaskedTextBox);
-            this.panel1.Controls.Add(this.maskedTextBox8);
             this.panel1.Controls.Add(this.payBaseComboBox);
             this.panel1.Controls.Add(this.oktmoMaskedTextBox);
             this.panel1.Controls.Add(this.kbkMaskedTextBox);
@@ -259,10 +259,10 @@
             this.panel1.Size = new System.Drawing.Size(677, 359);
             this.panel1.TabIndex = 15;
             // 
-            // comboBox3
+            // taskPeriodDayComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.taskPeriodDayComboBox.FormattingEnabled = true;
+            this.taskPeriodDayComboBox.Items.AddRange(new object[] {
             "0 - не указывать",
             "МС - месяц",
             "КВ - квартал",
@@ -299,15 +299,15 @@
             "29",
             "30",
             "31"});
-            this.comboBox3.Location = new System.Drawing.Point(147, 266);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(54, 24);
-            this.comboBox3.TabIndex = 31;
+            this.taskPeriodDayComboBox.Location = new System.Drawing.Point(147, 266);
+            this.taskPeriodDayComboBox.Name = "taskPeriodDayComboBox";
+            this.taskPeriodDayComboBox.Size = new System.Drawing.Size(54, 24);
+            this.taskPeriodDayComboBox.TabIndex = 31;
             // 
-            // comboBox2
+            // taskPeriodMonthComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.taskPeriodMonthComboBox.FormattingEnabled = true;
+            this.taskPeriodMonthComboBox.Items.AddRange(new object[] {
             "00",
             "01",
             "02",
@@ -340,15 +340,15 @@
             "29",
             "30",
             "31"});
-            this.comboBox2.Location = new System.Drawing.Point(207, 266);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(52, 24);
-            this.comboBox2.TabIndex = 30;
+            this.taskPeriodMonthComboBox.Location = new System.Drawing.Point(207, 266);
+            this.taskPeriodMonthComboBox.Name = "taskPeriodMonthComboBox";
+            this.taskPeriodMonthComboBox.Size = new System.Drawing.Size(52, 24);
+            this.taskPeriodMonthComboBox.TabIndex = 30;
             // 
-            // comboBox1
+            // taskPeriodYearComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.taskPeriodYearComboBox.FormattingEnabled = true;
+            this.taskPeriodYearComboBox.Items.AddRange(new object[] {
             "2012",
             "2013",
             "2014",
@@ -368,10 +368,10 @@
             "2028",
             "2029",
             "2030"});
-            this.comboBox1.Location = new System.Drawing.Point(265, 266);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(77, 24);
-            this.comboBox1.TabIndex = 29;
+            this.taskPeriodYearComboBox.Location = new System.Drawing.Point(265, 266);
+            this.taskPeriodYearComboBox.Name = "taskPeriodYearComboBox";
+            this.taskPeriodYearComboBox.Size = new System.Drawing.Size(77, 24);
+            this.taskPeriodYearComboBox.TabIndex = 29;
             // 
             // customsCodeMaskedTextBox
             // 
@@ -387,16 +387,36 @@
             this.docNumberIndicatorMaskedTextBox.Size = new System.Drawing.Size(100, 22);
             this.docNumberIndicatorMaskedTextBox.TabIndex = 27;
             // 
-            // maskedTextBox8
-            // 
-            this.maskedTextBox8.Location = new System.Drawing.Point(545, 304);
-            this.maskedTextBox8.Name = "maskedTextBox8";
-            this.maskedTextBox8.Size = new System.Drawing.Size(100, 22);
-            this.maskedTextBox8.TabIndex = 28;
-            // 
             // payBaseComboBox
             // 
             this.payBaseComboBox.FormattingEnabled = true;
+            this.payBaseComboBox.Items.AddRange(new object[] {
+            "0 - Не указывать основание платежа",
+            "ТП - платежи текущего года",
+            "ЗД - добровольное погашение задолжности по истекшим налоговым периодам при отсутс" +
+                "твии требования об уплате..",
+            "БФ - текущие платежи физических лиц - клиентов банка (владельцев счета), уплачива" +
+                "емые со своего банковского счета",
+            "ТР - погашение задолжности по требованию налоговго органа об уплате налогов (сбор" +
+                "ов)",
+            "РС - погашение рассроченой задолжности",
+            "ОТ - погашение отсроченной задолжности",
+            "РТ - погашение реструктурированной задолжности",
+            "ПБ - погашение должником задолжности в ходе процедур, применяемым в деле о банкро" +
+                "тстве",
+            "ПР - погашение задолжности, приостановленной к взысканию",
+            "АП - погашение задолжности по акту проверки",
+            "АР - погашение задолжности по исполнительному документу",
+            "ИН - погашение инвестиционного налогового кредита",
+            "ТЛ - погашение учредителем (учасником) должника, собственником имущества должника" +
+                " - унитарного предприятия или...",
+            "ЗТ - погашение текущей задолжности в ходе процедур, применяемых в деле о банкротс" +
+                "тве",
+            "ДЕ - таможенная декларация",
+            "ПО - таможенный приходный ордер",
+            "КТ - корректировка таможенной стоимости и таможенных платежей или корректировка д" +
+                "екларации на товары",
+            "ИД - исполнительный документ"});
             this.payBaseComboBox.Location = new System.Drawing.Point(179, 231);
             this.payBaseComboBox.Name = "payBaseComboBox";
             this.payBaseComboBox.Size = new System.Drawing.Size(163, 24);
@@ -831,6 +851,13 @@
             this.label35.TabIndex = 35;
             this.label35.Text = "Получатель";
             // 
+            // DateIndicatorDateTimePicker
+            // 
+            this.DateIndicatorDateTimePicker.Location = new System.Drawing.Point(545, 309);
+            this.DateIndicatorDateTimePicker.Name = "DateIndicatorDateTimePicker";
+            this.DateIndicatorDateTimePicker.Size = new System.Drawing.Size(100, 22);
+            this.DateIndicatorDateTimePicker.TabIndex = 41;
+            // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -898,7 +925,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MaskedTextBox customsCodeMaskedTextBox;
         private System.Windows.Forms.MaskedTextBox docNumberIndicatorMaskedTextBox;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox8;
         private System.Windows.Forms.ComboBox payBaseComboBox;
         private System.Windows.Forms.MaskedTextBox oktmoMaskedTextBox;
         private System.Windows.Forms.MaskedTextBox kbkMaskedTextBox;
@@ -916,9 +942,9 @@
         private System.Windows.Forms.ComboBox PayQueueComboBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox taskPeriodDayComboBox;
+        private System.Windows.Forms.ComboBox taskPeriodMonthComboBox;
+        private System.Windows.Forms.ComboBox taskPeriodYearComboBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label senderBankLocationLabel;
@@ -945,5 +971,6 @@
         private System.Windows.Forms.ComboBox addresseeAccComboBox;
         private System.Windows.Forms.ComboBox addresseeNameComboBox;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.DateTimePicker DateIndicatorDateTimePicker;
     }
 }

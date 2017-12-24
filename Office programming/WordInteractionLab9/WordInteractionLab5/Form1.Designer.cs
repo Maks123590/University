@@ -71,6 +71,7 @@
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(443, 251);
             this.dataGridView.TabIndex = 5;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // firstNameDataGridViewTextBoxColumn
             // 

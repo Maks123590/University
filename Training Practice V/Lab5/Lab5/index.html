@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script> var exports = {}; </script>
+    
+    <script src="out/TypeScriptCode/InnerElem.js"></script>
+    <script src="out/TypeScriptCode/Block.js"></script>
+    <script src="out/TypeScriptCode/Enums.js"></script>
+    <script src="out/TypeScriptCode/Footer.js"></script>
+    <script src="out/TypeScriptCode/Header.js"></script>
+    <script src="out/TypeScriptCode/Main.js"></script>
+    <script src="out/TypeScriptCode/Menu.js"></script>
+    <script src="out/TypeScriptCode/Preview.js"></script>
+
+    <script src="out/app.js"></script>
+</head>
+<body>
+    <div class="builder">
+        <div class="settings-window">
+            <div class="layout-type">
+                <span>Layout Type</span>
+                        <select name="layout-type-select" id="layout-type-select">
+                            <option value="flexible">flexible</option>
+                            <option value="fixed">fixed</option>
+                        </select>
+            </div>
+            <div class="layout-size">
+                <div>
+                    <label for="layout-width">Width</label>
+                    <input type="number" name="layout-width" id="layout-width" class="input-number" value="100">
+                </div>
+                <div>
+                    <label for="layout-height">Height</label>
+                    <input type="number" name="layout-height" id="layout-height" class="input-number" value="100">
+                </div>
+            </div>
+            <div>
+                <label for="layout-color">Color</label>
+                <input type="color" name="layout-color" id="layout-color" value="#eeeeee">
+            </div>
+        </div>
+        <div class="settings-window">
+            <div class="header-settings">
+                <div>
+                    <label for="header-settings-check">header</label>
+                    <input type="checkbox" name="header-settings-check" id="header-settings-check">
+                </div>
+                <div>
+                    <label for="header-height">Height</label>
+                    <input type="number" name="header-height" id="header-height" class="input-number" value="10">
+                </div>
+                <div>
+                    <label for="header-color">Color</label>
+                    <input type="color" name="header-color" id="header-color" value="#06799F">
+                </div>
+                <div class="h1-settings">
+                    <div>
+                        <div>
+                            <label for="h1-check">h1</label>
+                            <input type="checkbox" id="h1-check">
+                        </div>
+                        <div>
+                            <label for="h1-size">h1 size</label>
+                            <input type="number" id="h1-size" class="input-number" value="32">
+                        </div>
+                        <div>
+                            <label for="h1-text">text</label>
+                            <input type="text" id="h1-text" value="Заголовок H1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-settings">
+                <div>
+                    <label for="footer-settings-check">footer</label>
+                    <input type="checkbox" name="footer-settings-check" id="footer-settings-check" class="input-number">
+                </div>
+                <div>
+                    <label for="footer-height">Height</label>
+                    <input type="number" name="footer-height" id="footer-height" class="input-number" value="10">
+                </div>
+                <div>
+                    <label for="footer-color">Color</label>
+                    <input type="color" name="footer-color" id="footer-color" value="#C50080">
+                </div>
+            </div>
+            <div class="main-settings">
+                <!--<div>
+                    <label for="main-height">Height</label>
+                    <input type="number" name="main-height" id="main-height" class="input-number">
+                </div>-->
+
+                <div>
+                    <label for="leftsidebar-check">Left Sidebar</label>
+                    <input type="checkbox" name="leftsidebar-check" id="leftsidebar-check">
+                    <div>
+                        <label for="leftsidebar-width">Width</label>
+                        <input type="number" name="layout-width" id="leftsidebar-width" class="input-number" value="20">
+                    </div>
+                    <div>
+                        <label for="leftsidebar-color">Color</label>
+                        <input type="color" name="leftsidebar-color" id="leftsidebar-color" value="#C0F400">
+                    </div>
+                </div>
+                <div>
+                    <label for="rightsidebar-check">Right Sidebar</label>
+                    <input type="checkbox" name="rightsidebar-check" id="rightsidebar-check">
+                    <div>
+                        <label for="rightsidebar-width">Width</label>
+                        <input type="number" name="rightsidebar-width" id="rightsidebar-width" class="input-number" value="20">
+                    </div>
+                    <div>
+                        <label for="rightsidebar-color">Color</label>
+                        <input type="color" name="rightsidebar-color" id="rightsidebar-color" value="#C0F400">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-settings">
+                <div>
+                    <label for="menu-settings-check">menu</label>
+                    <input type="checkbox" name="menu-settings-check" id="menu-settings-check">
+                </div>
+                <div>
+                    <label for="menu-height">Height</label>
+                    <input type="number" name="menu-height" id="menu-height" class="input-number" value ="5">
+                </div>
+                <div>
+                    <label for="menu-type">Menu type</label>
+                    <select name="menu-type" id="menu-type">
+                        <option value="horizontal">horizontal</option>
+                        <option value="vertical">vertical</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="menu-items-count">Items count</label>
+                    <input type="number" name="menu-items-count" id="menu-items-count" class="input-number" value="5">
+                </div>
+                <div>
+                    <label for="menu-color">Color</label>
+                    <input type="color" name="menu-color" id="menu-color" value="#cceedd">
+                </div>
+            </div>
+        </div>
+        <div class="control-button-panel">
+            <button class="clear-button">Clear</button>
+            <a href="#" class="save-button"><button>Save</button></a>
+        </div>
+    </div>
+    <div class="preview-window">
+    </div>
+</body>
+</html>

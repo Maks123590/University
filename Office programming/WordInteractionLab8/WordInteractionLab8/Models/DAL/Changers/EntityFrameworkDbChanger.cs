@@ -80,7 +80,9 @@
                 payment.PayerAccountId = paymentOrder.PayerAccountId;
                 payment.PayerId = paymentOrder.PayerId;
                 payment.Status = paymentOrder.Status;
-                payment.TaxPeriodIndicator = payment.TaxPeriodIndicator;
+                payment.TaxPeriodIndicatorDay = payment.TaxPeriodIndicatorDay;
+                payment.TaxPeriodIndicatorMonth = payment.TaxPeriodIndicatorMonth;
+                payment.TaxPeriodIndicatorYear = payment.TaxPeriodIndicatorYear;
                 payment.Address = paymentOrder.Address;
                 payment.Basis = paymentOrder.Basis;
                 payment.Rub = paymentOrder.Rub;

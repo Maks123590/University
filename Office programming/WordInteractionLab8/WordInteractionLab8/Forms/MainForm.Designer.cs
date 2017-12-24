@@ -33,6 +33,12 @@
             this.PaymentsPage = new System.Windows.Forms.TabPage();
             this.showAdvancedCheckBox = new System.Windows.Forms.CheckBox();
             this.previewPaymentPanel = new System.Windows.Forms.Panel();
+            this.dateIndicatorLabel = new System.Windows.Forms.Label();
+            this.PeriodIndicatorLabel = new System.Windows.Forms.Label();
+            this.PayBaseLabel = new System.Windows.Forms.Label();
+            this.OKTMOLabel = new System.Windows.Forms.Label();
+            this.kbkLabel = new System.Windows.Forms.Label();
+            this.payerStatusLabel = new System.Windows.Forms.Label();
             this.payeeCurrAccLabel = new System.Windows.Forms.Label();
             this.payAnountWordsLabel = new System.Windows.Forms.Label();
             this.payTypeLabel = new System.Windows.Forms.Label();
@@ -152,11 +158,18 @@
             this.showAdvancedCheckBox.TabIndex = 11;
             this.showAdvancedCheckBox.Text = "Показать дополнительные поля";
             this.showAdvancedCheckBox.UseVisualStyleBackColor = true;
+            this.showAdvancedCheckBox.CheckedChanged += new System.EventHandler(this.ShowAdvancedCheckBoxCheckedChanged);
             // 
             // previewPaymentPanel
             // 
             this.previewPaymentPanel.BackgroundImage = global::WordInteractionLab8.Properties.Resources.bgPayment2;
             this.previewPaymentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.previewPaymentPanel.Controls.Add(this.dateIndicatorLabel);
+            this.previewPaymentPanel.Controls.Add(this.PeriodIndicatorLabel);
+            this.previewPaymentPanel.Controls.Add(this.PayBaseLabel);
+            this.previewPaymentPanel.Controls.Add(this.OKTMOLabel);
+            this.previewPaymentPanel.Controls.Add(this.kbkLabel);
+            this.previewPaymentPanel.Controls.Add(this.payerStatusLabel);
             this.previewPaymentPanel.Controls.Add(this.payeeCurrAccLabel);
             this.previewPaymentPanel.Controls.Add(this.payAnountWordsLabel);
             this.previewPaymentPanel.Controls.Add(this.payTypeLabel);
@@ -184,6 +197,66 @@
             this.previewPaymentPanel.Size = new System.Drawing.Size(640, 659);
             this.previewPaymentPanel.TabIndex = 10;
             this.previewPaymentPanel.Visible = false;
+            // 
+            // dateIndicatorLabel
+            // 
+            this.dateIndicatorLabel.AutoSize = true;
+            this.dateIndicatorLabel.Location = new System.Drawing.Point(486, 541);
+            this.dateIndicatorLabel.Name = "dateIndicatorLabel";
+            this.dateIndicatorLabel.Size = new System.Drawing.Size(32, 17);
+            this.dateIndicatorLabel.TabIndex = 38;
+            this.dateIndicatorLabel.Text = "109";
+            this.dateIndicatorLabel.Visible = false;
+            // 
+            // PeriodIndicatorLabel
+            // 
+            this.PeriodIndicatorLabel.AutoSize = true;
+            this.PeriodIndicatorLabel.Location = new System.Drawing.Point(288, 541);
+            this.PeriodIndicatorLabel.Name = "PeriodIndicatorLabel";
+            this.PeriodIndicatorLabel.Size = new System.Drawing.Size(32, 17);
+            this.PeriodIndicatorLabel.TabIndex = 37;
+            this.PeriodIndicatorLabel.Text = "107";
+            this.PeriodIndicatorLabel.Visible = false;
+            // 
+            // PayBaseLabel
+            // 
+            this.PayBaseLabel.AutoSize = true;
+            this.PayBaseLabel.Location = new System.Drawing.Point(240, 541);
+            this.PayBaseLabel.Name = "PayBaseLabel";
+            this.PayBaseLabel.Size = new System.Drawing.Size(32, 17);
+            this.PayBaseLabel.TabIndex = 36;
+            this.PayBaseLabel.Text = "106";
+            this.PayBaseLabel.Visible = false;
+            // 
+            // OKTMOLabel
+            // 
+            this.OKTMOLabel.AutoSize = true;
+            this.OKTMOLabel.Location = new System.Drawing.Point(147, 541);
+            this.OKTMOLabel.Name = "OKTMOLabel";
+            this.OKTMOLabel.Size = new System.Drawing.Size(32, 17);
+            this.OKTMOLabel.TabIndex = 35;
+            this.OKTMOLabel.Text = "105";
+            this.OKTMOLabel.Visible = false;
+            // 
+            // kbkLabel
+            // 
+            this.kbkLabel.AutoSize = true;
+            this.kbkLabel.Location = new System.Drawing.Point(51, 541);
+            this.kbkLabel.Name = "kbkLabel";
+            this.kbkLabel.Size = new System.Drawing.Size(32, 17);
+            this.kbkLabel.TabIndex = 34;
+            this.kbkLabel.Text = "104";
+            this.kbkLabel.Visible = false;
+            // 
+            // payerStatusLabel
+            // 
+            this.payerStatusLabel.AutoSize = true;
+            this.payerStatusLabel.Location = new System.Drawing.Point(569, 92);
+            this.payerStatusLabel.Name = "payerStatusLabel";
+            this.payerStatusLabel.Size = new System.Drawing.Size(46, 17);
+            this.payerStatusLabel.TabIndex = 33;
+            this.payerStatusLabel.Text = "label5";
+            this.payerStatusLabel.Visible = false;
             // 
             // payeeCurrAccLabel
             // 
@@ -911,6 +984,12 @@
         private System.Windows.Forms.Label dbDownloadStateMessage;
         private System.Windows.Forms.Label payeeCurrAccLabel;
         private System.Windows.Forms.CheckBox showAdvancedCheckBox;
+        private System.Windows.Forms.Label dateIndicatorLabel;
+        private System.Windows.Forms.Label PeriodIndicatorLabel;
+        private System.Windows.Forms.Label PayBaseLabel;
+        private System.Windows.Forms.Label OKTMOLabel;
+        private System.Windows.Forms.Label kbkLabel;
+        private System.Windows.Forms.Label payerStatusLabel;
     }
 }
 

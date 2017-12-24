@@ -14,6 +14,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WordInteractionLab5
 {
+    using System.Globalization;
+
     public partial class Form1 : Form
     {
         private Excel.Application excelApplication;
@@ -110,13 +112,34 @@ namespace WordInteractionLab5
             workSheet.Cells[1, 3] = "Отчество";
             workSheet.Cells[1, 4] = "Ставка";
 
-            for (int i = 2; i <= this.Users.Length; i++)
+            this.excelApplication.Range["A1", "D1"].Select();
+
+            ((Range)this.excelApplication.Selection).Borders.Weight = 4;
+
+            for (int i = 2; i <= this.Users.Length + 1; i++)
             {
                 workSheet.Cells[i, 1] = Users[i-2].LastName;
                 workSheet.Cells[i, 2] = Users[i-2].FirstName;
                 workSheet.Cells[i, 3] = Users[i-2].MiddleName;
                 workSheet.Cells[i, 4] = Users[i-2].Rate;
             }
+
+
+            workSheet.Cells[this.Users.Length + 2, 1] = "Ставка";
+
+            var rateSumm = 0.0;
+
+            foreach (var user in this.Users)
+            {
+                var rateBool = double.TryParse(user.Rate, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var rate);
+
+                if (rateBool)
+                {
+                    rateSumm += rate;
+                }
+            }
+
+            workSheet.Cells[this.Users.Length + 2, 4] = rateSumm;
         }
 
         private void LoadData()
@@ -169,6 +192,11 @@ namespace WordInteractionLab5
         private void RunExelBtnClick(object sender, EventArgs e)
         {
             this.excelApplication = new Excel.Application();
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
