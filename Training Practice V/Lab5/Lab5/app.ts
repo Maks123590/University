@@ -132,6 +132,7 @@
 
         leftSidebarCheck.addEventListener("change", () => {
             if (leftSidebarCheck.checked) {
+                preview.main.leftSidebar = null;
                 preview.main.leftSidebar = new Block(+leftSidebarWidth.value, null, layType, leftSidebarColor.value);
             } else {
                 preview.main.leftSidebar = null;
@@ -167,10 +168,30 @@
         });
         menuHeight.addEventListener("input", () => {
             if (menuCheck.checked) {
-                let changeCount = Number(menuHeight.value) - preview.menu.width;
 
-                preview.menu.width += changeCount;
-                preview.main.height -= changeCount;
+                let temp : number;
+
+                if (menType === MenuType.Horizontal) {
+                    temp = preview.menu.height;
+                } else {
+                    temp = preview.main.leftSidebar.width;
+                }
+
+                //temp = preview.menu.height;
+
+                let changeCount = Number(menuHeight.value) - temp;
+
+                if (menType === MenuType.Horizontal) {
+                    preview.menu.height += changeCount;
+                } else {
+                    preview.main.leftSidebar.width += changeCount;
+                }
+
+                if (menType === MenuType.Horizontal) {
+                    preview.main.height -= changeCount;
+                } else {
+                    preview.main.width -= changeCount;
+                }
             }
         });
         menuType.addEventListener("change", () => {

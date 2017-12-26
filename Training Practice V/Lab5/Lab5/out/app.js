@@ -109,6 +109,7 @@ var App;
         });
         leftSidebarCheck.addEventListener("change", function () {
             if (leftSidebarCheck.checked) {
+                preview.main.leftSidebar = null;
                 preview.main.leftSidebar = new App.Block(+leftSidebarWidth.value, null, layType, leftSidebarColor.value);
             }
             else {
@@ -142,9 +143,27 @@ var App;
         });
         menuHeight.addEventListener("input", function () {
             if (menuCheck.checked) {
-                var changeCount = Number(menuHeight.value) - preview.menu.width;
-                preview.menu.width += changeCount;
-                preview.main.height -= changeCount;
+                var temp = void 0;
+                if (menType === App.MenuType.Horizontal) {
+                    temp = preview.menu.height;
+                }
+                else {
+                    temp = preview.main.leftSidebar.width;
+                }
+                //temp = preview.menu.height;
+                var changeCount = Number(menuHeight.value) - temp;
+                if (menType === App.MenuType.Horizontal) {
+                    preview.menu.height += changeCount;
+                }
+                else {
+                    preview.main.leftSidebar.width += changeCount;
+                }
+                if (menType === App.MenuType.Horizontal) {
+                    preview.main.height -= changeCount;
+                }
+                else {
+                    preview.main.width -= changeCount;
+                }
             }
         });
         menuType.addEventListener("change", function () {
