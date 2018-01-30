@@ -15,7 +15,37 @@
                 var marker = new google.maps.Marker({
                     position: myPosition,
                     map: map,
-                    title: 'Hello World!'
+                    title: ''
                     });
+
+
+                    ymaps.ready(init);
+                    function init() {
+                        var geolocation = ymaps.geolocation,
+                            myMap = new ymaps.Map('map', {
+                                center: [position.coords.latitude, position.coords.longitude], 
+                                zoom: 7
+                            }, {
+                                searchControlProvider: 'yandex#search'
+                            });
+                
+                
+                        geolocation.get({
+                            provider: 'browser',
+                            mapStateAutoApply: false
+                        }).then(function (result) {
+                           
+                            result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
+                            myMap.geoObjects.add(result.geoObjects);
+                        });
+                        
+                        
+                    }  
+
+                    
     });
+
+
+    
+
 }());
