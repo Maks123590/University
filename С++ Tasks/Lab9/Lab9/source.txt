@@ -1,0 +1,15 @@
+Bread 10 20.00
+Beer 20 55.50
+Sausage 37 85.40
+Stew 42 102.50
+Bacon 4 67.30
+Jam 15 45.70
+Cucumber 11 17.50
+Pepper 20 35.90
+Potatoes 12 12.60
+Vodka 4 115.80
+BMW 4 2200000.00
+apartment 4 4000000.00
+garage 4 1000000.00
+helicopter 4 27000000.00
+House 4 7000000.00
