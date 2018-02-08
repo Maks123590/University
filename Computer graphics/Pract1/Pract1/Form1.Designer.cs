@@ -30,7 +30,7 @@
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.clearPolygon = new System.Windows.Forms.Button();
-            this.drawButton = new System.Windows.Forms.Button();
+            this.drawPolygonButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.pointRadioButton = new System.Windows.Forms.RadioButton();
@@ -59,15 +59,15 @@
             this.clearPolygon.UseVisualStyleBackColor = true;
             this.clearPolygon.Click += new System.EventHandler(this.ClearPolygonClick);
             // 
-            // drawButton
+            // drawPolygonButton
             // 
-            this.drawButton.Location = new System.Drawing.Point(308, 439);
-            this.drawButton.Name = "drawButton";
-            this.drawButton.Size = new System.Drawing.Size(113, 32);
-            this.drawButton.TabIndex = 2;
-            this.drawButton.Text = "Draw";
-            this.drawButton.UseVisualStyleBackColor = true;
-            this.drawButton.Click += new System.EventHandler(this.DrawPolygonButtonClick);
+            this.drawPolygonButton.Location = new System.Drawing.Point(308, 439);
+            this.drawPolygonButton.Name = "drawPolygonButton";
+            this.drawPolygonButton.Size = new System.Drawing.Size(113, 32);
+            this.drawPolygonButton.TabIndex = 2;
+            this.drawPolygonButton.Text = "Draw Polygon";
+            this.drawPolygonButton.UseVisualStyleBackColor = true;
+            this.drawPolygonButton.Click += new System.EventHandler(this.DrawPolygonButtonClick);
             // 
             // groupBox1
             // 
@@ -117,23 +117,23 @@
             this.stateLabel.AutoSize = true;
             this.stateLabel.Location = new System.Drawing.Point(539, 403);
             this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(46, 17);
+            this.stateLabel.Size = new System.Drawing.Size(40, 17);
             this.stateLabel.TabIndex = 5;
-            this.stateLabel.Text = "label2";
+            this.stateLabel.Text = "none";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1099, 537);
+            this.ClientSize = new System.Drawing.Size(685, 537);
             this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.drawButton);
+            this.Controls.Add(this.drawPolygonButton);
             this.Controls.Add(this.clearPolygon);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Ray Tracing Method";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -146,7 +146,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button clearPolygon;
-        private System.Windows.Forms.Button drawButton;
+        private System.Windows.Forms.Button drawPolygonButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton pointRadioButton;

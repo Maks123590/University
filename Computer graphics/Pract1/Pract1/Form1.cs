@@ -13,9 +13,7 @@
 
         private readonly List<PointF> points;
 
-        private readonly PointF targetPoint;
-
-        private Point lastPoint;
+        private PointF targetPoint;
 
         public Form1()
         {
@@ -47,38 +45,92 @@
         private void PictureBoxMouseDown(object sender, MouseEventArgs e)
         {
 
-            this.graphics.FillEllipse(Brushes.Red, e.X, e.Y, 6, 6);
+            if (this.pointRadioButton.Checked)
+            {
+                this.ClearMap();
 
-            this.points.Add(e.Location);
+                this.DrawTargetPoint(e.Location);
+
+                this.targetPoint = e.Location;
+
+                this.DrawPolygon();
+
+                if (this.points.Count > 0)
+                {
+                    this.IsIntoPotygon(this.points, this.targetPoint);
+                }
+                
+            }
+            else
+            {
+                this.DrawPolygonPoint(e.Location);
+
+                this.points.Add(e.Location);
+            }
+
+        }
+
+        private void DrawTargetPoint(PointF location)
+        {
+            this.graphics.FillEllipse(Brushes.Green, location.X - 5, location.Y - 5, 10, 10);
+
+            this.pictureBox.Invalidate();
+        }
+
+        private void DrawPolygonPoint(PointF location)
+        {
+            this.graphics.FillEllipse(Brushes.Red, location.X, location.Y, 6, 6);
 
             this.pictureBox.Invalidate();
         }
 
         private void DrawPolygonButtonClick(object sender, EventArgs e)
         {
-            if (this.points.Count > 2)
-            {
-                this.graphics.DrawPolygon(new Pen(Color.BlueViolet), this.points.ToArray());
-
-                this.pictureBox.Invalidate();
-            } 
+            this.DrawPolygon();
         }
 
-        private bool IsIntoPotygon(IReadOnlyList<PointF> points, PointF targetPoint)
+        private void DrawPolygon()
         {
-            var ray = this.GetRay(points, targetPoint);
+            foreach (var point in this.points)
+            {
+                this.DrawPolygonPoint(point);
+            }
 
-            return this.RayTracing(points, ray.Item1, ray.Item2);
+            if (this.points.Count > 2)
+            {
+                this.graphics.DrawPolygon(new Pen(Color.BlueViolet, 2), this.points.ToArray());
+
+                this.pictureBox.Invalidate();
+            }
+        }
+
+        private void DrawRay(Tuple<PointF, PointF> rayPoints)
+        {
+            this.graphics.DrawLine(new Pen(Color.DarkBlue, 2), rayPoints.Item1, rayPoints.Item2);
+        }
+
+        private void IsIntoPotygon(IReadOnlyList<PointF> polygonPoints, PointF targetPoint)
+        {
+            var ray = this.GetRay(polygonPoints, targetPoint);
+
+            this.DrawRay(ray);
+
+            this.stateLabel.Text = this.RayTracing(polygonPoints, ray.Item1, ray.Item2, targetPoint) ? "Внутри" : "Снаружи";
         }
 
         private Tuple<PointF, PointF> GetRay(IReadOnlyList<PointF> points, PointF targetPoint)
         {
-            const float AdditionalRange = 10;
+            //const float AdditionalRange = 30;
 
+            //var minX = points.Min(p => p.X);
 
-            var minX = points.Min(p => p.X);
+            //var maxX = points.Max(p => p.X);
 
-            var maxX = points.Max(p => p.X);
+            const float AdditionalRange = 0;
+
+            var minX = 0;
+
+            var maxX = this.pictureBox.Width;
 
             var y = targetPoint.Y;
 
@@ -86,20 +138,38 @@
 
         }
 
-        private bool RayTracing(IReadOnlyList<PointF> points, PointF rayBeg, PointF rayEnd)
+        private bool RayTracing(IReadOnlyList<PointF> points, PointF rayBeg, PointF rayEnd, PointF targetPoint)
         {
             // RayTracing
-            var intersectionsCount = 0;
+
+
+            var intersectionsCountLeft = 0;
+            var intersectionsCountRight = 0;
 
             for (var i = 1; i < points.Count; i++)
             {
-                if (this.IsIntersect(points[i - 1], points[i], rayBeg, rayEnd))
+                if (this.IsIntersect(points[i - 1], points[i], rayBeg, targetPoint))
                 {
-                    intersectionsCount++;
+                    intersectionsCountLeft++;
+                }
+
+                if (this.IsIntersect(points[i - 1], points[i], targetPoint, rayEnd))
+                {
+                    intersectionsCountRight++;
                 }
             }
 
-            return intersectionsCount % 2 == 0;
+            if (this.IsIntersect(points[points.Count - 1], points[0], rayBeg, targetPoint))
+            {
+                intersectionsCountLeft++;
+            }
+
+            if (this.IsIntersect(points[points.Count - 1], points[0], targetPoint, rayEnd))
+            {
+                intersectionsCountRight++;
+            }
+
+            return (intersectionsCountLeft % 2 != 0) && (intersectionsCountRight % 2 != 0);
         }
 
         private bool IsIntersect(PointF aBeg, PointF aEnd, PointF bBeg, PointF bEnd)
