@@ -1,6 +1,6 @@
 ﻿namespace Lab1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.drawFraphicButton = new System.Windows.Forms.Button();
             this.aTextBox = new System.Windows.Forms.TextBox();
             this.bTextBox = new System.Windows.Forms.TextBox();
@@ -38,21 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.xBeginTextBox = new System.Windows.Forms.TextBox();
             this.xEndTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.gridField = new Lab1.GridField();
             this.SuspendLayout();
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(813, 438);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.PictureBoxClick);
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            this.pictureBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.PictureBoxMouseWhell);
             // 
             // drawFraphicButton
             // 
@@ -62,6 +48,7 @@
             this.drawFraphicButton.TabIndex = 1;
             this.drawFraphicButton.Text = "Draw Graphics";
             this.drawFraphicButton.UseVisualStyleBackColor = true;
+            this.drawFraphicButton.Click += new System.EventHandler(this.DrawFraphicButtonClick);
             // 
             // aTextBox
             // 
@@ -69,6 +56,7 @@
             this.aTextBox.Name = "aTextBox";
             this.aTextBox.Size = new System.Drawing.Size(100, 22);
             this.aTextBox.TabIndex = 2;
+            this.aTextBox.Text = "5";
             // 
             // bTextBox
             // 
@@ -76,6 +64,7 @@
             this.bTextBox.Name = "bTextBox";
             this.bTextBox.Size = new System.Drawing.Size(100, 22);
             this.bTextBox.TabIndex = 3;
+            this.bTextBox.Text = "6";
             // 
             // aLabel
             // 
@@ -119,6 +108,7 @@
             this.xBeginTextBox.Name = "xBeginTextBox";
             this.xBeginTextBox.Size = new System.Drawing.Size(100, 22);
             this.xBeginTextBox.TabIndex = 8;
+            this.xBeginTextBox.Text = "0";
             // 
             // xEndTextBox
             // 
@@ -126,12 +116,22 @@
             this.xEndTextBox.Name = "xEndTextBox";
             this.xEndTextBox.Size = new System.Drawing.Size(100, 22);
             this.xEndTextBox.TabIndex = 9;
+            this.xEndTextBox.Text = "6.14";
             // 
-            // Form1
+            // gridField
+            // 
+            //this.gridField.Funct = null;
+            this.gridField.Location = new System.Drawing.Point(8, 12);
+            this.gridField.Name = "gridField";
+            this.gridField.Size = new System.Drawing.Size(817, 442);
+            this.gridField.TabIndex = 10;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 551);
+            this.ClientSize = new System.Drawing.Size(843, 551);
+            this.Controls.Add(this.gridField);
             this.Controls.Add(this.xEndTextBox);
             this.Controls.Add(this.xBeginTextBox);
             this.Controls.Add(this.label2);
@@ -141,18 +141,15 @@
             this.Controls.Add(this.bTextBox);
             this.Controls.Add(this.aTextBox);
             this.Controls.Add(this.drawFraphicButton);
-            this.Controls.Add(this.pictureBox);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "MainForm";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button drawFraphicButton;
         private System.Windows.Forms.TextBox aTextBox;
         private System.Windows.Forms.TextBox bTextBox;
@@ -162,6 +159,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox xBeginTextBox;
         private System.Windows.Forms.TextBox xEndTextBox;
+        private GridField gridField;
     }
 }
 
