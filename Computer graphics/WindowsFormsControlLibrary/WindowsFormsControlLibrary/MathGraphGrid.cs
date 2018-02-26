@@ -1,12 +1,23 @@
-﻿namespace Lab1
+﻿namespace WindowsFormsControlLibrary
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
 
-    public partial class GridField : UserControl
+    public partial class MathGraphGrid : PictureBox
     {
+        public MathGraphGrid()
+        {
+            this.InitializeComponent();
+
+            this.Image = new Bitmap(this.Width, this.Height);
+
+            this.DrawGrid(this.Image, this.CellSize);
+        }
+
+        private List<IDrawableObject> functions = new List<IDrawableObject>();
+
         private const int CellSizeMaxLimit = 200;
 
         private const int CellSizeMinLimit = 5;
@@ -17,47 +28,9 @@
         private int mouseX = Cursor.Position.X;
         private int mouseY = Cursor.Position.Y;
 
-        private int mouseXOffset = 0;
+        public int mouseXOffset = 0;
 
-        private int mouseYOffset = 0;
-
-        private Func<double, double, double, PointF> funct;
-
-        public double a;
-
-        public double b;
-
-        public double fiBegin;
-
-        public double fiEnd;
-
-        public Func<double, double, double, PointF> Funct
-        {
-            get => this.funct;
-            set
-            {
-                this.funct = value;
-
-                this.DrawGrid(this.pictureBox.Image, this.cellSize, this.mouseXOffset, this.mouseYOffset);
-
-                if (this.funct != null)
-                {
-                    this.DrawGraphic(this.pictureBox.Image, this.GetCenterPoint(this.pictureBox.Image, this.mouseXOffset, this.mouseYOffset), Color.Red, this.CellSize, this.funct);
-                }
-                
-
-                this.pictureBox.Invalidate();
-            }
-        }
-
-        public GridField()
-        {
-            this.InitializeComponent();
-
-            this.pictureBox.Image = new Bitmap(this.pictureBox.Width, this.pictureBox.Height);
-
-            this.DrawGrid(this.pictureBox.Image, this.CellSize);
-        }
+        public int mouseYOffset = 0;
 
         private int CellSize
         {
@@ -73,17 +46,36 @@
                 }
 
                 this.cellSize = temp;
-                this.DrawGrid(this.pictureBox.Image, this.cellSize, this.mouseXOffset, this.mouseYOffset);
+                this.DrawGrid(this.Image, this.cellSize, this.mouseXOffset, this.mouseYOffset);
 
-                if (this.funct != null)
+                if (this.functions.Count > 0)
                 {
-                    this.DrawGraphic(this.pictureBox.Image, this.GetCenterPoint(this.pictureBox.Image, this.mouseXOffset, this.mouseYOffset), Color.Red, this.CellSize, this.funct);
+                    foreach (var graph in this.functions)
+                    {
+                        graph.DrawGraphic(this.Image, this.GetCenterPoint(this.Image, this.mouseXOffset, this.mouseYOffset), this.cellSize);
+                    }
                 }
-                
 
-
-                this.pictureBox.Invalidate();
+                this.Invalidate();
             }
+        }
+
+        public void AddGraphic(IDrawableObject graph)
+        {
+            this.functions.Add(graph);
+
+            graph.DrawGraphic(this.Image, this.GetCenterPoint(this.Image, this.mouseXOffset, this.mouseYOffset), this.cellSize);
+
+            this.Invalidate();
+        }
+
+        public void RemoveAllGrapgics()
+        {
+            this.functions.Clear();
+
+            this.DrawGrid(this.Image, this.cellSize, this.mouseXOffset, this.mouseYOffset);
+
+            this.Invalidate();
         }
 
         private void DrawGrid(Image image, int cellSize, int offsetX = 0, int offsetY = 0)
@@ -142,13 +134,6 @@
             {
                 graphics.DrawLine(new Pen(cellColor, cellPenSize), 0, centerPoint.Y + i, image.Width, centerPoint.Y + i);
             }
-        }
-
-        private Point GetCenterPoint(Image image, int offsetX, int offsetY)
-        {
-            var centerPoint = new Point((image.Width / 2) + offsetX, (image.Height / 2) + offsetY);
-
-            return centerPoint;
         }
 
         private void DrawMarkup(Image image, Point centerPoint, Brush digitBrush, int cellSize)
@@ -218,77 +203,65 @@
             }
         }
 
-        private void DrawGraphic(Image image, PointF centerPoint, Color graphicColor, int cellSize, Func<double, double, double, PointF> func)
+        //private void DrawGraphic(Image image, PointF centerPoint, int cellSize, ParametricallyMathGraphic graphic)
+        //{
+        //    var graphics = Graphics.FromImage(image);
+
+        //    var points = new List<PointF>();
+
+        //    const double Step = 0.01;
+
+        //    for (var i = graphic.FiBegin; i <= graphic.FiEnd; i += Step)
+        //    {
+        //        var point = graphic.Funct(graphic.a, graphic.b, i);
+
+        //        point = CoordinateConverter.DecartToScreen(point, centerPoint, cellSize);
+
+        //        points.Add(point);
+        //    }
+
+        //    graphics.DrawLines(graphic.Pen, points.ToArray());
+        //}
+
+
+        private Point GetCenterPoint(Image image, int offsetX, int offsetY)
         {
-            var graphics = Graphics.FromImage(image);
+            var centerPoint = new Point((image.Width / 2) + offsetX, (image.Height / 2) + offsetY);
 
-            var points = new List<PointF>();
-
-            const double Step = 0.01;
-
-            for (var i = this.fiBegin; i <= this.fiEnd; i += Step)
-            {
-                var point = func(this.a, this.b, i);
-
-                point = this.DecartToScreen(point, centerPoint, cellSize);
-
-                points.Add(point);
-            }
-
-            graphics.DrawLines(new Pen(graphicColor), points.ToArray());
+            return centerPoint;
         }
 
-        private PointF DecartToScreen(PointF decPoint, PointF centerPoint, int cellSize)
+
+        private void ThisClick(object sender, EventArgs e)
         {
-            var x = (int)(centerPoint.X + (decPoint.X * cellSize));
-
-            var y = (int)(centerPoint.Y - (decPoint.Y * cellSize));
-
-            return new PointF(x, y);
-
-            //xэ := x0 + round(xд*dd);
-            //yэ := y0 - round(yд* dd);
+            this.Focus();
         }
 
-        private void PictureBoxMouseWhell(object sender, MouseEventArgs e)
-        {
-            if (e.Delta > 0)
-            {
-                this.CellSize += e.Delta / 20;
-            }
-            else
-            {
-                this.CellSize += e.Delta / 20;
-            }
-        }
-
-        private void PictureBoxClick(object sender, EventArgs e)
-        {
-            this.pictureBox.Focus();
-        }
-
-        private void PictureBoxMouseDown(object sender, MouseEventArgs e)
+        private void ThisMouseDown(object sender, MouseEventArgs e)
         {
             this.movable = true;
             this.mouseX = Cursor.Position.X;
             this.mouseY = Cursor.Position.Y;
         }
 
-        private void PictureBoxMouseMove(object sender, MouseEventArgs e)
+        private void ThisMouseMove(object sender, MouseEventArgs e)
         {
             if (this.movable)
             {
                 this.mouseXOffset += Cursor.Position.X - this.mouseX;
                 this.mouseYOffset += Cursor.Position.Y - this.mouseY;
 
-                this.DrawGrid(this.pictureBox.Image, this.CellSize, this.mouseXOffset, this.mouseYOffset);
+                this.DrawGrid(this.Image, this.CellSize, this.mouseXOffset, this.mouseYOffset);
 
-                if (this.funct != null)
+                if (this.functions.Count > 0)
                 {
-                    this.DrawGraphic(this.pictureBox.Image, this.GetCenterPoint(this.pictureBox.Image, this.mouseXOffset, this.mouseYOffset), Color.Red, this.CellSize, this.funct);
+                    foreach (var graph in this.functions)
+                    {
+                        graph.DrawGraphic(this.Image, this.GetCenterPoint(this.Image, this.mouseXOffset, this.mouseYOffset), this.cellSize);
+                    }
                 }
 
-                this.pictureBox.Invalidate();
+                this.Invalidate();
 
                 this.mouseX = Cursor.Position.X;
                 this.mouseY = Cursor.Position.Y;
@@ -296,9 +269,36 @@
             }
         }
 
-        private void PictureBoxMouseUp(object sender, MouseEventArgs e)
+        private void ThisMouseUp(object sender, MouseEventArgs e)
         {
             this.movable = false;
+        }
+
+        private void ThisMouseWhell(object sender, MouseEventArgs e)
+        {
+            this.CellSize += e.Delta / 20;
+        }
+
+        private void OnSizeChanged(object sender, EventArgs eventArgs)
+        {
+            this.mouseXOffset = 0;
+            this.mouseYOffset = 0;
+
+            this.DrawGrid(this.Image, this.CellSize);
+
+            //var g = Graphics.FromImage(this.Image);
+
+            //g.DrawLine(new Pen(Color.Red, 4), new PointF(5, 5), new PointF(15, 15));
+
+            if (this.functions.Count > 0)
+            {
+                foreach (var graph in this.functions)
+                {
+                    graph.DrawGraphic(this.Image, this.GetCenterPoint(this.Image, this.mouseXOffset, this.mouseYOffset), this.cellSize);
+                }
+            }
+
+            this.Invalidate();
         }
     }
 }

@@ -25,9 +25,7 @@
             this.gridField.fiBegin = double.Parse(this.xBeginTextBox.Text, CultureInfo.InvariantCulture);
             this.gridField.fiEnd = double.Parse(this.xEndTextBox.Text, CultureInfo.InvariantCulture);
 
-            //this.gridField.Funct = this.Circle;
-
-            this.gridField.Funct = GetGraphicPoints;
+            this.gridField.Funct = this.GetGraphicPoints;
         }
 
         private PointF GetGraphicPoints(double a, double b, double fi)
@@ -49,6 +47,15 @@
             var y = r * Math.Sin(fi);
 
             return new PointF((float)x, (float)y);
+        }
+
+        private PointF var9Funct(double a, double b, double fi)
+        {
+            var x = (a*a - b*b) * Math.Pow(Math.Cos(fi), 3);
+
+            var y = (a * a - b * b) * Math.Pow(Math.Sin(fi), 3);
+
+            return new PointF((float)(x/a), (float)(y/b));
         }
     }
 }

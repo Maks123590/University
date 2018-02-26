@@ -98,9 +98,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(536, 494);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 17);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 7;
-            this.label2.Text = "x: from";
+            this.label2.Text = "t: from";
             // 
             // xBeginTextBox
             // 
@@ -108,7 +108,7 @@
             this.xBeginTextBox.Name = "xBeginTextBox";
             this.xBeginTextBox.Size = new System.Drawing.Size(100, 22);
             this.xBeginTextBox.TabIndex = 8;
-            this.xBeginTextBox.Text = "0";
+            this.xBeginTextBox.Text = "-10";
             // 
             // xEndTextBox
             // 
@@ -116,14 +116,14 @@
             this.xEndTextBox.Name = "xEndTextBox";
             this.xEndTextBox.Size = new System.Drawing.Size(100, 22);
             this.xEndTextBox.TabIndex = 9;
-            this.xEndTextBox.Text = "6.14";
+            this.xEndTextBox.Text = "10";
             // 
             // gridField
             // 
-            //this.gridField.Funct = null;
+            this.gridField.Funct = null;
             this.gridField.Location = new System.Drawing.Point(8, 12);
             this.gridField.Name = "gridField";
-            this.gridField.Size = new System.Drawing.Size(817, 442);
+            this.gridField.Size = new System.Drawing.Size(817, 436);
             this.gridField.TabIndex = 10;
             // 
             // MainForm
