@@ -1,85 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Lab2.models;
 
 namespace Lab2
 {
-    using System.Runtime.CompilerServices;
-
-    using WindowsFormsControlLibrary;
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
 
     public partial class Form1 : Form
     {
-        private MathGraphGrid graphField;
+        private readonly GridField gridField = new GridField();
 
         public Form1()
         {
             InitializeComponent();
 
-            this.graphField = new MathGraphGrid();
-            this.Controls.Add(this.graphField);
+            this.Controls.Add(gridField);
 
-            this.graphField.Top = 15;
-            this.graphField.Left = 15;
+            gridField.Width = this.Width;
+            gridField.Height = (int)(this.Height * 0.6);
 
-            //this.graphField.Width = 628;
-            //this.graphField.Height = 400;
-
-            graphField.Size = new System.Drawing.Size(628, 400);
-        }
-
-        private void RadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            this.graphField.RemoveAllGrapgics();
         }
 
         private void CheckButtonClick(object sender, EventArgs e)
         {
-            //this.graphField.AddGraphic(new ParametricallyMathGraphic(this.GetGraphicPoints, new Pen(Color.Red, 2), 5, 6, -10, 10));
-            //this.graphField.AddGraphic(new ParametricallyMathGraphic(this.Circle, new Pen(Color.Green, 1), 5, 6, -10, 10));
-            //this.graphField.AddGraphic(new ParametricallyMathGraphic(this.var9Funct, new Pen(Color.BlueViolet, 2), 10, 5, -10, 10));
+            var aBegin = new PointF(float.Parse(ax1TextBox.Text), float.Parse(ay1TextBox.Text));
+            var aEnd = new PointF(float.Parse(ax2TextBox.Text), float.Parse(ay2TextBox.Text));
 
-            var segment = new LineSegment(new PointF(1, 1), new PointF(10, 10), new Pen(Color.Green));
+            var bBegin = new PointF(float.Parse(bx1TextBox.Text), float.Parse(by1TextBox.Text));
+            var bEnd = new PointF(float.Parse(bx2TextBox.Text), float.Parse(by2TextBox.Text));
 
-            this.graphField.AddGraphic(segment);
+            gridField.RemoveAllGraphics();
 
-            //graphField.Size = new System.Drawing.Size(555, 400);
+            IGrapgic graphic1;
+            IGrapgic graphic2;
+
+            if (LinesRadioButton.Checked)
+            {
+                graphic1 = new Line(aBegin, aEnd, Color.Green);
+                graphic2 = new Line(bBegin, bEnd, Color.Red);
+            }
+            else if(RaysRadioButton.Checked)
+            {
+                graphic1 = new Ray(aBegin, aEnd, Color.Green);
+                graphic2 = new Ray(bBegin, bEnd, Color.Red);
+            }
+
+            if (graphic1 != null && graphic2 != null)
+            {
+                gridField.AddGraphic(graphic1);
+                gridField.AddGraphic(graphic2);
+            }   
         }
 
-        private PointF GetGraphicPoints(double a, double b, double fi)
+        private bool IsIntersect(Point aBeg, Point aEnd, Point bBeg, Point bEnd)
         {
-            var x = a * fi - b * Math.Sin(fi);
+            var v1 = ((bEnd.X - bBeg.X) * (aBeg.Y - bBeg.Y)) - ((bEnd.Y - bBeg.Y) * (aBeg.X - bBeg.X));
+            var v2 = ((bEnd.X - bBeg.X) * (aEnd.Y - bBeg.Y)) - ((bEnd.Y - bBeg.Y) * (aEnd.X - bBeg.X));
+            var v3 = ((aEnd.X - aBeg.X) * (bBeg.Y - aBeg.Y)) - ((aEnd.Y - aBeg.Y) * (bBeg.X - aBeg.X));
+            var v4 = ((aEnd.X - aBeg.X) * (bEnd.Y - aBeg.Y)) - ((aEnd.Y - aBeg.Y) * (bEnd.X - aBeg.X));
 
-            var y = a - b * Math.Cos(fi);
-
-            return new PointF((float)x, (float)y);
-
-        }
-
-        private PointF Circle(double a, double b, double fi)
-        {
-            var r = 10;
-
-            var x = r * Math.Cos(fi);
-
-            var y = r * Math.Sin(fi);
-
-            return new PointF((float)x, (float)y);
-        }
-
-        private PointF var9Funct(double a, double b, double fi)
-        {
-            var x = (a * a - b * b) * Math.Pow(Math.Cos(fi), 3);
-
-            var y = (a * a - b * b) * Math.Pow(Math.Sin(fi), 3);
-
-            return new PointF((float)(x / a), (float)(y / b));
+            return (v1 * v2 < 0) && (v3 * v4 < 0);
         }
     }
 }
