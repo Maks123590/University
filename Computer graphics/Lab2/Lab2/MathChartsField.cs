@@ -11,6 +11,8 @@
 
         private const int CellSizeMinLimit = 5;
 
+        const double Step = 0.01;
+
         private int cellSize = 20;
 
         private bool movable = false;
@@ -228,7 +230,7 @@
             {
                 var points = new List<PointF>();
 
-                const double Step = 0.01;
+                
 
                 for (var i = begin; i <= end; i += Step)
                 {
@@ -243,6 +245,11 @@
                     point = this.DecartToScreen(point.Value, centerPoint, cellSize);
 
                     points.Add(point.Value);
+                }
+
+                if (points.Count <= 1)
+                {
+                    return;
                 }
 
                 graphics.DrawLines(new Pen(graphic.Color), points.ToArray());

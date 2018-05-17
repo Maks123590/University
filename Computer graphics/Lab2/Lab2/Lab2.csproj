@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="models\Line.cs" />
     <Compile Include="models\Ray.cs" />
+    <Compile Include="models\Segment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

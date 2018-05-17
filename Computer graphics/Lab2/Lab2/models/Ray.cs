@@ -22,10 +22,25 @@
         {
             var y = (float) ((a.Y - b.Y) * -i - (a.X * b.Y - b.X * a.Y)) / (b.X - a.X);
 
-            if (i < a.X)
+
+            if (b.X < a.X)
             {
-                return null;
+                if (i > a.X)
+                {
+                    return null;
+                }
             }
+            else
+            {
+                if (i < a.X)
+                {
+                    return null;
+                }
+            }
+
+            
+
+
 
             return new PointF((float)i, y);
         }
