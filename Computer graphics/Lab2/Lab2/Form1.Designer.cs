@@ -166,7 +166,7 @@
             this.bx1TextBox.Name = "bx1TextBox";
             this.bx1TextBox.Size = new System.Drawing.Size(100, 22);
             this.bx1TextBox.TabIndex = 12;
-            this.bx1TextBox.Text = "-1";
+            this.bx1TextBox.Text = "1";
             // 
             // bx2TextBox
             // 
@@ -174,7 +174,7 @@
             this.bx2TextBox.Name = "bx2TextBox";
             this.bx2TextBox.Size = new System.Drawing.Size(100, 22);
             this.bx2TextBox.TabIndex = 13;
-            this.bx2TextBox.Text = "-7";
+            this.bx2TextBox.Text = "2";
             // 
             // label7
             // 
@@ -200,7 +200,7 @@
             this.by2TextBox.Name = "by2TextBox";
             this.by2TextBox.Size = new System.Drawing.Size(100, 22);
             this.by2TextBox.TabIndex = 17;
-            this.by2TextBox.Text = "-7";
+            this.by2TextBox.Text = "0";
             // 
             // label9
             // 
@@ -217,7 +217,7 @@
             this.by1TextBox.Name = "by1TextBox";
             this.by1TextBox.Size = new System.Drawing.Size(100, 22);
             this.by1TextBox.TabIndex = 16;
-            this.by1TextBox.Text = "-1";
+            this.by1TextBox.Text = "1";
             // 
             // label10
             // 

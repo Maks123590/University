@@ -186,7 +186,7 @@ namespace Lab2
                             return true;
                         }
 
-                        if (ScalarMultiple(aBeg, aEnd, aBeg, bBeg) >= 0)
+                        if (ScalarMultiple(aBeg, aEnd, aBeg, bBeg) > 0)
                         {
                             //пересечение отрезок P1P3
 
