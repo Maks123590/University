@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+	<div class="div_in_block"><canvas id="canvasId" width="1000" height="730" onMouseUp="activate()" onMouseDown="activate()"></canvas></div>
+	<div class="add_coord div_in_block">
+		<div>
+			
+			Rectangle:
+			<span class="coord">
+				<input type="text" size="3" value="1" id="bbox1">
+				<input type="text" size="3" value="1" id="bbox3">
+				<input type="text" size="3" value="10" id="bbox2">
+				<input type="text" size="3" value="10" id="bbox4">
+			</span><br><br>
+			Line:
+			<span class="coord">
+				<input type="text" size="3" value="2" id="line1">
+				<input type="text" size="3" value="4" id="line2">
+				<input type="text" size="3" value="9" id="line3">
+				<input type="text" size="3" value="8" id="line4">
+			</span><br><br>
+			Algorithm:
+			<span>
+				<select name="algoritm" id="algoritm">
+					<option value="SC">Sutherland-Cohan algorithm</option>
+					<option value="LB">Liang-Barski algorithm</option>
+				</select>
+			</span><br><br>
+
+			<input type="submit" value="calculate" onclick="Draw();"><br>
+		</div>
+	</div>
+	<script src="scripts/algoritms.js"></script>
+	<script src="scripts/draw.js"></script>
+	<script src="scripts/action.js"></script>
+	</body>
+</html>

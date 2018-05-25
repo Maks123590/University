@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <div class="coord-block">
+        <canvas id="canvas" onclick="getCoords(event)" width="650" height="650"></canvas>
+    </div>
+    
+    <div class="control-block">
+        <form>
+            Формула Эрмита <input type="radio" name="form" value="1" id="rad1" checked=true onclick="Radio(1)"><br>
+            Формула Фурье <input type="radio"  name="form" value="2" id="rad2" onclick="Radio(2)"><br>
+            Формула В-сплайнов <input type="radio"  name="form" value="3" id="rad3" onclick="Radio(3)"><br>
+            
+            <input type="button" name="send" value="Построить кривую" onClick="graph()"/><br>
+            <input type="button" name="del" value="Очистить график" onClick="Delete()"/>    
+        </form>
+    </div>
+
+
+<script src="scripts/draw.js"></script>
+<script src="scripts/script.js"></script>
+<script src="scripts/action.js"></script>
+
+ </body>
+</html>

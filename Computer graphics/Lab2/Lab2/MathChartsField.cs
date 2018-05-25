@@ -230,8 +230,6 @@
             {
                 var points = new List<PointF>();
 
-                
-
                 for (var i = begin; i <= end; i += Step)
                 {
 

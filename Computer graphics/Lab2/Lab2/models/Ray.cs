@@ -22,7 +22,6 @@
         {
             var y = (float) ((a.Y - b.Y) * -i - (a.X * b.Y - b.X * a.Y)) / (b.X - a.X);
 
-
             if (b.X < a.X)
             {
                 if (i > a.X)
@@ -37,10 +36,6 @@
                     return null;
                 }
             }
-
-            
-
-
 
             return new PointF((float)i, y);
         }

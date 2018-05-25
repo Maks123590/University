@@ -110,7 +110,7 @@ namespace Lab2
 
             return test != 0;
 
-            // 𝑎1𝑏2 − 𝑎2𝑏1 = 0. то (колиниарны) параллельны
+            // 𝑎1𝑏2 − 𝑎2𝑏1 = 0. то (коллинеарны) параллельны
         }
 
         private PointF GetIntersectPoint(PointF aBeg, PointF aEnd, PointF bBeg, PointF bEnd)
