@@ -208,18 +208,51 @@ let Canvas = document.getElementById('canvasId');
 
 		let solution;
 
+	
+
 		if (algoritmSelect === "SC") {
 			solution = SutherlandCohenAlgorithm(+line1, +line2, +line3, +line4, xwmin, xwmax, ywmin, ywmax);
 		} else {
 			solution = LiangBarskiAlgorithm(+line1, +line2, +line3, +line4, xwmin, xwmax, ywmin, ywmax);
 		}
 
+		context.stroke();
+
+		
+		//context.moveTo(DecartToScreenX(+line1),DecartToScreenY(+line2));
+		//context.lineTo(DecartToScreenX(+line3),DecartToScreenY(+line4));
+		
+		
+
+
+
+		//context.stroke(); 
+		context.beginPath();
+
+		context.strokeStyle = "blue";
+		context.setLineDash([5, 10]);
+		context.moveTo(DecartToScreenX(+line1),DecartToScreenY(+line2));
+		context.lineTo(DecartToScreenX(solution[0][0]),DecartToScreenY(solution[0][1]));
 
 		context.stroke(); 
+
 		context.beginPath();
+		context.setLineDash([0, 0]);
+		context.strokeStyle = "black";
+
 		context.moveTo(DecartToScreenX(solution[0][0]),DecartToScreenY(solution[0][1]));
 		context.lineTo(DecartToScreenX(solution[1][0]),DecartToScreenY(solution[1][1]));
 		
 		context.stroke(); 
+
+		context.beginPath();
+		context.setLineDash([5, 10]);
+		context.strokeStyle = "blue";
+
+		context.moveTo(DecartToScreenX(solution[1][0]),DecartToScreenY(solution[1][1]));
+		context.lineTo(DecartToScreenX(+line3),DecartToScreenY(+line4));
+
 		
+		context.stroke(); 
+		context.setLineDash([0, 0]);
 	}

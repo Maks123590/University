@@ -1,0 +1,137 @@
+<html>
+<head>
+  <title>Lab0</title>
+  <HTA:APPLICATION 
+    APPLICATIONNAME="Lab0"
+    SCROLL="no"
+    SINGLEINSTANCE="yes"
+    WINDOWSTATE="maximize"
+  />
+</head>
+
+<body>
+<script language="VBScript">
+
+  Sub TestSub
+  dim NIC1, Nic, StrIP, CompName, User, Domain, OsName, Razr, Memory
+
+  Set WshNetwork = CreateObject("WScript.Network")
+  Set objWShell = CreateObject("WScript.Shell")
+
+  user = WshNetwork.UserName
+  domain = WshNetwork.UserDomain
+
+  Set objUser = GetObject("WinNT://" & domain & "/" & user)
+
+  CompName = WshNetwork.Computername
+  User = WshNetwork.UserName
+  Domain = WshNetwork.UserDomain
+
+  ComputerName.InnerHTML=CompName
+  UserName.InnerHTML=User
+  UserDomain.InnerHTML=""
+
+  For Each objGroup In objUser.Groups
+    UserDomain.InnerHTML = UserDomain.InnerHTML & objGroup.Name & " "
+  Next
+
+  Set NIC1 = GetObject("winmgmts:").InstancesOf("Win32_NetworkAdapterConfiguration")
+  Set oss = GetObject("winmgmts:").InstancesOf("Win32_OperatingSystem")
+  Set system = GetObject("winmgmts:").InstancesOf("Win32_ComputerSystem")
+  Set processor = GetObject("winmgmts:").InstancesOf("Win32_Processor")
+  Set colDisks =  GetObject("winmgmts:").InstancesOf("Win32_LogicalDisk")
+
+  For Each Nic in NIC1
+    if Nic.IPEnabled then
+        StrIP = Nic.IPAddress(i)
+    End if
+  Next
+
+  
+
+  For Each os in oss
+    OsName=os.Caption
+  Next
+
+  For Each pr in processor
+    Razr=pr.AddressWidth
+  Next
+
+  
+
+  For Each sys in system
+    Memory=sys.TotalPhysicalMemory
+  Next
+
+  
+
+  DiskSpace.InnerHTML=""
+
+  For Each objDisk in colDisks
+		DiskSize=objDisk.Size/(1024*1024*1024)
+		DiskFree=objDisk.FreeSpace/(1024*1024*1024)
+		strText=objDisk.DeviceID&" " & "Disk size - "& DiskSize & ", Available memory - " & DiskFree & "<br/>"
+    DiskSpace.InnerHTML=DiskSpace.InnerHTML+strText
+  Next
+
+  strHost = "google.com"
+  strPingCommand = "ping -n 1 -w 300 " & strHost
+  ReturnCode = objWshell.Run(strPingCommand, 0 , True)
+  
+  If ReturnCode = 0 Then
+    InternetAvailable.InnerHTML="Successful ping"
+  Else
+    InternetAvailable.InnerHTML="Unsuccessful ping"
+  End If
+
+  IpAddress.InnerHTML=StrIP
+  OsVersion.InnerHTML=OsName
+  OsBitness.InnerHTML=Razr
+  RamMemory.InnerHTML=Memory
+
+  End Sub
+</script>
+
+<table border="1">
+  <tr>
+    <td>Имя компьютера</td>
+    <td><h5 id="ComputerName">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>IP Адрес</td>
+    <td><h5 id="IpAddress">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Версия ОС</td>
+    <td><h5 id="OsVersion">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Разрядность ОС</td>
+    <td><h5 id="OsBitness">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>RAM</td>
+    <td><h5 id="RamMemory">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Имя пользователя</td>
+    <td><h5 id="UserName">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Домен</td>
+    <td><h5 id="UserDomain">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Дисковое пространство</td>
+    <td><h5 id="DiskSpace">Неизвестно</h5></td>
+  </tr>
+  <tr>
+    <td>Доступ к интеренету</td>
+    <td><h5 id="InternetAvailable">Неизвестно</h5></td>
+  </tr>
+</table>
+
+<input id=runbutton  type="button" value="Выполнить" name="run_button" onClick="TestSub">
+
+</body>
+</html>
