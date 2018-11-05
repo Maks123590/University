@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleIterationMethod", "SimpleIterationMethod\SimpleIterationMethod.csproj", "{22DDA966-F127-41BF-9169-545AFBBA29F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningMethod", "RunningMethod\RunningMethod.csproj", "{88F3A1AC-33D4-44EA-9581-F757642E35E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{22DDA966-F127-41BF-9169-545AFBBA29F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DDA966-F127-41BF-9169-545AFBBA29F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DDA966-F127-41BF-9169-545AFBBA29F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F3A1AC-33D4-44EA-9581-F757642E35E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F3A1AC-33D4-44EA-9581-F757642E35E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F3A1AC-33D4-44EA-9581-F757642E35E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F3A1AC-33D4-44EA-9581-F757642E35E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleIterationMethod
+﻿namespace SimpleIterationMethod
 {
-    using MathNet.Numerics.LinearAlgebra;
-    using MathNet.Numerics.LinearAlgebra.Double;
+    using System;
+    using System.Threading.Tasks;
 
     class Program
     {
