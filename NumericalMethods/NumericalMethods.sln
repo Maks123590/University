@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningMethod", "RunningMet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauss-JordanMethod", "Gauss-JordanMethod\Gauss-JordanMethod.csproj", "{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorTeory", "ErrorTeory\ErrorTeory.csproj", "{34FB633F-9889-4AA3-920E-45D07F283352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FB633F-9889-4AA3-920E-45D07F283352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FB633F-9889-4AA3-920E-45D07F283352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FB633F-9889-4AA3-920E-45D07F283352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FB633F-9889-4AA3-920E-45D07F283352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
