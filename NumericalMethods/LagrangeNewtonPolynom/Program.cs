@@ -96,9 +96,6 @@
             }
 
             return result;
-
-            
-
         }
 
         static double TestFunction(double x)
