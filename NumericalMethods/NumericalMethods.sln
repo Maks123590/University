@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauss-JordanMethod", "Gauss
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorTeory", "ErrorTeory\ErrorTeory.csproj", "{34FB633F-9889-4AA3-920E-45D07F283352}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiniteDifferences", "FiniteDifferences\FiniteDifferences.csproj", "{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LagrangeNewtonPolynom", "LagrangeNewtonPolynom\LagrangeNewtonPolynom.csproj", "{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{34FB633F-9889-4AA3-920E-45D07F283352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FB633F-9889-4AA3-920E-45D07F283352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34FB633F-9889-4AA3-920E-45D07F283352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
