@@ -32,7 +32,7 @@
 
                 z = GetPrecision(lastX1, lastX2, lastX3, lastX4, x1, x2, x3, x4);
 
-                Console.CursorTop = 0;
+                Console.WriteLine();
                 Console.WriteLine($"Итерация: {++i}");
                 Console.WriteLine($"x1 = {x1}");
                 Console.WriteLine($"x2 = {x2}");
@@ -40,7 +40,7 @@
                 Console.WriteLine($"x4 = {x4}");
                 Console.WriteLine($"z = {z}");
 
-                Task.Delay(1000).Wait();
+                
             }
             while (z > rightPrecision);
 

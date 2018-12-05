@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleIterationMethod", "SimpleIterationMethod\SimpleIterationMethod.csproj", "{22DDA966-F127-41BF-9169-545AFBBA29F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Метод Простой Итерации", "SimpleIterationMethod\Метод Простой Итерации.csproj", "{22DDA966-F127-41BF-9169-545AFBBA29F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningMethod", "RunningMethod\RunningMethod.csproj", "{88F3A1AC-33D4-44EA-9581-F757642E35E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Метод Прогонки", "RunningMethod\Метод Прогонки.csproj", "{88F3A1AC-33D4-44EA-9581-F757642E35E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauss-JordanMethod", "Gauss-JordanMethod\Gauss-JordanMethod.csproj", "{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Метод Жардана-Гаусса", "Gauss-JordanMethod\Метод Жардана-Гаусса.csproj", "{CC549290-0516-4A0F-8B8D-99B6FB5DFE0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorTeory", "ErrorTeory\ErrorTeory.csproj", "{34FB633F-9889-4AA3-920E-45D07F283352}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Теория Погрешностей", "ErrorTeory\Теория Погрешностей.csproj", "{34FB633F-9889-4AA3-920E-45D07F283352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiniteDifferences", "FiniteDifferences\FiniteDifferences.csproj", "{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Свойства Конечных Разностей", "FiniteDifferences\Свойства Конечных Разностей.csproj", "{E66D3041-B046-4FEC-A5DE-AC8DA46C0CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LagrangeNewtonPolynom", "LagrangeNewtonPolynom\LagrangeNewtonPolynom.csproj", "{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Полином Лагранжа и Ньютона", "LagrangeNewtonPolynom\Полином Лагранжа и Ньютона.csproj", "{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
