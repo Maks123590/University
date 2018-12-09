@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Свойства Конеч
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Полином Лагранжа и Ньютона", "LagrangeNewtonPolynom\Полином Лагранжа и Ньютона.csproj", "{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Эмпирическая зависимость", "Эмпирическая зависимость\Эмпирическая зависимость.csproj", "{D11A0105-02CD-4400-8441-3ED68F7C9BD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FDC0BB3-057F-4FB4-A138-C406C7B616B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D11A0105-02CD-4400-8441-3ED68F7C9BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D11A0105-02CD-4400-8441-3ED68F7C9BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D11A0105-02CD-4400-8441-3ED68F7C9BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D11A0105-02CD-4400-8441-3ED68F7C9BD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
