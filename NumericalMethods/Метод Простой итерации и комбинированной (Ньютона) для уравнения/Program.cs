@@ -6,8 +6,33 @@
     {
         static void Main(string[] args)
         {
-            
+            SimpleIteration();
+            NewTonMethod();
 
+            Console.ReadLine();
+
+        }
+
+        public static void SimpleIteration()
+        {
+            const double eps = 1e-4;
+            var x0 = 0.0;
+            var x1 = 0.0;
+
+            Func<double, double> function = x => (1 / 3.0) * (1 - Math.Pow(x, 3.0));
+
+            do
+            {
+                x1 = function(x0);
+
+                if (Math.Abs(x1 - x0) >= eps)
+                {
+                    break;
+                }
+                x0 = x1;
+            } while (Math.Abs(x0 - function(x0)) > eps);
+
+            Console.WriteLine($"Ответ: X = {x1} ");
         }
 
         public static void NewTonMethod()
