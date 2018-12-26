@@ -28,6 +28,9 @@
             }
 
             //Обратный ход
+            
+            Console.WriteLine("Обратный ход");
+
             for (int i = matrix.Length - 1; i >= 0 ; i--)
             {
                 for (int j = i - 1; j >= 0; j--)

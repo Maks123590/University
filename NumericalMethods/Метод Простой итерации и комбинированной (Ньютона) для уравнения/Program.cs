@@ -15,7 +15,7 @@
 
         public static void SimpleIteration()
         {
-            const double eps = 1e-4;
+            const double eps = 0.0001;
             var x0 = 0.0;
             var x1 = 0.0;
 

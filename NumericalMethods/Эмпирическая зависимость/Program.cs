@@ -34,12 +34,6 @@
             //var y = new double[] { 2, 4, 8, 16, 32 };
 
 
-            // Test for 4 function
-
-            var x = new double[] { 1, 2, 3, 4, 5 };
-            var y = new double[] { 29, 16.5, 12.33, 10.25, 9 };
-
-
             // Test for 5 function
 
             //var x = new double[] { 1, 2, 3, 4, 5 };
@@ -54,8 +48,8 @@
 
             // Test for 7 function
 
-            //var x = new double[] { 1, 2, 3, 4, 5 };
-            //var y = new double[] { 7, 7.693, 8.098, 8.386, 8.609 };
+            var x = new double[] { 1, 2, 3, 4, 5 };
+            var y = new double[] { 7, 7.693, 8.098, 8.386, 8.609 };
 
 
             int type = DefineRelationType(x, y);
