@@ -1,0 +1,37 @@
+# encoding: utf-8
+# Release 19.2
+SetScriptVersion(Version="19.2.120")
+system1 = GetSystem(Name="Geom")
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.Edit()
+Save(Overwrite=True)
+template1 = GetTemplate(TemplateName="EngData")
+system2 = template1.CreateSystem()
+system2.Delete()
+template2 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system3 = template2.CreateSystem(
+    Position="Right",
+    RelativeTo=system1)
+geometryComponent1 = system3.GetComponent(Name="Geometry")
+geometryComponent2 = system1.GetComponent(Name="Geometry")
+geometryComponent1.ReplaceWithShare(
+    TargetSystem=system3,
+    ComponentToShare=geometryComponent2,
+    SourceSystem=system1)
+favorites1 = EngData.LoadFavoriteItems()
+library1 = EngData.OpenLibrary(
+    Name="Granta Design Sample Materials",
+    Source="Granta_Design_Typical_Materials.xml")
+library2 = EngData.OpenLibrary(
+    Name="General Materials",
+    Source="General_Materials.xml")
+engineeringData1 = system3.GetContainer(ComponentName="Engineering Data")
+matl1 = engineeringData1.ImportMaterial(
+    Name="Aluminum Alloy",
+    Source="General_Materials.xml")
+material1 = engineeringData1.GetMaterial(Name="Structural Steel")
+material1.Delete()
+Save(Overwrite=True)
+Save(Overwrite=True)
