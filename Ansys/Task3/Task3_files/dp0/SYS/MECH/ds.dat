@@ -5,7 +5,7 @@
 ! File used for geometry attach: D:\Repositories\University\Ansys\Task3\Task3_files\dp0\SYS\DM\SYS.agdb
 /title,Task3--Steady-State Thermal (A5)
 *DIM,_wb_ProjectScratch_dir,string,248
-_wb_ProjectScratch_dir(1) = 'D:\Repositories\University\Ansys\Task3\_ProjectScratch\ScrBBCF\'
+_wb_ProjectScratch_dir(1) = 'D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\'
 *DIM,_wb_SolverFiles_dir,string,248
 _wb_SolverFiles_dir(1) = 'D:\Repositories\University\Ansys\Task3\Task3_files\dp0\SYS\MECH\'
 *DIM,_wb_userfiles_dir,string,248
