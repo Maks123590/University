@@ -195,7 +195,7 @@
               <Qualifier name="Cached">True</Qualifier>
             </ParameterValue>
             <ParameterValue parameter="pa14" format="float">
-              <Data>60.5</Data>
+              <Data>47</Data>
               <Qualifier name="Variable Type">Dependent</Qualifier>
               <Qualifier name="Offset">0 [W m^-1 C^-1]</Qualifier>
               <Qualifier name="Scale">1</Qualifier>
