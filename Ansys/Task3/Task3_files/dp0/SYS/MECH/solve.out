@@ -74,13 +74,13 @@
     TOTAL OF     2 CORES REQUESTED
   DESIGNXPLORER REQUESTED
   MPI OPTION                   = INTELMPI
-  INPUT FILE NAME              = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\dummy.dat
-  OUTPUT FILE NAME             = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\solve.out
+  INPUT FILE NAME              = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004\dummy.dat
+  OUTPUT FILE NAME             = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004\solve.out
   START-UP FILE MODE           = NOREAD
   STOP FILE MODE               = NOREAD
 
  RELEASE= Release 19.2         BUILD= 19.2      UP20180808   VERSION=WINDOWS x64 
- CURRENT JOBNAME=file0  23:02:12  JAN 04, 2019 CP=      0.125
+ CURRENT JOBNAME=file0  01:12:12  JAN 08, 2019 CP=      0.141
 
 
  PARAMETER _DS_PROGRESS =     999.0000000    
@@ -89,11 +89,11 @@
 
 
 
- *** NOTE ***                            CP =       0.250   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.406   TIME= 01:12:12
  The /CONFIG,NOELDB command is not valid in a Distributed ANSYS          
  solution.  Command is ignored.                                          
 
- *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  23.0366667    
+ *GET  _WALLSTRT  FROM  ACTI  ITEM=TIME WALL  VALUE=  1.20333333    
 
  TITLE= 
  Task3--Steady-State Thermal (A5)                                              
@@ -102,7 +102,7 @@
  SET PARAMETER DIMENSIONS ON  _WB_PROJECTSCRATCH_DIR
   TYPE=STRI  DIMENSIONS=      248        1        1
 
- PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\
+ PARAMETER _WB_PROJECTSCRATCH_DIR(1) = D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004\
 
  SET PARAMETER DIMENSIONS ON  _WB_SOLVERFILES_DIR
   TYPE=STRI  DIMENSIONS=      248        1        1
@@ -113,34 +113,23 @@
   TYPE=STRI  DIMENSIONS=      248        1        1
 
  PARAMETER _WB_USERFILES_DIR(1) = D:\Repositories\University\Ansys\Task3\Task3_files\user_files\
- --- Data in consistent MKS units. See Solving Units in the help system for more
+ --- Data in consistent NMM units. See Solving Units in the help system for more
 
- MKS UNITS SPECIFIED FOR INTERNAL    
-  LENGTH        (l)  = METER (M)
-  MASS          (M)  = KILOGRAM (KG)
-  TIME          (t)  = SECOND (SEC)
-  TEMPERATURE   (T)  = CELSIUS (C)
-  TOFFSET            = 273.0
-  CHARGE        (Q)  = COULOMB
-  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)
-  HEAT               = JOULE (N-M)
+ MPA UNITS SPECIFIED FOR INTERNAL    
+  LENGTH      = MILLIMETERS (mm)
+  MASS        = TONNE (Mg)
+  TIME        = SECONDS (sec)
+  TEMPERATURE = CELSIUS (C)
+  TOFFSET     = 273.0
+  FORCE       = NEWTON (N)
+  HEAT        = MILLIJOULES (mJ)
 
-  PRESSURE           = PASCAL (NEWTON/M**2)
-  ENERGY        (W)  = JOULE (N-M)
-  POWER         (P)  = WATT (N-M/SEC)
-  CURRENT       (i)  = AMPERE (COULOMBS/SEC)
-  CAPACITANCE   (C)  = FARAD
-  INDUCTANCE    (L)  = HENRY
-  MAGNETIC FLUX      = WEBER
-  RESISTANCE    (R)  = OHM
-  ELECTRIC POTENTIAL = VOLT
-
- INPUT  UNITS ARE ALSO SET TO MKS 
+ INPUT  UNITS ARE ALSO SET TO MPA 
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 19.2     19.2     ***
  DISTRIBUTED ANSYS Academic Teaching Introductory              
 
- 01055371  VERSION=WINDOWS x64   23:02:12  JAN 04, 2019 CP=      0.250
+ 01055371  VERSION=WINDOWS x64   01:12:12  JAN 08, 2019 CP=      0.406
 
  Task3--Steady-State Thermal (A5)                                              
 
@@ -156,7 +145,7 @@
  ***************** Define Uniform Initial temperature ***************
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.281
+ ***** ROUTINE COMPLETED *****  CP =         0.438
 
 
  --- Number of total nodes = 2756
@@ -167,7 +156,7 @@
  --- Number of condensed parts = 0
  --- Number of total elements = 2038
 
- *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  23.0366667    
+ *GET  _WALLBSOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  1.20333333    
  ****************************************************************************
  *************************    SOLUTION       ********************************
  ****************************************************************************
@@ -202,7 +191,7 @@
       494 SELECTED ELEMENTS BY NSLE COMMAND.
 
  GENERATE SURFACE LOAD CONV ON SURFACE DEFINED BY ALL SELECTED NODES
- VALUES=  100.000000      25.0000000    
+ VALUES=  40.0000000      25.0000000    
 
  NUMBER OF CONV ELEMENT FACE LOADS STORED =        494
 
@@ -246,7 +235,7 @@
    FOR THE ENTITIES DEFINED BY COMPONENT _ELMISC 
 
  CONVERGENCE ON HEAT BASED ON THE NORM OF THE N-R LOAD
-   WITH A TOLERANCE OF 0.1000E-02 AND A MINIMUM REFERENCE VALUE OF 0.1000E-05
+   WITH A TOLERANCE OF 0.1000E-02 AND A MINIMUM REFERENCE VALUE OF 0.1000E-02
    USING THE L2 NORM (CHECK THE SRSS VALUE)
 
  *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    
@@ -256,26 +245,26 @@
 
  *ENDIF
 
- *** NOTE ***                            CP =       0.281   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.438   TIME= 01:12:12
  The automatic domain decomposition logic has selected the MESH domain   
  decomposition method with 2 processes per solution.                     
 
  *****  ANSYS SOLVE    COMMAND  *****
 
- *** WARNING ***                         CP =       0.281   TIME= 23:02:12
+ *** WARNING ***                         CP =       0.438   TIME= 01:12:12
  Element shape checking is currently inactive.  Issue SHPP,ON or         
  SHPP,WARN to reactivate, if desired.                                    
 
- *** NOTE ***                            CP =       0.281   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.438   TIME= 01:12:12
  The model data was checked and warning messages were found.             
   Please review output or errors file (                                  
- D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\file0.er 
+ D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004\file0.er 
  rr ) for these warning messages.                                        
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 19.2     19.2     ***
  DISTRIBUTED ANSYS Academic Teaching Introductory              
 
- 01055371  VERSION=WINDOWS x64   23:02:12  JAN 04, 2019 CP=      0.281
+ 01055371  VERSION=WINDOWS x64   01:12:12  JAN 08, 2019 CP=      0.438
 
  Task3--Steady-State Thermal (A5)                                              
 
@@ -289,18 +278,18 @@
    OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    
    GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
 
- *** WARNING ***                         CP =       0.281   TIME= 23:02:12
+ *** WARNING ***                         CP =       0.438   TIME= 01:12:12
  Material number 2 (used by element 1545) should normally have at least  
  one MP or one TB type command associated with it.  Output of energy by  
  material may not be available.                                          
 
- *** NOTE ***                            CP =       0.312   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.469   TIME= 01:12:12
  The step data was checked and warning messages were found.              
   Please review output or errors file (                                  
- D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3\file0.er 
+ D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004\file0.er 
  rr ) for these warning messages.                                        
 
- *** NOTE ***                            CP =       0.312   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.469   TIME= 01:12:12
  The conditions for direct assembly have been met.  No .emat or .erot    
  files will be produced.                                                 
 
@@ -342,34 +331,34 @@
 
   CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID
 
-  TOTAL MASS =   402.83    
+  TOTAL MASS =  0.40283    
 
                            MOM. OF INERTIA         MOM. OF INERTIA
   CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS
 
-  XC =  0.17554E-04      IXX =    11.73          IXX =    11.73    
-  YC = -0.10452E-04      IYY =    11.74          IYY =    11.74    
-  ZC =  0.37085E-05      IZZ =    11.73          IZZ =    11.73    
-                         IXY =  -0.5391E-03      IXY =  -0.5392E-03
-                         IYZ =   0.4055E-03      IYZ =   0.4055E-03
-                         IZX =  -0.5941E-03      IZX =  -0.5940E-03
+  XC =  0.17554E-01      IXX =   0.1173E+05      IXX =   0.1173E+05
+  YC = -0.10452E-01      IYY =   0.1174E+05      IYY =   0.1174E+05
+  ZC =  0.37085E-02      IZZ =   0.1173E+05      IZZ =   0.1173E+05
+                         IXY =  -0.5391          IXY =  -0.5392    
+                         IYZ =   0.4055          IYZ =   0.4055    
+                         IZX =  -0.5941          IZX =  -0.5940    
 
 
   *** MASS SUMMARY BY ELEMENT TYPE ***
 
   TYPE      MASS
-     1   402.828    
+     1  0.402828    
 
  Range of element maximum matrix coefficients in global coordinates
- Maximum = 7.03674312 at element 1130.                                   
- Minimum = 1.858900454E-02 at element 1905.                              
+ Maximum = 53841.4974 at element 1617.                                   
+ Minimum = 1137.18399 at element 119.                                    
 
    *** ELEMENT MATRIX FORMULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
         1      1544  SOLID87       0.047   0.000030
         2       494  SURF152       0.000   0.000000
- Time at end of element matrix formulation CP = 0.375.                   
+ Time at end of element matrix formulation CP = 0.53125.                 
 
  DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
   Number of equations =        2390,    Maximum wavefront =     78
@@ -382,28 +371,28 @@
   Total memory required for in-core solution     =      3.746 MB
   Total memory required for out-of-core solution =      1.928 MB
 
- *** NOTE ***                            CP =       0.438   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.594   TIME= 01:12:12
  The Distributed Sparse Matrix Solver is currently running in the        
  in-core memory mode.  This memory mode uses the most amount of memory   
  in order to avoid using the hard drive as much as possible, which most  
  often results in the fastest solution time.  This mode is recommended   
  if enough physical memory is present to accommodate all of the solver   
  data.                                                                   
- Distributed sparse solver maximum pivot= 17.8326328 at node 654 TEMP.   
- Distributed sparse solver minimum pivot= 1.47463493 at node 95 TEMP.    
- Distributed sparse solver minimum pivot in absolute value= 1.47463493   
+ Distributed sparse solver maximum pivot= 91037.5846 at node 1619 TEMP.  
+ Distributed sparse solver minimum pivot= 791.682901 at node 95 TEMP.    
+ Distributed sparse solver minimum pivot in absolute value= 791.682901   
  at node 95 TEMP.                                                        
 
    *** ELEMENT RESULT CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      1544  SOLID87       0.000   0.000000
+        1      1544  SOLID87       0.047   0.000030
         2       494  SURF152       0.000   0.000000
 
    *** NODAL LOAD CALCULATION TIMES
      TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
 
-        1      1544  SOLID87       0.047   0.000030
+        1      1544  SOLID87       0.000   0.000000
         2       494  SURF152       0.000   0.000000
  *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
  *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
@@ -419,19 +408,19 @@
  ****************************************************
  *************** FINISHED SOLVE FOR LS 1 *************
 
- *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  23.0366667    
+ *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  1.20333333    
 
  FINISH SOLUTION PROCESSING
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.547
+ ***** ROUTINE COMPLETED *****  CP =         0.719
 
 
 
  *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE Release 19.2     19.2     ***
  DISTRIBUTED ANSYS Academic Teaching Introductory              
 
- 01055371  VERSION=WINDOWS x64   23:02:12  JAN 04, 2019 CP=      0.578
+ 01055371  VERSION=WINDOWS x64   01:12:12  JAN 08, 2019 CP=      0.719
 
  Task3--Steady-State Thermal (A5)                                              
 
@@ -439,7 +428,7 @@
 
           ***** ANSYS RESULTS INTERPRETATION (POST1) *****
 
- *** NOTE ***                            CP =       0.578   TIME= 23:02:12
+ *** NOTE ***                            CP =       0.719   TIME= 01:12:12
  Reading results into the database (SET command) will update the current 
  displacement and force boundary conditions in the database with the     
  values from the results file for that load set.  Note that any          
@@ -457,13 +446,13 @@
  EXIT THE ANSYS POST1 DATABASE PROCESSOR
 
 
- ***** ROUTINE COMPLETED *****  CP =         0.578
+ ***** ROUTINE COMPLETED *****  CP =         0.750
 
 
 
  PRINTOUT RESUMED BY /GOP
 
- *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  23.0366667    
+ *GET  _WALLDONE  FROM  ACTI  ITEM=TIME WALL  VALUE=  1.20333333    
 
  PARAMETER _PREPTIME =     0.000000000    
 
@@ -482,7 +471,7 @@
 +--------- D I S T R I B U T E D   A N S Y S   S T A T I S T I C S ------------+
 
 Release: Release 19.2       Build: 19.2       Update: UP20180808   Platform: WINDOWS x64 
-Date Run: 01/04/2019   Time: 23:02     Process ID: 1524
+Date Run: 01/08/2019   Time: 01:12     Process ID: 1060
 Operating System: Windows 8  (Build: 9200)
 
 Processor Model: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
@@ -508,15 +497,15 @@ Input File: dummy.dat
 
   Core                Machine Name   Working Directory
  -----------------------------------------------------
-     0             LAPTOP-CQ6TFCFP   D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3
-     1             LAPTOP-CQ6TFCFP   D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr4CB3
+     0             LAPTOP-CQ6TFCFP   D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004
+     1             LAPTOP-CQ6TFCFP   D:\Repositories\University\Ansys\Task3\_ProjectScratch\Scr6004
  
-Latency time from master to core     1 =    1.405 microseconds
+Latency time from master to core     1 =    1.482 microseconds
  
-Communication speed from master to core     1 =  3670.20 MB/sec
+Communication speed from master to core     1 =  2563.42 MB/sec
 
-Total CPU time for main thread                    :        0.5 seconds
-Total CPU time summed for all threads             :        0.6 seconds
+Total CPU time for main thread                    :        0.7 seconds
+Total CPU time summed for all threads             :        0.9 seconds
 
 Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
 Elapsed time spent solution - preprocessing       :        0.0 seconds
@@ -525,7 +514,6 @@ Elapsed time spent solution - postprocessing      :        0.0 seconds
 Elapsed time spent post-processing model (/POST1) :        0.0 seconds
  
 Equation solver used                              :            Sparse (symmetric)
-Equation solver computational rate                :        2.1 Gflops
 
 Maximum total memory used                         :       88.0 MB
 Maximum total memory allocated                    :     3136.0 MB
@@ -552,7 +540,7 @@ Total amount of I/O read from disk                :        0.0 GB
  |                                                                           |
  |---------------------------------------------------------------------------|
  |                                                                           |
- |        CP Time      (sec) =          0.594       Time  =  23:02:12        |
- |        Elapsed Time (sec) =          2.000       Date  =  01/04/2019      |
+ |        CP Time      (sec) =          0.938       Time  =  01:12:13        |
+ |        Elapsed Time (sec) =          3.000       Date  =  01/08/2019      |
  |                                                                           |
  *---------------------------------------------------------------------------*
