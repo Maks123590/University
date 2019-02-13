@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Task1\Task1.csproj", "{F0FDD3FD-126B-4941-92DE-976DF73D15D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задание 1", "Task1\Задание 1.csproj", "{F0FDD3FD-126B-4941-92DE-976DF73D15D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentBookClassLibrary", "Task1ClassLibrary\StudentBookClassLibrary.csproj", "{B939A775-5864-4E53-8744-06E5FF4DB7EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задание 2", "ConsoleApp1\Задание 2.csproj", "{BD9CC523-D4E9-42AF-80D4-28CEA1816653}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B939A775-5864-4E53-8744-06E5FF4DB7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B939A775-5864-4E53-8744-06E5FF4DB7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B939A775-5864-4E53-8744-06E5FF4DB7EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9CC523-D4E9-42AF-80D4-28CEA1816653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9CC523-D4E9-42AF-80D4-28CEA1816653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9CC523-D4E9-42AF-80D4-28CEA1816653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9CC523-D4E9-42AF-80D4-28CEA1816653}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

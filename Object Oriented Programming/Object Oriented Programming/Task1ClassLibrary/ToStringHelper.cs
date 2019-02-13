@@ -1,5 +1,6 @@
 ﻿namespace StudentBookClassLibrary
 {
+    using System.Collections.Generic;
     using System.Reflection;
     using System.Text;
 
@@ -19,7 +20,16 @@
 
                 var name = (attribute as ToStringNameAttribute)?.DisplayedName;
 
-                strBuilder.Append($"{name ?? property.Name}: {property.GetValue(entity)}\n");
+                var propertyValue = property.GetValue(entity);
+
+                if (propertyValue is IEnumerable<string> values)
+                {
+                    strBuilder.Append($"{name ?? property.Name}: {string.Join(", ", values)}\n");
+                }
+                else
+                {
+                    strBuilder.Append($"{name ?? property.Name}: {property.GetValue(entity)}\n");
+                }
             }
 
             return strBuilder.ToString();
