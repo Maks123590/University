@@ -1,7 +1,6 @@
 ﻿namespace StudentBookClassLibrary
 {
     using System;
-    using System.Text;
 
     public class Student
     {
@@ -21,36 +20,36 @@
 
         public int Id { get; set; }
 
+        [ToStringName("Имя")]
         public string FirstName { get; set; }
 
+        [ToStringName("Фамилия")]
         public string LastName { get; set; }
 
+        [ToStringName("Отчество")]
         public string MiddleName { get; set; }
 
+        [ToStringName("Дата рождения")]
         public DateTime Birthday { get; set; }
 
+        [ToStringName("Адрес")]
         public string Address { get; set; }
 
+        [ToStringName("Телефон")]
         public string Phone { get; set; }
 
+        [ToStringName("Факультет")]
         public string Faculty { get; set; }
 
+        [ToStringName("Курс")]
         public int StudyYearsCount { get; set; }
 
+        [ToStringName("Группа")]
         public string Group { get; set; }
 
         public override string ToString()
         {
-            var properties = this.GetType().GetProperties();
-
-            var strBuilder = new StringBuilder();
-            
-            foreach (var property in properties)
-            {
-                strBuilder.Append($"{property.Name}: {property.GetValue(this)}\n");
-            }
-
-            return strBuilder.ToString();
+            return ToStringHelper<Student>.ToString(this);
         }
     }
 }
