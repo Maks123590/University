@@ -4,7 +4,7 @@
     using System.Reflection;
     using System.Text;
 
-    public class ToStringHelper<T>
+    public static class ToStringHelper<T>
     {
         public static string ToString(T entity)
         {
