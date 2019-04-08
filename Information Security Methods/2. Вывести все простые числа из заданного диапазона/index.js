@@ -4,7 +4,7 @@ const getRandom = (min, max) => {
   return rand;
 };
 
-const eratosphenMethod = (valueFrom = 2, valueTo) => {
+const eratosphenMethod = (valueTo) => {
   const booleanArray = [];
 
   for (var i = 2; i < valueTo; i++) {
@@ -37,7 +37,7 @@ const smallTheoremePherma = (a, valueTo) => {
   arr[0] = false;
   arr[1] = false;
 
-  for (let i = 2; i <= valueTo; i++) {
+  for (let i = 3; i <= valueTo; i++) {
     if (Math.pow(a, i - 1) % i !== 1) {
       arr[i] = false;
     }
@@ -46,27 +46,28 @@ const smallTheoremePherma = (a, valueTo) => {
   return arr;
 };
 
-const getResultArray = array => {
+const getResultArray = (array, from = 0, to = array.length) => {
   const resultArray = [];
 
-  array.forEach((item, index) => {
-    if (item) {
-      resultArray.push(index);
+console.log(to)
+
+  for(let i = from; i <= to; i++) {
+    if (array[i]) {
+      resultArray.push(i);
     }
-  });
+  }
 
   return resultArray;
 };
 
 const handleChangeSecondTask = event => {
-  const valueFrom = from.value;
+  const valueFrom = a.value;
   const valueTo = to.value;
-  const constA = a.value;
 
-  const booleanArray = eratosphenMethod(valueFrom, valueTo);
-  const result = getResultArray(booleanArray);
-  const thPherme = smallTheoremePherma(constA, valueTo);
-  const resultPherma = getResultArray(thPherme);
+  const booleanArray = eratosphenMethod(valueTo);
+  const result = getResultArray(booleanArray, valueFrom, valueTo);
+  const thPherme = smallTheoremePherma(2, valueTo);
+  const resultPherma = getResultArray(thPherme, valueFrom, valueTo);
   document.querySelector(".resultSecondTasckEratosphen").innerHTML = "";
   const resultBlock = document.querySelector(".resultSecondTasckEratosphen");
 
@@ -76,11 +77,11 @@ const handleChangeSecondTask = event => {
         resultBlock.innerHTML += `<div id="resElement">${result[j + i]}</div>`;
       }
     }
-    resultBlock.innerHTML += "</br>";
   }
-  document.querySelector(".resultSecondTasckPherma").innerHTML = "";
+
+  document.querySelector(".resultSecondTaskPherma").innerHTML = "";
   const resultBlockForThPherma = document.querySelector(
-    ".resultSecondTasckPherma"
+    ".resultSecondTaskPherma"
   );
 
   for (let i = 0; i < resultPherma.length; i += 6) {
@@ -91,49 +92,9 @@ const handleChangeSecondTask = event => {
         }</div>`;
       }
     }
-    resultBlockForThPherma.innerHTML += "</br>";
   }
 };
 
-const handlerFirstTask = () => {
-  let borderValue = Math.pow(10, rang.value);
-  const array = eratosphenMethod(2, borderValue);
-
-  const result = getResultArray(array);
-  resultForFirstTask.value = result[result.length - 1];
-};
-
-handleThirdTask = () => {
-  const val = Number(numVal.value);
-
-  const arrayEratosphen = eratosphenMethod(2, val + 100);
-  const numericArrayEratosphen = getResultArray(arrayEratosphen);
-  const arrayEratosphenISContainNumber = numericArrayEratosphen.includes(val);
-
-  const arrayPherma = smallTheoremePherma(2, val + 100);
-  const numericArrayPherma = getResultArray(arrayPherma);
-  const arrayPhermaISContainNumber = numericArrayPherma.includes(val);
-
-  if (arrayEratosphenISContainNumber) {
-    earatosphen.value = "простое";
-  }
-  if (arrayPhermaISContainNumber && arrayEratosphenISContainNumber) {
-    pherma_field.value = "простое";
-  } else if (!arrayPhermaISContainNumber && arrayEratosphenISContainNumber) {
-    pherma_field.value = "псевдопростое";
-  } else {
-    earatosphen.value = "составное";
-    pherma_field.value = "псевдосоставное";
-  }
-};
-
-document.querySelector("#rang").addEventListener("keyup", handlerFirstTask);
-document
-  .querySelector("#from")
-  .addEventListener("keyup", handleChangeSecondTask);
-document.querySelector("#a").addEventListener("keyup", handleChangeSecondTask);
-document.querySelector("#to").addEventListener("keyup", handleChangeSecondTask);
-document.querySelector("#numVal").addEventListener("keyup", handleThirdTask);
-handleThirdTask();
+document.querySelector("#a").addEventListener("change", handleChangeSecondTask);
+document.querySelector("#to").addEventListener("change", handleChangeSecondTask);
 handleChangeSecondTask();
-handlerFirstTask();

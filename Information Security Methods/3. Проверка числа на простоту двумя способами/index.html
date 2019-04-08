@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=100, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <style>
+    .element {
+      margin: 1%;
+    }
+    .label {
+      padding-right: 20px;
+      padding-top: 14px;
+    }
+    .resultSecondTasckEratosphen {
+      display: block;
+      margin-right: 1%;
+    }
+    #resElement {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #000000;
+      text-align: center;
+    }
+    .wrapper {
+      display: flex;
+    }
+
+    .result {
+      background-color: lightgray;
+    }
+  </style>
+  <body>
+    <label>Проверка числа на простоту</label><br />
+    <div class="wrapper">
+      <label class="label">Число = </label>
+      <input type="number" min="0" id="numVal" class="element" value="2" /><br />
+      <label class="label">Решето Эратосфена = </label>
+      <span id="earatosphen" class="element result"></span>
+      <label class="label">малая теорема Ферма = </label>
+      <span id="pherma_field" class="element result"></span>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
