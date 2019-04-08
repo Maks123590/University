@@ -23,6 +23,8 @@
         /// </returns>
         public IActionResult Index()
         {
+            var test = this.configuration.GetSection("TariffPrices:Base:Min").Value;
+
             return View();
         }
     }
