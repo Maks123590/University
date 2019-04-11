@@ -8,7 +8,7 @@
         {
             if (driverAge < 18 || driverAge > 65)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Возраст должен быть в диапазоне от 18 до 65");
             }
 
             var surcharge = driverAge <= 21 ? 1.1 : 1;

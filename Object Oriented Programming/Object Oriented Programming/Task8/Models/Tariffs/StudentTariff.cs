@@ -12,7 +12,7 @@
         {
             if (driverAge > 25)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("На данном тарифе ограничение по возрасту до 25 лет");
             }
 
             this.addGps = addGps;

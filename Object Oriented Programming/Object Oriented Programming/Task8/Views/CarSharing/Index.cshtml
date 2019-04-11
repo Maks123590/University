@@ -1,8 +1,65 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Home Page";
 }
 
+@using Task8.Models.Web
+@using Task8.Models.Web.Enums
+@model Task8.Models.Web.CarSharingFormViewModel
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+  <h1 class="display-4">Веб-калькулятор</h1>
+
+
+  <h5 style="display: block; margin: 2% 0">
+    Введите параметры для расчета стоимости
+  </h5>
+  
+  <div style="margin: 0 auto; width: 80%">
+    <form method="post" asp-action="Index" asp-controller="CarSharing">
+      <div class="form-group row">
+        <label asp-for="ClientAge" class="col-md-5 col-form-label">Возраст водителя:</label>
+        <div class="col-md-7">
+          <input asp-for="ClientAge" type="number" min="18" class="form-control" />
+          <small class="form-text text-muted" style="text-align: center">Возраст водителя должен быть не менее 18 лет и не более 65</small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label asp-for="DriveMins" class="col-md-5 col-form-label">Длительность поездки:</label>
+        <div class="col-md-7">
+          <input asp-for="DriveMins" type="number" min="0" class="form-control" />
+          <small class="form-text text-muted" style="text-align: center">Значение в минутах</small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label asp-for="DriveKm" class="col-md-5 col-form-label">Протяженность поездки:</label>
+        <div class="col-md-7">
+          <input asp-for="DriveKm" type="number" min="0" class="form-control" />
+          <small class="form-text text-muted" style="text-align: center">Значение в километрах</small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label asp-for="TariffType" class="col-md-5 col-form-label">Тип тарифа:</label>
+        <div class="col-md-7">
+          <select asp-for="TariffType" asp-items="Html.GetEnumSelectList<TariffType>()" class="form-control"></select>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label asp-for="UseGps" class="col-md-5 form-check-label">Использовать GPS</label>
+        <input asp-for="UseGps" type="checkbox" class="col-md-7 form-check-input" />
+      </div>
+
+      <div class="form-group row">
+        <label asp-for="AddDriver" class="col-md-5 form-check-label">Дополнительный водитель</label>
+        <input asp-for="AddDriver" type="checkbox" class="col-md-7 form-check-input" />
+      </div>
+
+      <div>
+        <input type="submit" value="Расчитать" class="btn btn-primary" />
+      </div>
+    </form>
+  </div>
 </div>
