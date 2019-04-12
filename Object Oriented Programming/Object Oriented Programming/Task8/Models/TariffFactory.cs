@@ -19,10 +19,10 @@
 
             switch (data.TariffType)
             {
-                case TariffType.Base: return new BaseTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PriceMin, addGps: data.UseGps, driverAge: data.ClientAge);
-                case TariffType.PerHours: return new PerHoursTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PriceMin, addGps: data.UseGps, driverAge: data.ClientAge, addDriver: data.AddDriver);
-                case TariffType.Daily: return new DailyTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PriceMin, addGps: data.UseGps, driverAge: data.ClientAge, addDriver: data.AddDriver);
-                case TariffType.Student: return new StudentTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PriceMin, addGps: data.UseGps, driverAge: data.ClientAge);
+                case TariffType.Base: return new BaseTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PricePerTime, addGps: data.UseGps, driverAge: data.ClientAge);
+                case TariffType.PerHours: return new PerHoursTariff(basePricePerKm: priceItem.PriceKm, pricePerHour: priceItem.PricePerTime, addGps: data.UseGps, driverAge: data.ClientAge, addDriver: data.AddDriver);
+                case TariffType.Daily: return new DailyTariff(basePricePerKm: priceItem.PriceKm, pricePerDay: priceItem.PricePerTime, addGps: data.UseGps, driverAge: data.ClientAge, addDriver: data.AddDriver);
+                case TariffType.Student: return new StudentTariff(basePricePerKm: priceItem.PriceKm, basePricePerMin: priceItem.PricePerTime, addGps: data.UseGps, driverAge: data.ClientAge);
                 default:
                     throw new Exception("Тариф не найден");
             }

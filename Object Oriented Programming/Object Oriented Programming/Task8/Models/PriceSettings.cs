@@ -18,6 +18,6 @@
 
         public int PriceKm { get; set; }
 
-        public int PriceMin { get; set; }
+        public int PricePerTime { get; set; }
     }
 }

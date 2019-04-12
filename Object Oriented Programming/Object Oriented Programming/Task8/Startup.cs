@@ -34,7 +34,7 @@
             });
 
             TariffExtensionMethods.DriverPrice = int.Parse(this.Configuration.GetSection("ServicesPrices:Driver").Value);
-            TariffExtensionMethods.DriverPrice = int.Parse(this.Configuration.GetSection("ServicesPrices:Gps").Value);
+            TariffExtensionMethods.GpsPricePerHour = int.Parse(this.Configuration.GetSection("ServicesPrices:Gps").Value);
 
             services.AddTransient<PriceSettings>(p => new PriceSettings
                                                           {
@@ -44,25 +44,25 @@
                                                                                        {
                                                                                            TariffType = TariffType.Base,
                                                                                            PriceKm = int.Parse(this.Configuration.GetSection("TariffPrices:Base:Km").Value),
-                                                                                           PriceMin = int.Parse(this.Configuration.GetSection("TariffPrices:Base:Min").Value)
+                                                                                           PricePerTime = int.Parse(this.Configuration.GetSection("TariffPrices:Base:Min").Value)
                                                                                        },
                                                                                    new PriceItem
                                                                                        {
                                                                                            TariffType = TariffType.PerHours,
                                                                                            PriceKm = int.Parse(this.Configuration.GetSection("TariffPrices:PerHours:Km").Value),
-                                                                                           PriceMin = int.Parse(this.Configuration.GetSection("TariffPrices:PerHours:Min").Value)
+                                                                                           PricePerTime = int.Parse(this.Configuration.GetSection("TariffPrices:PerHours:Hour").Value)
                                                                                        },
                                                                                    new PriceItem
                                                                                        {
                                                                                            TariffType = TariffType.Daily,
                                                                                            PriceKm = int.Parse(this.Configuration.GetSection("TariffPrices:Daily:Km").Value),
-                                                                                           PriceMin = int.Parse(this.Configuration.GetSection("TariffPrices:Daily:Min").Value)
+                                                                                           PricePerTime = int.Parse(this.Configuration.GetSection("TariffPrices:Daily:Day").Value)
                                                                                        },
                                                                                    new PriceItem
                                                                                        {
                                                                                            TariffType = TariffType.Student,
                                                                                            PriceKm = int.Parse(this.Configuration.GetSection("TariffPrices:Student:Km").Value),
-                                                                                           PriceMin = int.Parse(this.Configuration.GetSection("TariffPrices:Student:Min").Value)
+                                                                                           PricePerTime = int.Parse(this.Configuration.GetSection("TariffPrices:Student:Min").Value)
                                                                                        },
                                                                                }
                                                           });

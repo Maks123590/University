@@ -8,7 +8,7 @@
 
         public static double AddGps(this IMayHaveGps tariff, int min)
         {
-            var hours = min / 60;
+            var hours = min / 60.0;
 
             if (min % 60 > 0)
             {

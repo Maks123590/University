@@ -3,7 +3,6 @@
     using System;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
 
     using Task8.Models;
     using Task8.Models.Web;
@@ -59,12 +58,19 @@
         {
             var result = $"Выбран тариф {formModel.TariffType}";
 
-            result += $" длительность поездки {formModel.DriveMins} минут(ы)"
-                      + $" дальность поездки {formModel.DriveKm}";
+            result += $" длительность поездки {formModel.DriveMins} минут(ы),"
+                      + $" дальность поездки {formModel.DriveKm} км,";
 
             if (formModel.UseGps || formModel.AddDriver)
             {
-                result += $" дополнительные услуги: " + (formModel.UseGps ? "GPS" : string.Empty) + (formModel.AddDriver ? "Личный водитель" : string.Empty);
+                result += $" дополнительные услуги: " + (formModel.UseGps ? "GPS" : string.Empty)
+                    + (formModel.AddDriver && formModel.UseGps ? " , " : string.Empty)
+                    + (formModel.AddDriver ? "Личный водитель" : string.Empty);
+            }
+
+            if (formModel.ClientAge <= 21)
+            {
+                result += ", общая стоимость увеличена на 10% в связи с возрастом водителя";
             }
 
             return result;

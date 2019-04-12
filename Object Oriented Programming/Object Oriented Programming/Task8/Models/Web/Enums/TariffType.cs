@@ -6,9 +6,9 @@
     {
         [Display(Name = "базовый")]
         Base = 1,
-        [Display(Name = "почасовой")]
-        Daily = 2,
         [Display(Name = "суточный")]
+        Daily = 2,
+        [Display(Name = "почасовой")]
         PerHours = 4,
         [Display(Name = "студенческий")]
         Student = 8
