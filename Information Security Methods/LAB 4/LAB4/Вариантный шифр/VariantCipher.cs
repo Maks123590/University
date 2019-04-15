@@ -77,18 +77,6 @@
             return string.Join("_", bigramms);
         }
 
-        private string GetBigramm(int columnPos, int rowPos)
-        {
-            var random = new Random();
-
-            if (random.Next(2) == 0)
-            {
-                return ColumnPairs[columnPos, random.Next(2)] + RowPairs[rowPos, random.Next(2)];
-            }
-
-            return RowPairs[rowPos, random.Next(2)] + ColumnPairs[columnPos, random.Next(2)];
-        }
-
         public void WriteMatrix()
         {
             var alphabetMatrix = this.CreateAlphMatrix();
@@ -113,7 +101,18 @@
 
                 Console.WriteLine();
             }
+        }
 
+        private string GetBigramm(int columnPos, int rowPos)
+        {
+            var random = new Random();
+
+            if (random.Next(2) == 0)
+            {
+                return ColumnPairs[columnPos, random.Next(2)] + RowPairs[rowPos, random.Next(2)];
+            }
+
+            return RowPairs[rowPos, random.Next(2)] + ColumnPairs[columnPos, random.Next(2)];
         }
 
         private string[,] CreateAlphMatrix()

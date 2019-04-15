@@ -1,4 +1,4 @@
-﻿namespace Вариантный_шифр
+﻿namespace Совмещенный_шифр
 {
     using System;
 
@@ -6,13 +6,11 @@
     {
         public static void Main(string[] args)
         {
-            var alph = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-
             // var key = ReadValueFromConsole<string>("\nВведите ключевое слово");
 
             var key = "ДЯДИНА";
 
-            var vc = new VariantCipher(key);
+            var vc = new CombinedСipher(key);
 
             var first = true;
 
